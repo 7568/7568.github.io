@@ -1,4 +1,4 @@
-git add .;
-git commit -m 'add something';
-git push origin master;
-pause;
+git status
+git add .
+git commit -m 'add something'
+git push origin master
