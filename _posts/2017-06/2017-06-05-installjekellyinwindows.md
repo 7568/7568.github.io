@@ -1,6 +1,7 @@
 ### how to install jekelly in windows
 - first install Chocolatey 
 - open cmd with Administrator like this 
+
  ![image help](images/001.png)
 - then copy this code and past it in you cmd
 ```
