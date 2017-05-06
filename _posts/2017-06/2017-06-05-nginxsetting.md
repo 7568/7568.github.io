@@ -1,6 +1,7 @@
 ### nginx 指定文件夹的访问
 - 想通过nginx做一个http的文件夹访问服务器
 - 在config文件中加入
+
 ```
 location /tomcat/ {
             alias   D:/log/;
