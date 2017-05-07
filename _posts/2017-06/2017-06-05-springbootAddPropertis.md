@@ -2,6 +2,7 @@
 ---
 > this issues has confuse me several days , fortunately now I find a easy way to  resolve it.
 > you just create new CustomConfigration class like this:
+
 ```
 	@Configuration
 	public class CustomConfigration {
@@ -32,10 +33,12 @@
 	    }
 	}
 ```
+
 > this is my project structures
 > ![image help](images/projectstructures.png)
 > now the spring boot will load this properties and yml file to enviroment.
 > now you can use it like this:
+
 ```
     @Value("${operatorLog.managerCode[0]}")
     private Integer addType;
@@ -44,7 +47,9 @@
     @Value("${operatorLog.managerCode[2]}")
     private Integer deleteType;
 ```
+
 > or like this :
+
 ```
     @Autowired
     Environment env;
