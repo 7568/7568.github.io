@@ -3,35 +3,34 @@
 > this issues has confuse me several days , fortunately now I find a easy way to  resolve it.
 > you just create new CustomConfigration class like this:
 ```
+	@Configuration
+	public class CustomConfigration {
 
-@Configuration
-public class CustomConfigration {
+	    @Autowired
+	    ConfigurableEnvironment env;
 
-    @Autowired
-    ConfigurableEnvironment env;
+	    static YamlPropertiesFactoryBean yaml;
 
-    static YamlPropertiesFactoryBean yaml;
+	    //load config file use static style
+	    static {
+	        yaml = new YamlPropertiesFactoryBean();
+	        yaml.setResources(new ClassPathResource("config/clog-define.yml"));
+	    }
+	    //this annotation can inject properties to spring Environment
+	    @PostConstruct
+	    public void setup() throws IOException {
+	        env.getPropertySources().addLast(new PropertiesPropertySource("custom", yaml.getObject()));
+	    }
 
-    //load config file use static style
-    static {
-        yaml = new YamlPropertiesFactoryBean();
-        yaml.setResources(new ClassPathResource("config/clog-define.yml"));
-    }
-    //this annotation can inject properties to spring Environment
-    @PostConstruct
-    public void setup() throws IOException {
-        env.getPropertySources().addLast(new PropertiesPropertySource("custom", yaml.getObject()));
-    }
-
-    //this static method will load properties when load java , and inject to spring EnvironmentAware 
-    //but this not inject to Envitonment
-    @Bean
-    public static PropertySourcesPlaceholderConfigurer properties() {
-        PropertySourcesPlaceholderConfigurer propertySourcesPlaceholderConfigurer = new PropertySourcesPlaceholderConfigurer();
-        propertySourcesPlaceholderConfigurer.setProperties(yaml.getObject());
-        return propertySourcesPlaceholderConfigurer;
-    }
-}
+	    //this static method will load properties when load java , and inject to spring EnvironmentAware 
+	    //but this not inject to Envitonment
+	    @Bean
+	    public static PropertySourcesPlaceholderConfigurer properties() {
+	        PropertySourcesPlaceholderConfigurer propertySourcesPlaceholderConfigurer = new PropertySourcesPlaceholderConfigurer();
+	        propertySourcesPlaceholderConfigurer.setProperties(yaml.getObject());
+	        return propertySourcesPlaceholderConfigurer;
+	    }
+	}
 ```
 > this is my project structures
 > ![image help](images/projectstructures.png)
