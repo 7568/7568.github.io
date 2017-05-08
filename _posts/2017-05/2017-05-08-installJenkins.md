@@ -3,6 +3,8 @@ layout: post
 title: Install and use jenkins .
 ---
 
+Install and use jenkins .
+
 1. install jenkins war parckeg from [jenkins](https://jenkins.io)
     ![images help](/images/008.png)
 2. move this war parckage to you servers
@@ -17,3 +19,4 @@ title: Install and use jenkins .
 8. create first admin user , then Jenkins is ready! then click the button *Start using Jenkins*
     ![images help](/images/012.png)
 9. now you can use it.
+10. click 
