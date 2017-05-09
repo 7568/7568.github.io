@@ -5,6 +5,7 @@ title: add propertis to springboot (contain yml and properties file)
 
 this issues has confuse me several days , fortunately now I find a easy way to  resolve it.
 you just create new CustomConfigration class like this:
+
 ```
 @Configuration
 public class CustomConfigration {
