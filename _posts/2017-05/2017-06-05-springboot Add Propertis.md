@@ -2,11 +2,9 @@
 layout: post
 title: add propertis to springboot (contain yml and properties file)
 ---
-### add propertis to springboot (contain yml and properties file)
----
-> this issues has confuse me several days , fortunately now I find a easy way to  resolve it.
-> you just create new CustomConfigration class like this:
 
+this issues has confuse me several days , fortunately now I find a easy way to  resolve it.
+you just create new CustomConfigration class like this:
 ```
 @Configuration
 public class CustomConfigration {
@@ -38,11 +36,10 @@ public class CustomConfigration {
 }
 ```
 
-> this is my project structures
-> ![image help](images/projectstructures.png)
-> now the spring boot will load this properties and yml file to enviroment.
-> now you can use it like this:
-
+this is my project structures
+ ![image help](images/projectstructures.png)
+now the spring boot will load this properties and yml file to enviroment.
+now you can use it like this:
 ```
 @Value("${operatorLog.managerCode[0]}")
 private Integer addType;
@@ -52,8 +49,7 @@ private Integer updateType;
 private Integer deleteType;
 ```
 
-> or like this :
-
+or like this :
 ```
 @Autowired
 Environment env;
