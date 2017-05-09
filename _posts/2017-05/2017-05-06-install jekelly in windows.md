@@ -18,4 +18,4 @@
   ![images help](images/003.png)
 - install jekyll `gem install jekyll` and then wait untill success like this 
   ![images help](images/004.png)
-- ok all success great now you can use jekyll happness
+- ok all success great now you can use jekyll happiness

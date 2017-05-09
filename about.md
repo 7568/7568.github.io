@@ -4,12 +4,12 @@ title: About
 permalink: /about/
 ---
 
-Some information about you!
+Hello every one, this is my blog , wellcome to my blog !
 
 ### More Information
 
-A place to include any other types of information that you'd like to include about yourself.
+I am from china , my english is very bad , but I'am hard leaning , I'am a java programer , this blog is noteing something about web site building , most is recoding issue when I suffered in work. If anyone find this page and visit this page , and you want to discussing about the web building questing , I am glad to recive email from you.
 
 ### Contact me
 
-[email@domain.com](mailto:email@domain.com)
+[v.cafebabe@gmail.com](mailto:v.cafebabe@gmail.com)
