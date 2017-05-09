@@ -1,4 +1,10 @@
-###### 2017-05-06-shortcutInWin10
+---
+layout: post
+title: shortcutInWin10 .
+---
+
+In Win10 have many diffrent with win7, in win10 have many usefull feature, I will log it during my useing,so this page will contuine updateing.
+
 - win+l : sleep
 - win + m : show desktop
 - ALt + Ctrl + d : new vitual desktop
