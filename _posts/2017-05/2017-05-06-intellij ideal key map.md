@@ -19,7 +19,7 @@ This page show some useful intellij ideal key map , those key map is most freque
 - Alt + Home : *show this page location*
 - Ctrl + D : *delete line (defined myself,default is Ctrl + Y)*
 - Ctrl + Shift + D : *duplicate line*
-- Alt + Enter : **
+- Alt + Enter : *very usefull ,if you feel some feature should be use frequent but you dont know how to use it,just press this combination key,this will help you*
 - Alt + Insert : *add if or try etc..*
 - Ctrl + Shift + T : *surround with*
 - Ctrl + E : *recent file*
