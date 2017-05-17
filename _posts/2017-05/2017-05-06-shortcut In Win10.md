@@ -10,3 +10,4 @@ In Win10 have many diffrent with win7, in win10 have many usefull feature, I wil
 - ALt + Ctrl + d : new vitual desktop
 - win + Ctrl + F4 : close vitual desktop
 - Ctrl + win + <- or -> swith vitual desktop
+- Alt + F4 : close current window
