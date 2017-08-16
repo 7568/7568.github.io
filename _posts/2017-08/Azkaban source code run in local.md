@@ -1,4 +1,7 @@
-## Azkaban source code run in local
+layout: post
+title: Azkaban source code run in local
+
+Install azkaban b source code , this document just run solo model .
 
 1. Install azkaban cource code in [azkaban](https://azkaban.github.io)
 
