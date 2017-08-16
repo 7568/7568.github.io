@@ -10,10 +10,10 @@ Install azkaban b source code , this document just run solo model .
    ```groovy
    buildscript {
        repositories {
-           mavenLocal() //use local maven repostory
+           mavenLocal() //use local maven repository
            maven { url "http://repo.spring.io/snapshot" }
            maven { url "http://repo.spring.io/milestone" }
-           maven { url "http://192.168.50.152:8081/nexus/content/groups/public" } // use private maven repostory
+           maven { url "http://192.168.50.152:8081/nexus/content/groups/public" } // use private maven repository
            mavenCentral()
            maven {
                url 'https://plugins.gradle.org/m2/'
