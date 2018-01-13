@@ -1,13 +1,8 @@
 ---
-<<<<<<< HEAD
 --
 layout: post
 title: 介词搭配
 —-
-=======
-layout: post
-title: 介词搭配.
->>>>>>> parent of c7a9406... Delete 2018-01-14-prepositional collocation.md
 ---
 
 OF：
@@ -51,11 +46,7 @@ OF：
 - **sure of 肯定的；**
 - **worthy of 值得的；**
 
-<<<<<<< HEAD
 ##FROM：
-=======
-FROM：
->>>>>>> parent of c7a9406... Delete 2018-01-14-prepositional collocation.md
 
 - **borrow from 从…借钱；**
 - **defend(or agaist) from 保护…使免于；**
@@ -78,11 +69,7 @@ FROM：
 - **far from 远离的；**
 - **safe from 无危险的；**
 
-<<<<<<< HEAD
 ##IN：
-=======
-IN：
->>>>>>> parent of c7a9406... Delete 2018-01-14-prepositional collocation.md
 
 - **believe in 信仰；**
 - **delight in 喜欢；**
@@ -105,11 +92,7 @@ IN：
 - **honest in 对…很诚实；**
 - **weak in 在…薄弱；**
 
-<<<<<<< HEAD
 ##ON：
-=======
-ON：
->>>>>>> parent of c7a9406... Delete 2018-01-14-prepositional collocation.md
 
 - **act on 遵守；**
 - **base(d) on 在…基础上；**
@@ -137,11 +120,7 @@ ON：
 - **intent on 专心与…；**
 - **keen on 热心于…;**
 
-<<<<<<< HEAD
 ##TO：
-=======
-TO：
->>>>>>> parent of c7a9406... Delete 2018-01-14-prepositional collocation.md
 
 - **accustom(ed) to 习惯于；**
 - **amount to 达到；**
@@ -193,11 +172,7 @@ TO：
 - **similar to 与…相似；**
 - **useful to 对…有用；**
 
-<<<<<<< HEAD
 ##AT：
-=======
-AT：
->>>>>>> parent of c7a9406... Delete 2018-01-14-prepositional collocation.md
 
 - **amuse(d) at/by 对…感到有趣；**
 - **arrive at/in 到达；**
@@ -224,11 +199,7 @@ AT：
 - **slow at 对…迟钝；**
 - **skillful in/at 熟练的；**
 
-<<<<<<< HEAD
 ##FOR：
-=======
-FOR：
->>>>>>> parent of c7a9406... Delete 2018-01-14-prepositional collocation.md
 
 - **account for  说明(原因)；**
 - **ask for/of 请求；**
@@ -263,11 +234,7 @@ FOR：
 - **thankful to/for 感谢的；**
 - **valid for 有效期为…；**
 
-<<<<<<< HEAD
 ##WITH：
-=======
-WITH：
->>>>>>> parent of c7a9406... Delete 2018-01-14-prepositional collocation.md
 
 - **agree with 同意；**
 - **begin with 以…开始；**
@@ -299,11 +266,7 @@ WITH：
 - **patient with 有耐心的；**
 - **popular with 为…所喜爱的；**
 
-<<<<<<< HEAD
 ##ABOUT
-=======
-ABOUT
->>>>>>> parent of c7a9406... Delete 2018-01-14-prepositional collocation.md
 
 - **curious about 对…好奇；**
 - **doubtful about 对…有疑问；**
@@ -314,8 +277,3 @@ ABOUT
 
 
 
-<<<<<<< HEAD
-=======
-
-
->>>>>>> parent of c7a9406... Delete 2018-01-14-prepositional collocation.md
