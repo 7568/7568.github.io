@@ -3,7 +3,7 @@ layout: post
 title: 介词搭配.
 ---
 
-##OF：
+OF：
 
 - **accuse of 控告；**
 - **assure of 让...放心；**
@@ -44,7 +44,7 @@ title: 介词搭配.
 - **sure of 肯定的；**
 - **worthy of 值得的；**
 
-##FROM：
+FROM：
 
 - **borrow from 从…借钱；**
 - **defend(or agaist) from 保护…使免于；**
@@ -67,7 +67,7 @@ title: 介词搭配.
 - **far from 远离的；**
 - **safe from 无危险的；**
 
-##IN：
+IN：
 
 - **believe in 信仰；**
 - **delight in 喜欢；**
@@ -90,7 +90,7 @@ title: 介词搭配.
 - **honest in 对…很诚实；**
 - **weak in 在…薄弱；**
 
-##ON：
+ON：
 
 - **act on 遵守；**
 - **base(d) on 在…基础上；**
@@ -118,7 +118,7 @@ title: 介词搭配.
 - **intent on 专心与…；**
 - **keen on 热心于…;**
 
-##TO：
+TO：
 
 - **accustom(ed) to 习惯于；**
 - **amount to 达到；**
@@ -170,7 +170,7 @@ title: 介词搭配.
 - **similar to 与…相似；**
 - **useful to 对…有用；**
 
-##AT：
+AT：
 
 - **amuse(d) at/by 对…感到有趣；**
 - **arrive at/in 到达；**
@@ -197,7 +197,7 @@ title: 介词搭配.
 - **slow at 对…迟钝；**
 - **skillful in/at 熟练的；**
 
-##FOR：
+FOR：
 
 - **account for  说明(原因)；**
 - **ask for/of 请求；**
@@ -232,7 +232,7 @@ title: 介词搭配.
 - **thankful to/for 感谢的；**
 - **valid for 有效期为…；**
 
-##WITH：
+WITH：
 
 - **agree with 同意；**
 - **begin with 以…开始；**
@@ -264,7 +264,7 @@ title: 介词搭配.
 - **patient with 有耐心的；**
 - **popular with 为…所喜爱的；**
 
-##ABOUT
+ABOUT
 
 - **curious about 对…好奇；**
 - **doubtful about 对…有疑问；**
