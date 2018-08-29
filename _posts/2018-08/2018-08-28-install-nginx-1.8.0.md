@@ -139,6 +139,7 @@
            echo $"Usage: $prog {start|stop|restart|reload|status|help}"
            exit 1
    esac
+   exit $RETVAL
    ```
 
    ```
