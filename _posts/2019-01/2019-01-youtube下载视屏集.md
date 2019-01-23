@@ -96,7 +96,7 @@ driver.close()
               headerList.add(new BasicHeader("User-Agent","Mozilla/5.0 (Macintosh; Intel Mac OS X 10_13_4) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/71.0.3578.98 Safari/537.36"));
               headerList.add(new BasicHeader("X-Client-Data","CIa2yQEIorbJAQjBtskBCKmdygEIqKPKAQi/p8oBCOynygEI4qjKARj5pcoB"));
               SSLContextBuilder builder = new SSLContextBuilder();
-              builder.loadTrustMaterial(null, new TrustSelfSignedStrategy());
+              builder.loadTrustMaterial(null, new TrustAllStrategy());
               SSLConnectionSocketFactory sslsf = new SSLConnectionSocketFactory(
                       builder.build(), SSLConnectionSocketFactory.ALLOW_ALL_HOSTNAME_VERIFIER);
               HttpUriRequest httpRequest = org.apache.http.client.methods.RequestBuilder.get().setUri(
@@ -176,6 +176,14 @@ driver.close()
       代码很简单，没有什么可注释的，都看得懂。
 
       下载的时候会报这个错误，按照这连个网站的操作即可（https://www.jianshu.com/p/a1f47b8b4594），（https://zhuyuehua.iteye.com/blog/1102347）
+
+      我自己的解决方法是先将证书下载下来，然后加到java的信任库里面
+
+      打开命令行窗口，并到<java-home>\lib\security\ 目录下，运行下面的命令：
+
+      keytool -import -noprompt -keystore cacerts -storepass changeit -alias yourEntry1 -file your.cer
+
+      就可以了。
 
       ```java
       javax.net.ssl.SSLException: SSL peer shut down incorrectly
