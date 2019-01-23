@@ -95,10 +95,18 @@ driver.close()
               headerList.add(new BasicHeader("Upgrade-Insecure-Requests","1"));
               headerList.add(new BasicHeader("User-Agent","Mozilla/5.0 (Macintosh; Intel Mac OS X 10_13_4) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/71.0.3578.98 Safari/537.36"));
               headerList.add(new BasicHeader("X-Client-Data","CIa2yQEIorbJAQjBtskBCKmdygEIqKPKAQi/p8oBCOynygEI4qjKARj5pcoB"));
-              SSLContextBuilder builder = new SSLContextBuilder();
-              builder.loadTrustMaterial(null, new TrustAllStrategy());
+              headers = headerList.toArray(new Header[headerList.size()]);
+      //        SSLContextBuilder builder = new SSLContextBuilder();
+      //        builder.loadTrustMaterial(null, new TrustAllStrategy());
+              SSLContext sslcontext = SSLContexts.custom()
+                               .loadTrustMaterial(new File("/Users/louis/Desktop/my.keystore"), "123456".toCharArray(),
+                                   new TrustSelfSignedStrategy())
+                               .build();
+              sslcontext.init(null, new TrustManager[]{new TrustAnyTrustManager()}, new java.security.SecureRandom());
               SSLConnectionSocketFactory sslsf = new SSLConnectionSocketFactory(
-                      builder.build(), SSLConnectionSocketFactory.ALLOW_ALL_HOSTNAME_VERIFIER);
+                  sslcontext, new String[]{"TLSv1","TLSv1.1","TLSv1.2"},
+                  null,
+                  SSLConnectionSocketFactory.getDefaultHostnameVerifier());
               HttpUriRequest httpRequest = org.apache.http.client.methods.RequestBuilder.get().setUri(
                       new URI(httpGetUrl)).build();
               HttpParams params = httpRequest.getParams();
@@ -110,7 +118,7 @@ driver.close()
                       httpRequest.setHeader(h);
                   }
               }
-              CloseableHttpClient httpClient = HttpClients.custom().setDefaultCookieStore(cookieStore).setSSLSocketFactory(sslsf).build();
+              CloseableHttpClient httpClient = HttpClients.custom().setDefaultCookieStore(cookieStore).setRetryHandler(new DefaultHttpRequestRetryHandler(3,true)).setSSLSocketFactory(sslsf).build();
               CloseableHttpResponse response = httpClient.execute(httpRequest);
               if(response.getStatusLine().getStatusCode()==302){
                   return sendSsoHttpsGet(response.getFirstHeader("Location").getValue(),headers,cookieStore);
@@ -118,6 +126,19 @@ driver.close()
               System.out.println(httpGetUrl);
       //            JSONObject result = JSON.parseObject(EntityUtils.toString(response.getEntity()));
               return response;
+          }
+          //自定义私有类
+          private static class TrustAnyTrustManager implements X509TrustManager {
+
+              public void checkClientTrusted(X509Certificate[] chain, String authType) throws CertificateException {
+              }
+
+              public void checkServerTrusted(X509Certificate[] chain, String authType) throws CertificateException {
+              }
+
+              public X509Certificate[] getAcceptedIssuers() {
+                  return new X509Certificate[]{};
+              }
           }
 
           public static void main(String[] args)  throws Exception {
@@ -181,7 +202,7 @@ driver.close()
 
       打开命令行窗口，并到<java-home>\lib\security\ 目录下，运行下面的命令：
 
-      keytool -import -noprompt -keystore cacerts -storepass changeit -alias yourEntry1 -file your.cer
+      ''keytool -import -alias "my alipay cert" -file steven.cert     -keystore my.keystore''，这里面的steven.cert就是下载网站的证书。
 
       就可以了。
 
