@@ -174,3 +174,17 @@ driver.close()
       ```
 
       代码很简单，没有什么可注释的，都看得懂。
+
+      下载的时候会报这个错误，但是貌似对下载没什么影响
+
+      ```java
+      javax.net.ssl.SSLException: SSL peer shut down incorrectly
+      	at sun.security.ssl.InputRecord.readV3Record(InputRecord.java:596)
+      	at sun.security.ssl.InputRecord.read(InputRecord.java:532)
+      	at sun.security.ssl.SSLSocketImpl.readRecord(SSLSocketImpl.java:983)
+      	at sun.security.ssl.SSLSocketImpl.readDataRecord(SSLSocketImpl.java:940)
+      	at sun.security.ssl.AppInputStream.read(AppInputStream.java:105)
+      ```
+
+      ​
+
