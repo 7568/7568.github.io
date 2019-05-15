@@ -141,9 +141,10 @@ driver.close()
               }
           }
 
-          public static void main(String[] args)  throws Exception {
-
-              File file = new File("/Users/louis/PycharmProjects/untitled/com.aotain.selenium/down_url.txt");
+           public static void main(String[] args)  throws Exception {
+              System.setProperty("https.protocols", "TLSv1,TLSv1.1,TLSv1.2");
+               //之前生成的下载链接的地址
+              File file = new File("/Users/louis/PycharmProjects/selenium-test/com.aotain.selenium/1_down_url.txt");
 
               // This will reference one line at a time
               String line = null;
@@ -156,14 +157,23 @@ driver.close()
                   BufferedReader bufferedReader =
                       new BufferedReader(fileReader);
 
+                  ExecutorService pool = Executors.newFixedThreadPool(3);
                   int i=1;
                   while((line = bufferedReader.readLine()) != null) {
+                      if(StringUtils.isEmpty(line)){
+                          continue;
+                      }
                       String  ss = line;
                       URI uri = new URI(ss);
                       int ii = (i++);
-                      new Thread(() -> {
 
-
+                      pool.execute(new Thread(() -> {
+                          try {
+                              Thread.sleep(3000);
+                          } catch (InterruptedException e) {
+                              e.printStackTrace();
+                          }
+                        
                           HttpResponse response = null;
                           try {
                               response = sendSsoHttpsGet(ss,null,null);
@@ -176,11 +186,13 @@ driver.close()
                                   StandardCopyOption.REPLACE_EXISTING);
 
                               IOUtils.closeQuietly(initialStream);
+                              System.out.println(ii+" success.");
                           } catch (Exception e) {
+                              System.out.println(ii+" fail.");
                               e.printStackTrace();
                           }
 
-                      }).start();
+                      }));
                       Thread.sleep(1000);
                   }
 
@@ -204,7 +216,7 @@ driver.close()
 
       ''keytool -import -alias "my alipay cert" -file steven.cert     -keystore my.keystore''，这里面的steven.cert就是下载网站的证书。
 
-      就可以了。
+      本地测试有的时候还是会报错，把上面java代码中线程池的最大线程数量减小能减少报错的概率。
 
       ```java
       javax.net.ssl.SSLException: SSL peer shut down incorrectly
