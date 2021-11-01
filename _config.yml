@@ -1,86 +1,76 @@
-#
-# This file contains configuration flags to customize your site
-#
+# title: Your Site Title
+# description: The description of your site.
+# email: your-email@address.com
 
-# Name of your site (displayed in the header)
-name: Louis Lee
+# author: Your name #  Default is your site title.
 
-# Short bio or description (displayed in the header)
-description: A great ship asks deep water
+# # Your social accounts.
+# social:
+#   github: github_username
+#   twitter: twitter_username
+#   facebook: facebook_username
+#   instagram: instagram_username
+#   linkedin: linkedin_username
+#   weibo: weibo_username
 
-# URL of your avatar or profile pic (you could use your GitHub profile pic)
-avatar: https://avatars3.githubusercontent.com/u/4082491?v=3&s=70
+# # Theme Settings
 
-#
-# Flags below are optional
-#
+# # Your site's logo. Will be shown on the left top of your page.
+# logo: /img/logo.svg
+# # If the images of our blog are stored in an external cloud. You can use the jekyll-img-prefix plugin and set your images' base URL here.
+# img_prefix: https://your-img-cdn.com
+# # The RSS link of your blog.
+# rss: "/feed.xml"
 
-# Includes an icon in the footer for each username you enter
-footer-links:
-  dribbble:
-  email: v.cafebabe@gmail.com
-  facebook:
-  flickr:
-  github: 7568/7568.github.io
-  instagram:
-  linkedin:
-  pinterest:
-  rss: # just type anything here for a working RSS icon
-  twitter: 
-  stackoverflow: # your stackoverflow profile, e.g. "users/50476/bart-kiers"
-  youtube: # channel/<your_long_string> or user/<user-name>
-  googleplus: # anything in your profile username that comes after plus.google.com/
+# # The followings are settings for displays of your blog.
+# theme_setting:
+#   # The slides count in the slides layout. Default is 4.
+#   slides_count: 5
+#   # The ← back URL on the top of your post page. Default is your site's home page.
+#   blog_page: "blog/index.md"
+#   # The URL on your name on the bottom of your post and page. Default is your site's home page.
+#   about_page: "about.md"
+#   #  The URL of the menu icon(which has three black lines). Will be shown on the slides/book/chapter layouts It won't be shown if blank.
+#   archive_page: "archive.md"
+#   # The nav links on the top right of home/page/post/blog layout. You can set a local page(by setting a layout's path) or and external link ( both title and url are required) here.
+#   nav_pages:
+#     - "about.md"
+#     -
+#       title: "External Link Title"
+#       url: "https://your-external-link.com"
+#   # Every default value in the following settings is false. You can set them globally here or separately in a single post/page/chapter.
+#   code: true # Code highlight.
+#   math: true # Mathjax
+#   mermaid: true # Mermaid
+#   #  Locales of this theme.
+#   lang:
+#     category_all: All # The first tag in the categories bar on the blog layout page. By clicking it all of your posts will be shown. Default is 'All'.
+#     blog_title: Blog # The text of ← back url on the top of the post layout.  Default is 'Home'.
+#     # The locales of the comment controls.
+#     comment:
+#       user: "昵称"
+#       email: "邮箱"
+#       url: "链接"
+#       message: "说点什么吧..."
+#       reply: "回复"
 
+# head_code: |
+#   <!-- Extra codes in the head of your site pages. You can add your Google Analysis codes here! -->
 
-# Enter your Disqus shortname (not your username) to enable commenting on posts
-# You can find your shortname on the Settings page of your Disqus account
-disqus:
-
-# Enter your Google Analytics web tracking code (e.g. UA-2110908-2) to activate tracking
-google_analytics:
-
-# Your website URL (e.g. http://barryclark.github.io or http://www.barryclark.co)
-# Used for Sitemap.xml and your RSS feed
-url: http://7568.github.io
-
-# If you're hosting your site at a Project repository on GitHub pages
-# (http://yourusername.github.io/repository-name)
-# and NOT your User repository (http://yourusername.github.io)
-# then add in the baseurl here, like this: "/repository-name"
-baseurl: ""
-
-#
-# !! You don't need to change any of the configuration flags below !!
-#
-
-permalink: /:title/
-
-# The release of Jekyll Now that you're using
-version: v1.2.0
-
-# Jekyll 3 now only supports Kramdown for Markdown
-kramdown:
-  # Use GitHub flavored markdown, including triple backtick fenced code blocks
-  input: GFM
-  # Jekyll 3 and GitHub Pages now only support rouge for syntax highlighting
-  syntax_highlighter: rouge
-  syntax_highlighter_opts:
-    # Use existing pygments syntax highlighting css
-    css_class: 'highlight'
-
-# Set the Sass partials directory, as we're using @imports
-sass:
-  style: :expanded # You might prefer to minify using :compressed
-
-# Use the following plug-ins
-gems:
-  - jekyll-sitemap # Create a sitemap using the official Jekyll sitemap gem
-  - jekyll-feed # Create an Atom feed using the official Jekyll feed gem
-
-# Exclude these files from your production _site
-exclude:
-  - Gemfile
-  - Gemfile.lock
-  - LICENSE
-  - README.md
-  - CNAME
+# # The settings of comments.
+# comment:
+#   # You should set it to enable comment
+#   enabled: true
+#   # Your comment provider
+#   provider: disqus # static/disqus
+#   # If provider == disqus
+#   disqus:
+#     name: website_name
+#   # Or provider == static
+#   static:
+#     # Your static comment url.
+#     postUrl:  https://api.staticman.net/v2/connect/GITHUB-USERNAME/GITHUB-REPOSITORY
+# # The settings of local smileys used in static comments. The jekyll-smiley plugin is required.
+# smiley:
+#   enabled: true
+#   dir: img/smileys
