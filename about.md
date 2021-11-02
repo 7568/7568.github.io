@@ -109,6 +109,6 @@ Expedia电商平台后台日志处理开发（属于外包性质的工作）
  
 你可以通过以下几种方式联系到我。
 
-* [提交Issues](https://github.com/7568/75发8.github.io/issues)
+* [提交Issues](https://github.com/7568/7568.github.io/issues)
  
 * [发邮件](mailto:v.cafebabe@gmail.com)
