@@ -3,9 +3,9 @@ layout: blog
 others: true
 istop: true
 title: "本blog搭建的方法"
-background-image: http://ot1cc1u9t.bkt.clouddn.com/17-7-16/38390376.jpg
-date:  2017-07-16 23:45:56
-category: images_process
+background-image: http://7568.github.io/imaegs/2021-11-02_2.jpeg
+date:  2021-11-02
+category: others
 tags:
 - github
 - blog
@@ -38,8 +38,8 @@ others: true
 istop: true
 title: "本blog搭建的方法"
 background-image: http://7568.github.io/imaegs/2021-11-02_2.jpeg
-date:  2017-07-16 23:45:56
-category: images_process
+date:  2021-11-02
+category: others
 tags:
 - github
 - blog
