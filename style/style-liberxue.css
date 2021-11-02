@@ -552,7 +552,7 @@ input:-ms-input-placeholder, textarea:-ms-input-placeholder {
 .navbar-menu {
     z-index: 10;
     display: inline-block;
-    width: 500px;
+    width: 600px;
     padding-right: 5px;
 }
 
