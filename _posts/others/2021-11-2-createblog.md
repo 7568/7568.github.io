@@ -46,3 +46,6 @@ tags:
 ---
 ```
 
+5. 原来的blog中有很多原作者的信息，文字内容，全部修改成自己的就行了，换一下'style/favicons/favicon.ico'和
+   'style/images/logo-liberxue.png.ico'图片，搜索整个目录，将'liberxue'改成自己的名字就可以了。
+
