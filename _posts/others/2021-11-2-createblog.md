@@ -15,12 +15,12 @@ tags:
 最近做实验，一直没有好的结果，很是焦躁，又看到个医药的大公司招聘要求里面有说应聘者最好有个人技术专栏。为了缓解焦躁，就突发奇想，想着能写点东西，记点东西。
 
 ### 找模版
-之前一直是有一个github的blog的，但是界面比较简单，这次又心血来潮，换了个新的，看上去还比较好看。最终找到了这个[liberxue][http://www.liberxue.com]
+之前一直是有一个github的blog的，但是界面比较简单，这次又心血来潮，换了个新的，看上去还比较好看。最终找到了这个[liberxue](http://www.liberxue.com)
 于是就拿过来改成自己的
 
 ### 改模版
 1. 首先我们要找的模版一定要是 jekyll 的，这个是 github 自动支持的，也就是说当我们提交了脚本到 github 服务器之后，github 的系统会自动帮我们编译成网站的形式
-[liberxue][http://www.liberxue.com] 就是 jekyll 的一个轻量级的blog模版
+[liberxue](http://www.liberxue.com) 就是 jekyll 的一个轻量级的blog模版
 当我们下载了这个模版之后，首先我们需要到 `_config.yml` 文件中修改相应的内容，包括本bblog的作者信息，其中最主要是修改 `links` 中的内容，当然，如果你的内容跟原作者的一样，就不需要修改
 `links` 中的内容就是网页的头的部分的修改，比如我修改之后是这个样子的![head](http://7568.github.io/imaegs/2021-11-02_1.png)
 
