@@ -23,8 +23,8 @@ tags:
 `links` 中的内容就是网页的头的部分的修改，比如我修改之后是这个样子的![head](../../imaegs/2021-11-02_1.png)
 
 2. 接下来就是修改原来目录中的文件夹的名字，修改成`_config.yml`中`links`部分一一对应。比如我将`_config.yml`中`links`中的 book 改成了 images_process ，
-   那么我就要把原来的 book 目录的名字改成 images_process ，然后在 images_process 中的 `index.html`文件中第10行的```{% if posts.book %}```
-   改成```{% if posts.images_process %}```。其余的都按照这个修改。
+   那么我就要把原来的 book 目录的名字改成 images_process ，然后在 images_process 中的 `index.html`文件中第10行的``` {% if posts.book %} ```
+   改成``` {% if posts.images_process %} ```。其余的都按照这个修改。
    
 3. 在 _posts 文件夹中创建多个文件夹，用于存放不同类型的blog，_posts 中的文件夹的名字可以随便取。
 
