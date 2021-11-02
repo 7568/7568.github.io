@@ -31,7 +31,7 @@ tags:
 4. 最后，当我们要写blog的时候，我们需要在我们的blog中写入一下内容，其中最重要的内容过就是layout的下面一行，它决定着本blog的分类，
    比如我这个blog的分类是'其他'，那么就把`others`设置为ture，这样当我们提交了本blog之后，github把我们的网站编译后就自动分到了对应的类别中。
 
-```yaml
+```markdown
 ---
 layout: blog
 others: true
