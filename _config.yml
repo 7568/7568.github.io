@@ -15,7 +15,7 @@ links:
     url:          /
     external:     false
   - name:         图像处理
-    url:          /imaegs_process
+    url:          /images_process
     external:     false
   - name:         文本处理
     url:          /text_process
