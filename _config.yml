@@ -23,9 +23,9 @@ links:
   - name:         time series 处理
     url:          /time_series_process
     external:     false
-  - name: 其他杂记
-      url: /others
-      external: false
+  - name:          其他杂记
+    url:          /others
+    external:     false
   - name:         标签
     url:          /tags
     external:     false
