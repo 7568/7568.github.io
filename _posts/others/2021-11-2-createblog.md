@@ -5,7 +5,7 @@ istop: true
 title: "本blog搭建的方法"
 background-image: http://7568.github.io/imaegs/2021-11-02_2.jpeg
 date:  2021-11-02
-category: others
+category: 杂记
 tags:
 - github
 - blog
