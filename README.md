@@ -1,71 +1,70 @@
-# jekyll-theme-persephone
+                .::         .::                       .::      .::                 
+                .::       .:.::                        .::   .::                    
+                .::         .::         .::    .: .:::  .:: .::   .::  .::   .::    
+                .::      .::.:: .::   .:   .::  .::       .::     .::  .:: .:   .:: 
+                .::      .::.::   .::.::::: .:: .::     .:: .::   .::  .::.::::: .::
+                .::      .::.::   .::.:         .::    .::   .::  .::  .::.:        
+                .::::::::.::.:: .::    .::::   .:::   .::      .::  .::.::  .::::   
+                          Copyright (c) 2016-2018 liberxue
+                                 http://www.liberxue.com
+                           
+#### liberxue.github.io preview (demo) (http://www.liberxue.com)
 
-[![Gem Version](https://badge.fury.io/rb/jekyll-theme-persephone.svg)](https://rubygems.org/gems/jekyll-theme-persephone)
+#### `Jekyll Themes`
+----------
+[简体中文版帮助文档README](/ChinaREADME.md)
+#### ``Lightweight``  ``Minimalist``  ``Jekyll blog``
 
-Welcome to your new Jekyll theme! In this directory, you'll find the files you need to be able to package up your theme into a gem. Put your layouts in `_layouts`, your includes in `_includes`, your sass files in `_sass` and any other assets in `assets`.
+#### The first step is to click [fork][https://github.com/liberxue/liberxue.github.io/fork]
+#### The second step is to modify the _config.yml in URL for your domain name
 
-To experiment with this code, add some sample content and run `bundle exec jekyll serve` – this directory is setup just like a Jekyll site!
+#### OK all right, it's that simple
 
-[DEMO with full functions.](https://erl.im)
+#### I don't want any copyright also don't need you to donate, I only need you with a star 🌟  Thx 😄
 
-[A simple blog demo](https://en.erl.im)
+- [x] Automatic generation tag
+- [x] Automatic generation of JSON search
+- [x] Adaptive template
+- [x] Automatic generation of feed.xml
+- [x] Automatic paging generation
+- [x] Modify _config.yml's links for your menu
+- [x] Modify the _config.yml of paginate for how many pages you want to page
+## Stargazers over time
 
-## Demo
+[![Stargazers over time](https://starchart.cc/Liberxue/liberxue.github.io.svg)](https://starchart.cc/Liberxue/liberxue.github.io)
 
-| ![home layout](/screenshots/home.png) | ![blog layout](/screenshots/blog.png) |
-| -- | -- |
-| `layout: home` [Demo](https://en.erl.im/blog/) | `layout: blog` [Demo](https://erl.im/blog) |
-| ![post layout](/screenshots/post.png) | ![page layout](/screenshots/page.png) |
-| `layout: post` [Demo](https://erl.im/blog/the-jekyll-comment-system) | `layout: page` [Demo](https://erl.im/about) |
-| ![archive layout](/screenshots/archive.png)      | ![slides layout](/screenshots/slides.png) |
-| `layout: archive` [Demo](https://erl.im/archive) | <strong style="color: red">*</strong> `layout: slides` [Demo](https://erl.im) |
-| ![book layout](/screenshots/book.png) | ![chapter layout](/screenshots/chapter.png) |
-| <strong style="color: red">*</strong> `layout: book` [Demo](https://erl.im/corner) | <strong style="color: red">*</strong> `layout: chapter` [Demo](https://erl.im/corner/1) |
+![uiliberxue](https://raw.githubusercontent.com/Liberxue/liberxue.github.io/master/thumbnails/ui.jpg) 
 
-The layout with red * relied on a jekyll books generator plugin: [`jekyll-books`](https://github.com/erlzhang/jekyll-books)
+ ![archives](https://raw.githubusercontent.com/Liberxue/liberxue.github.io/master/thumbnails/archives.png) 
 
-## Installation
+ ![blog](https://raw.githubusercontent.com/Liberxue/liberxue.github.io/master/thumbnails/blog.png) 
 
-Add this line to your Jekyll site's `Gemfile`:
+ ![tags](https://raw.githubusercontent.com/Liberxue/liberxue.github.io/master/thumbnails/tags.png) 
 
-```ruby
-gem "jekyll-theme-persephone"
-```
+  ![404](https://raw.githubusercontent.com/Liberxue/liberxue.github.io/master/thumbnails/404.png) 
 
-And add this line to your Jekyll site's `_config.yml`:
+ ----------
+![blog JSON search](https://raw.githubusercontent.com/Liberxue/liberxue.github.io/master/thumbnails/01.gif) 
 
-```yaml
-theme: jekyll-theme-persephone
-```
+#### 1.First step Click[fork](https://github.com/Liberxue/liberxue.github.io#fork-destination-box)
+ 
+----
 
-And then execute:
+![fork](https://raw.githubusercontent.com/Liberxue/liberxue.github.io/master/thumbnails/02.gif)
+  
+  
 
-    $ bundle
 
-Or install it yourself as:
+#### 2. modify _config.yml url URL for your domain
 
-    $ gem install jekyll-theme-persephone
+![modify _config.yml url URL for your domain](https://raw.githubusercontent.com/Liberxue/liberxue.github.io/master/thumbnails/04.gif)
+  
 
-## Usage
 
-- [Settings](/_config.yml)
-- [Layouts](/docs/layouts.md)
-- [Comments](/docs/comments.md)
-- [`jekyll-books` generator](/docs/books.md)
 
-## Contributing
+* [Issues](https://github.com/Liberxue/liberxue.github.io/issues)
+ 
+* [Email](mailto:liberxue@gmail.com)
+ 
+* [Twitter](https://twitter.com/liberxue).
 
-Bug reports and pull requests are welcome on GitHub at https://github.com/erlzhang/jekyll-theme-persephone. This project is intended to be a safe, welcoming space for collaboration, and contributors are expected to adhere to the [Contributor Covenant](http://contributor-covenant.org) code of conduct.
-
-## Development
-
-To set up your environment to develop this theme, run `bundle install`.
-
-Your theme is setup just like a normal Jekyll site! To test your theme, run `bundle exec jekyll serve` and open your browser at `http://localhost:4000`. This starts a Jekyll server using your theme. Add pages, documents, data, etc. like normal to test your theme's contents. As you make modifications to your theme and to your content, your site will regenerate and you should see the changes in the browser after a refresh, just like normal.
-
-When your theme is released, only the files in `_layouts`, `_includes`, `_sass` and `assets` tracked with Git will be bundled.
-To add a custom directory to your theme-gem, please edit the regexp in `jekyll-theme-persephone.gemspec` accordingly.
-
-## License
-
-The theme is available as open source under the terms of the [MIT License](https://opensource.org/licenses/MIT).
