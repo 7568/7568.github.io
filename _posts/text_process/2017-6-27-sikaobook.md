@@ -1,6 +1,6 @@
 ---
 layout: blog
-book: true
+text_process: true
 background-image: http://ot1cc1u9t.bkt.clouddn.com/17-7-17/89166189.jpg
 title:  "思考快与慢"
 date:   2017-06-27
