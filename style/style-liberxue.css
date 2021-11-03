@@ -1115,7 +1115,7 @@ input:-ms-input-placeholder, textarea:-ms-input-placeholder {
 }
 
 .post-content p {
-    font-size: 14px;
+    font-size: 17px;
     word-wrap: break-word;
     word-break: break-word;
     line-height: 40px;
@@ -1162,7 +1162,7 @@ pre code::after {
 }
 
 .post-content p a {
-    color: #313131;
+    color: #4183C4;
     border-bottom: 1px solid #ccc;
 }
 
