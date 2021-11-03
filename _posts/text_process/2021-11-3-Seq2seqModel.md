@@ -2,7 +2,7 @@
 layout: blog
 text_process: true
 background-image: http://7568.github.io/images/2021-11-03_2.png
-category: 文本处理，翻译
+category: 文本处理，机器翻译
 title: 机器翻译-Seq2Seq with Attention
 tags:
 - Seq2Seq
