@@ -30,7 +30,7 @@ links:
     url:          /tags
     external:     false
   - name:         关于
-    url:          /about
+    url:          /README
     external:     false
 # ------------ CONFIGURABLE END ------------
 
