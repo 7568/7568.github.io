@@ -16,7 +16,7 @@ redirect_from:
 
 # Hello World
  
-本主题来源于此 [已开源](https://github.com/Liberxue/liberxue.github.io)，在此感谢作者的分享
+本主题来源于此 [Liberxue](https://github.com/Liberxue/liberxue.github.io)，在此感谢作者的分享
 
  
  
