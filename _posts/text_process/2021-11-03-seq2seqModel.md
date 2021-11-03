@@ -3,7 +3,7 @@ layout: blog
 text_process: true
 background-image: http://7568.github.io/images/2021-11-03_2.png
 category: 文本处理，机器翻译
-title: 机器翻译-Seq2Seq with Attention
+title: 机器翻译 - Seq2Seq with Attention
 tags:
 - Seq2Seq
 - Attention
@@ -20,5 +20,5 @@ tags:
 
 本篇将主要讲述和翻译在[Seq2seq Models With Attention](https://jalammar.github.io/visualizing-neural-machine-translation-mechanics-of-seq2seq-models-with-attention/) 
 中的内容，Seq2seq的相关论文地址在[Sutskever et al.](https://papers.nips.cc/paper/5346-sequence-to-sequence-learning-with-neural-networks.pdf) , [Cho et al., 2014](http://emnlp2014.org/papers/pdf/EMNLP2014179.pdf)
-我们将在下一篇[文章](https://7568.github.io/2021/11/03/Seq2seqModel.html) 中讲述Transformer，也就是[The Illustrated Transformer](https://jalammar.github.io/illustrated-transformer/) 中的内容
+我们将在下一篇[文章](https://7568.github.io/2021/11/03/transformer.html) 中讲述Transformer，也就是[The Illustrated Transformer](https://jalammar.github.io/illustrated-transformer/) 中的内容
 
