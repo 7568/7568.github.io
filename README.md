@@ -1,19 +1,3 @@
-
----
-layout: blog
-title: 关于Louis
-description: "关于Louis博客角落自述"
-data: 2021-11-02 09:19:11
-tags: 
-- Louis
-- 简述
-- 关于
-- 机器学习
-- 神经网络
-redirect_from:
-  - /about/
----
-
 # Hello World
  
 本主题来源于此 [Liberxue](https://github.com/Liberxue/liberxue.github.io) ，在此感谢作者的分享
