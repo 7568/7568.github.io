@@ -1297,7 +1297,7 @@ pre code::after {
     outline-style: none;
     background: #f7f7f7;
 }
-.post-info p {
+p.post-info {
     font-size: 14px;
 }
 .post-info {
