@@ -35,14 +35,14 @@ tags:
 
 ```
 ---
-layout: blog
-others: true
-istop: true
-title: "本blog搭建的方法"
-background-image: http://7568.github.io/imaegs/2021-11-02_2.jpeg
-date:  2021-11-02
-category: others
-tags:
+layout: blog   表示当前文章的排版方式，通常都是blog
+others: true   表示当前文章的所属分类，比如如果是其他杂记分类，那么就设置为others:true，如果是图像处理就设置为images_process:true
+istop: true    是否置顶，如果是的话，就会在首页的最下面一直显示，即使时间过去了很久，由于我把该网站的页脚删了，所以这个没用了
+title: "本blog搭建的方法" 本文的标题
+background-image: http://7568.github.io/imaegs/2021-11-02_2.jpeg   本文在展示页面中显示的图像
+date:  2021-11-02 本文的编辑时间
+category: others 本文的分类，这个可以是任意分类，只会在展示页面中显示出'others'来，只是展示作用，不是真正的分类
+tags:  本文的标签
 - github
 - blog
 ---
