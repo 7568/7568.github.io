@@ -10,7 +10,7 @@ tags:
 - 文本处理
 ---
 
-文本处理
+# 文本处理
 在文本处理中两个经典的网络模型，一个是基于循环神经网络加上 attention 的 Seq2Seq 和完全基于 attention 的 Transformer。这两个模型在机器翻译中都取得了很好的效果。
 本文中很大一部分内容来自翻译
 [Seq2seq Models With Attention](https://jalammar.github.io/visualizing-neural-machine-translation-mechanics-of-seq2seq-models-with-attention/)
