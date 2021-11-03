@@ -11,7 +11,7 @@ tags:
 - 机器学习
 - 神经网络
 redirect_from:
-  - /README/
+  - /about/
 ---
 
 # Hello World
