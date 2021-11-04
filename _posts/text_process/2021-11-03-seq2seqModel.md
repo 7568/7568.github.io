@@ -42,10 +42,10 @@ Seq2Seq 模型是典型的 encoder-decoder 模型，下面的动画将介绍 Seq
 </video>
 
 ## 在 Seq2Seq 模型的 encoder 中，要进行的工作有：
-1. 将输入 X1 字符编码，变成数字类型，即 Word2Vec，得到 X1_Vec，如果我们的输入是 "早上好"，在 Word2Vec 中，先会加上开始标志 <sos> 和结束标志 <eos>，
+1. 将输入 X1 字符编码，变成数字类型，即 Word2Vec，得到 X1_Vec，如果我们的输入是 "早上好"，在 Word2Vec 中，先会加上开始标志 `<sos>` 和结束标志 `<eos>` ，
    这样输入就变成了5个字符，然后每个字符用一串0和1表示，于是得到5个Vector，就是我们想要的 X1_Vec 。
 2. 将 X1_Vec 中的5个 Vector 依次按顺序放入到RNN中，得到一个输出 Z
-比如这样 [encoder](http://7568.github.io/images/2021-11-04_seq2seq_3.mp4)
+比如这样 ![encoder](http://7568.github.io/images/2021-11-04_seq2seq_3.png)
 
 ### 代码实现
 首先我们要安装pytorch(1.0以上)，torchtext，spacy
