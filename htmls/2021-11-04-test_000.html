@@ -13077,20 +13077,6 @@ div#notebook {
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<hr>
-<p>layout: blog
-text_process: true
-background-image: <a href="http://7568.github.io/images/2021-11-03_2.png">http://7568.github.io/images/2021-11-03_2.png</a>
-category: 文本处理，机器翻译
-title: 机器翻译 - Seq2Seq with Attention
-tags:</p>
-<ul>
-<li>Seq2Seq</li>
-<li>Attention</li>
-<li>机器翻译</li>
-</ul>
-<hr>
-<p>jupyter nbconvert --to markdown 2021-11-04-test_000.ipynb</p>
 <h1 id="1---Sequence-to-Sequence-Learning-with-Neural-Networks">1 - Sequence to Sequence Learning with Neural Networks<a class="anchor-link" href="#1---Sequence-to-Sequence-Learning-with-Neural-Networks">&#182;</a></h1><p>In this series we'll be building a machine learning model to go from once sequence to another, using PyTorch and torchtext. This will be done on German to English translations, but the models can be applied to any problem that involves going from one sequence to another, such as summarization, i.e. going from a sequence to a shorter sequence in the same language.</p>
 <p>In this first notebook, we'll start simple to understand the general concepts by implementing the model from the <a href="https://arxiv.org/abs/1409.3215">Sequence to Sequence Learning with Neural Networks</a> paper.</p>
 <h2 id="Introduction">Introduction<a class="anchor-link" href="#Introduction">&#182;</a></h2><p>The most common sequence-to-sequence (seq2seq) models are <em>encoder-decoder</em> models, which commonly use a <em>recurrent neural network</em> (RNN) to <em>encode</em> the source (input) sentence into a single vector. In this notebook, we'll refer to this single vector as a <em>context vector</em>. We can think of the context vector as being an abstract representation of the entire input sentence. This vector is then <em>decoded</em> by a second RNN which learns to output the target (output) sentence by generating it one word at a time.</p>
