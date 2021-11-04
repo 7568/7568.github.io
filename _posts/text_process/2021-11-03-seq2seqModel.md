@@ -151,6 +151,7 @@ print(f"Unique tokens in target (en) vocabulary: {len(TRG.vocab)}")
 在RNN系列中，传统的RNN存在比较大的梯度消失和梯度爆炸的问题，所以现在大家常常用LSTM来代替RNN，本文也将使用 LSTM 来进行编码
 我们先看看LSTM的结构，该结构图来自于[dive into deep learning](https://d2l.ai/chapter_recurrent-modern/lstm.html)
 ![LSTM](http://7568.github.io/images/2021-11-04_seq2seq_4.png)
-最终的输出就是把 $h_t$ 做一个线性变换，直接将 $h_t$ 当作输出也是可以的。
+
+最终的输出就是把 $ h_t $ 做一个线性变换，直接将 $ h_t $ 当作输出也是可以的。
 
 
