@@ -1983,6 +1983,9 @@ p.post-info {
 }
 
 @media (max-width: 880px) {
+    .main-content{
+        width: 96%;
+    }
     .index-page {
         padding: 90px 0 0;
     }
@@ -2046,6 +2049,9 @@ p.post-info {
 }
 
 @media (max-width: 700px) {
+    .main-content{
+        width: 96%;
+    }
     .comment-form .input-control {
         max-width: 100%;
     }
@@ -2088,6 +2094,9 @@ p.post-info {
 }
 
 @media (max-width: 650px) {
+    .main-content{
+        width: 96%;
+    }
     .navbar-menu {
         display: none;
     }
@@ -2166,6 +2175,9 @@ p.post-info {
 }
 
 @media (max-width: 580px) {
+    .main-content{
+        width: 96%;
+    }
     .navbar-search form {
         width: 150px;
     }
