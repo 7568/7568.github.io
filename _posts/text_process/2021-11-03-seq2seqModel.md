@@ -41,7 +41,8 @@ Seq2Seq 模型是典型的 encoder-decoder 模型，下面的动画将介绍 Seq
   Your browser does not support the video tag.
 </video>
 
-## 在 Seq2Seq 模型的 encoder 中，要进行的工作有：
+## encoder
+在 Seq2Seq 模型的 encoder 中，要进行的工作有：
 1. 将输入 X1 字符编码，变成数字类型，即 Word2Vec，得到 X1_Vec，如果我们的输入是 "早上好"，在 Word2Vec 中，先会加上开始标志 `<sos>` 和结束标志 `<eos>` ，
    这样输入就变成了5个字符，然后每个字符用一串0和1表示，于是得到5个Vector，就是我们想要的 X1_Vec 。
 2. 将 X1_Vec 中的5个 Vector 依次按顺序放入到RNN中，得到一个输出 Z
