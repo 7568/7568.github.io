@@ -152,7 +152,7 @@ print(f"Unique tokens in target (en) vocabulary: {len(TRG.vocab)}")
 我们先看看LSTM的结构，该结构图来自于[dive into deep learning](https://d2l.ai/chapter_recurrent-modern/lstm.html)
 ![LSTM](http://7568.github.io/images/2021-11-04_seq2seq_4.png)
 
-最终的输出就是把 $ h_t $ 做一个线性变换，直接将 $ h_t $ 当作输出也是可以的。
+最终的输出就是把 $h_t$ 做一个线性变换，直接将 $h_t$ 当作输出也是可以的。
 $$\lt k\gt=\frac{\sum k_i}{N}$$
 
 
