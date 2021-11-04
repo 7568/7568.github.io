@@ -11,6 +11,7 @@ tags:
 ---
 
 # 简介
+
 在文本处理中两个经典的网络模型，一个是基于循环神经网络加上 attention 的 Seq2Seq 和完全基于 attention 的 Transformer。这两个模型在机器翻译中都取得了很好的效果。
 本文中很大一部分内容来自翻译
 [Seq2seq Models With Attention](https://jalammar.github.io/visualizing-neural-machine-translation-mechanics-of-seq2seq-models-with-attention/)
@@ -18,12 +19,12 @@ tags:
 [The Illustrated Transformer](https://jalammar.github.io/illustrated-transformer/) 。
 代码参考于 [https://github.com/bentrevett/pytorch-seq2seq](https://github.com/bentrevett/pytorch-seq2seq)
 
-
-本篇将主要讲述和翻译在[Seq2seq Models With Attention](https://jalammar.github.io/visualizing-neural-machine-translation-mechanics-of-seq2seq-models-with-attention/) 
+本篇将主要讲述和翻译在[Seq2seq Models With Attention](https://jalammar.github.io/visualizing-neural-machine-translation-mechanics-of-seq2seq-models-with-attention/)
 中的内容，Seq2seq的相关论文地址在[Sutskever et al.](https://papers.nips.cc/paper/5346-sequence-to-sequence-learning-with-neural-networks.pdf) , [Cho et al., 2014](http://emnlp2014.org/papers/pdf/EMNLP2014179.pdf)
 我们将在下一篇[文章](https://7568.github.io/2021/11/03/transformer.html) 中讲述Transformer，也就是[The Illustrated Transformer](https://jalammar.github.io/illustrated-transformer/) 中的内容
 
 # 模型介绍
+
 Sequence-to-sequence模型是一个深度学习神经网络模型，在很多像机器翻译，短文总结，和图像描述等任务中都取得了很好的成绩。接下来我将通过本blog来介绍 Seq2Seq 模型的相关内容和代码。希望对于初学者有所帮助。
 本文主要讲述的代码是 Seq2Seq 模型在机器翻译上英文对中文的翻译。
 <br/>
@@ -42,14 +43,18 @@ Seq2Seq 模型是典型的 encoder-decoder 模型，下面的动画将介绍 Seq
 </video>
 
 ## encoder
+
 在 Seq2Seq 模型的 encoder 中，要进行的工作有：
+
 1. 将输入 X1 字符编码，变成数字类型，即 Word2Vec，得到 X1_Vec，如果我们的输入是 "早上好"，在 Word2Vec 中，先会加上开始标志 `<sos>` 和结束标志 `<eos>` ，
    这样输入就变成了5个字符，然后每个字符用一串0和1表示，于是得到5个Vector，就是我们想要的 X1_Vec 。
 2. 将 X1_Vec 中的5个 Vector 依次按顺序放入到RNN中，得到一个输出 Z
-比如这样 ![encoder](http://7568.github.io/images/2021-11-04_seq2seq_3.png)
+   比如这样 ![encoder](http://7568.github.io/images/2021-11-04_seq2seq_3.png)
 
 ### 代码实现
+
 首先我们要安装pytorch(1.0以上)，torchtext，spacy
+
 ```python
 import torch
 import torch.nn as nn
@@ -73,18 +78,24 @@ torch.manual_seed(SEED)
 torch.cuda.manual_seed(SEED)
 torch.backends.cudnn.deterministic = True
 ```
+
 我们通过执行一下脚本来安装数据集
+
 ```shell
 python -m spacy download en_core_web_sm
 python -m spacy download de_core_news_sm
 ```
+
 然后加载数据集
+
 ```python
 spacy_de = spacy.load('de_core_news_sm')
 spacy_en = spacy.load('en_core_web_sm')
 ```
+
 接下来就是我们的编码阶段
 首先我们将输入的一串连续的字符转换成list，如 '早上好' 转换成 '[早,上,好]' ，然后再将他们变成 0，1 编码，代码如下
+
 ```python
 def tokenize_cn(text):
     """
@@ -99,7 +110,6 @@ def tokenize_en(text):
     英文同中文一样
     """
     return [tok.text for tok in spacy_en.tokenizer(text)]
-
 ```
 
 在 torchtext 中已经有方法帮我们实现编码方法，我们只需要调用如下方法，分别进行中文和英文的编码
@@ -118,25 +128,34 @@ TRG = Field(tokenize = tokenize_en,
 
 接下来我们加载数据集，然后自动分为训练数据，验证数据，和测试数据，本数据集使用的是 [Multi30k dataset](https://github.com/multi30k/dataset) ，
 里面包含有 30000 条英文对法文和德文的句子。
+
 ```python
 train_data, valid_data, test_data = Multi30k.splits(exts = ('.cn', '.en'),  fields = (SRC, TRG))
 ```
+
 我们检查一下每个数据集的大小
+
 ```python
 print(f"Number of training examples: {len(train_data.examples)}")
 print(f"Number of validation examples: {len(valid_data.examples)}")
 print(f"Number of testing examples: {len(test_data.examples)}")
 ```
+
 查看一个样本数据，看看数据集的格式是什么样子的。
+
 ```python
 print(vars(train_data.examples[0]))
 ```
+
 我们得到的输出是这样子的，前面的 `src`中是德语，后面的 `trg`中是英语。
+
 ```json5
 {'src': ['.', 'büsche', 'vieler', 'nähe', 'der', 'in', 'freien', 'im', 'sind', 'männer', 'weiße', 'junge', 'zwei'], 'trg': ['two', 'young', ',', 'white', 'males', 'are', 'outside', 'near', 'many', 'bushes', '.']}
 ```
+
 接下来我们对训练集的输出和输出进行 vocabulary 处理， vocabulary 处理其实就是找出输入输出中所有的单词，然后去重，然后给去重后的每个单词排序，得到每个单词的index，这个index就是每个单词的编码
 执行 vocabulary 处理代码如下
+
 ```python
 SRC.build_vocab(train_data, min_freq = 2)
 TRG.build_vocab(train_data, min_freq = 2)
@@ -144,6 +163,7 @@ TRG.build_vocab(train_data, min_freq = 2)
 print(f"Unique tokens in source (de) vocabulary: {len(SRC.vocab)}")
 print(f"Unique tokens in target (en) vocabulary: {len(TRG.vocab)}")
 ```
+
 到此，我们的数据预处理就完成了。
 
 接下来我们构造我们的 encoder 模型
@@ -152,7 +172,5 @@ print(f"Unique tokens in target (en) vocabulary: {len(TRG.vocab)}")
 我们先看看LSTM的结构，该结构图来自于[dive into deep learning](https://d2l.ai/chapter_recurrent-modern/lstm.html)
 ![LSTM](http://7568.github.io/images/2021-11-04_seq2seq_4.png)
 
-最终的输出就是把 $$h_t$$ 做一个线性变换，直接将 $$h_t$$ 当作输出也是可以的。
-$$\lt k\gt=\frac{\sum k_i}{N}$$
-
+最终的输出就是把 $h_t$ 做一个线性. 换，直接将 $h_t$ 当作输出也是可以的。
 
