@@ -776,7 +776,7 @@ input:-ms-input-placeholder, textarea:-ms-input-placeholder {
 
 .post-list-item {
     float: left;
-    /*width: 33.3333%;*/
+    width: 33.3333%;
     height: auto;
     padding: 18px;
     align-items: center;
