@@ -1,4 +1,4 @@
 如果是md文件，就直接编辑
 如果是ipynb文件，需要先将ipynb文件转换为html文件，转换代码如下，转换之后将.html文件拷贝到htmls文件夹中
-jupyter nbconvert --to markdown 2021-11-04-test_000.ipynb
+jupyter nbconvert --to html 2021-11-04-test_000.ipynb --output ../../htmls/2021-11-04-test_000
 再建立一个同名的.md文件，然后在.md文件中加入iframe标签，iframe的src地址为 https://7568.github.io/images/文件名.html
