@@ -21,3 +21,4 @@ tags:
 中的内容，Transformer 的相关论文地址在[Attention is All You Need.](https://arxiv.org/abs/1706.03762)
 我们在上一篇[文章](https://7568.github.io/2021/11/03/seq2seqModel.html) 中讲述了 Seq2Seq with attention，也就是 [Seq2seq Models With Attention](https://jalammar.github.io/visualizing-neural-machine-translation-mechanics-of-seq2seq-models-with-attention/) 中的内容
 
+代码资料主要来源于[哈佛大学NPL团队的一个blog](http://nlp.seas.harvard.edu/2018/04/03/attention.html)
