@@ -15,13 +15,13 @@ links:
     url:          /
     external:     false
   - name:         图像处理
-    url:          /images_process
+    url:          images-process
     external:     false
   - name:         文本处理
-    url:          /text_process
+    url:          /text-process
     external:     false
   - name:         time series 处理
-    url:          /time_series_process
+    url:          /time-series-process
     external:     false
   - name:         其他杂记
     url:          /others
