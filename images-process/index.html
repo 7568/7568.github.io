@@ -22,9 +22,11 @@ description: "转载和原创一些关于神经网络在图像处理中的研究
 						<div class="item-title"><a href="{{ posts.url }}">{{ posts.title }}</a></div>
 						<div class="item-meta clearfix">
 						<div class="item-meta-ico bg-ico-book" style="background: url('../style/images/bg-ico.png') no-repeat;background-size: 40px auto;"></div>
-              <div class="item-meta-cat">
-				 <a href="category/thoughts/index.html" title="访问 {{  posts.category }}"  data-hover="{{ posts.category }}">{{ posts.category }}</a>
-				 <a href="category/thoughts/index.html" title="访问 {{ posts.date | date: "%Y"}}" data-hover="{{ posts.date | date: "%F %H:%M:%S "}}">{{ posts.date | date: "%F %H:%M:%S "}}</a></div>
+              <span style="float: left;"  data-hover="{{ posts.date }}">{{ posts.date | date: "%F " }}</span>
+				 <span style="float: right;" data-hover="{{ posts.category }}" title="访问 {{ posts.category }}">{{ posts.category }}</span>
+<!--				 <a href="{{ posts.url }}/tags#{{ posts.category }}" title="访问 {{ posts.category }}" data-hover="{{ posts.category }}">{{ posts.category }}</a>-->
+<!--				 <a href="{{ posts.url }}/archives#{{ posts.date | date: "%Y"}}" title="访问 {{ posts.date | date: "%Y"}}" data-hover="{{ posts.date | date: "%F %H:%M"}}">{{ posts.date | date: "%F %H:%M"}}</a>-->
+			</div>
 						</div>
 					</div>
 				</div>
