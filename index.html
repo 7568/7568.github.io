@@ -1,7 +1,7 @@
 ---
 ---
 
-<div class="main-content index-page clearfix ">
+<div class="main-content index-page clearfix " xmlns="http://www.w3.org/1999/html">
 	<div class="post-lists">
 		<div class="post-lists-body">
       {% for posts in paginator.posts %}
@@ -23,6 +23,7 @@
 						<div class="item-meta-ico bg-ico-book" style="background: url('{{ posts.url }}style/images/bg-ico.png') no-repeat;background-size: 40px auto;"></div>
              <div class="item-meta-cat">
 				 <span data-hover="{{ posts.category }}">{{ posts.category }}</span>
+				 </br>
 				 <span data-hover="{{ posts.date }}">{{ posts.date | date: "%F " }}</span>
 <!--				 <a href="{{ posts.url }}/tags#{{ posts.category }}" title="访问 {{ posts.category }}" data-hover="{{ posts.category }}">{{ posts.category }}</a>-->
 <!--				 <a href="{{ posts.url }}/archives#{{ posts.date | date: "%Y"}}" title="访问 {{ posts.date | date: "%Y"}}" data-hover="{{ posts.date | date: "%F %H:%M"}}">{{ posts.date | date: "%F %H:%M"}}</a>-->
