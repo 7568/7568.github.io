@@ -11,7 +11,7 @@
             <span>&laquo;</span>
         {% else %}
             {% if paginator.previous_page == 1 %}
-            <a href="/louispage/">
+            <a href="/">
             {% else %}
             <a href="/louispage{{ paginator.previous_page }}" >
             {% endif %}
@@ -26,7 +26,7 @@
         <li>
             {% endif %}
             {% if i == 1 %}
-            <a href="/?louis" data-hover="{{i}}">{{i}}</a>
+            <a href="/" data-hover="{{i}}">{{i}}</a>
             {% else %}
             <a href="/louispage{{i}}" data-hover="{{i}}">{{i}}</a>
             {% endif %}
