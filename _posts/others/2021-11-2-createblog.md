@@ -33,21 +33,21 @@ tags:
 4. 最后，当我们要写blog的时候，我们需要在我们的blog中写入一下内容，其中最重要的内容过就是layout的下面一行，它决定着本blog的分类，
    比如我这个blog的分类是'其他'，那么就把`others`设置为ture，这样当我们提交了本blog之后，github把我们的网站编译后就自动分到了对应的类别中。
 
-```
----
-layout: blog   表示当前文章的排版方式，通常都是blog
-others: true   表示当前文章的所属分类，比如如果是其他杂记分类，那么就设置为others:true，如果是图像处理就设置为images_process:true
-istop: true    是否置顶，如果是的话，就会在首页的最下面一直显示，即使时间过去了很久，由于我把该网站的页脚删了，所以这个没用了
-title: "本blog搭建的方法" 本文的标题
-background-image: http://7568.github.io/imaegs/2021-11-02_2.jpeg   本文在展示页面中显示的图像
-date:  2021-11-02 本文的编辑时间
-category: others 本文的分类，这个可以是任意分类，只会在展示页面中显示出'others'来，只是展示作用，不是真正的分类，最好与网页的头上的中文名一样，方便显示，且不要太长，否则
-tags:  本文的标签
-- github
-- blog
----
-```
-页面显示与设置的关系如下图所示![image 1](https://7568.github.io/images/2021-11-02-createblog_1.png)
+   ```
+   ---
+   layout: blog   表示当前文章的排版方式，通常都是blog
+   others: true   表示当前文章的所属分类，比如如果是其他杂记分类，那么就设置为others:true，如果是图像处理就设置为images_process:true
+   istop: true    是否置顶，如果是的话，就会在首页的最下面一直显示，即使时间过去了很久，由于我把该网站的页脚删了，所以这个没用了
+   title: "本blog搭建的方法" 本文的标题
+   background-image: http://7568.github.io/imaegs/2021-11-02_2.jpeg   本文在展示页面中显示的图像
+   date:  2021-11-02 本文的编辑时间
+   category: others 本文的分类，这个可以是任意分类，只会在展示页面中显示出'others'来，只是展示作用，不是真正的分类，最好与网页的头上的中文名一样，方便显示，且不要太长，否则
+   tags:  本文的标签
+   - github
+   - blog
+   ---
+   ```
+   页面显示与设置的关系如下图所示![image 1](https://7568.github.io/images/2021-11-02-createblog_1.png)
 
 5. 原来的blog中有很多原作者的信息，文字内容，全部修改成自己的就行了，换一下'style/favicons/favicon.ico'和
    'style/images/logo-liberxue.png.ico'图片，搜索整个目录，将'liberxue'改成自己的名字就可以了。
