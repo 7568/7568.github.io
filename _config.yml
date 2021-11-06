@@ -6,6 +6,7 @@ signoff:          "Louis" # Your name
 google_analytics: level-choir-331113
 share:            true
 markdown:         Kramdown
+mathjax:          true
 head_scripts:
   - http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML
 #markdown:         redcarpet
