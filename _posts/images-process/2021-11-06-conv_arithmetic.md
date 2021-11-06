@@ -87,7 +87,7 @@ _N.B.: Blue maps are inputs, and cyan maps are outputs._
 
 _N.B.: Blue maps are inputs, and cyan maps are outputs._
 
-<table style="width:25%"; table-layout:fixed;>
+<table style="width:25%; table-layout:fixed;">
   <tr>
     <td><img width="150px" src="https://7568.github.io/images/2021-11-06-conv_arithmetic/dilation.gif"></td>
   </tr>
