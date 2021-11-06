@@ -89,6 +89,12 @@ _N.B.: Blue maps are inputs, and cyan maps are outputs. (转置卷积)_
 
 下面是带步长的转置卷积![img_1.png](https://7568.github.io/images/2021-11-06-conv_arithmetic/transposed_convolution_with_stride_2.png)
 转置卷积通常能够使得输出变大，在U型网络中常常被用到
+转置卷积通常也叫做反卷积，因为，普通的卷积操作，为了将卷积操作转换成矩阵相乘，在计算机中处理的时候是这个样子的 ( 图片来自于[机器人博士 【图解】卷积和反卷积过程Convolution&Deconvolution](https://zhuanlan.zhihu.com/p/52407509) )  
+![计算卷积](https://7568.github.io/images/2021-11-06-conv_arithmetic/convolution_in_conputation.png)
+
+而在计算机计算转置卷积的时候，在计算机中处理的时候是这个样子的  ( 图片来自于[机器人博士 【图解】卷积和反卷积过程Convolution&Deconvolution](https://zhuanlan.zhihu.com/p/52407509) )  
+![计算反卷积](https://7568.github.io/images/2021-11-06-conv_arithmetic/transposed_convolution_conputation.png)
+
 ## Dilated convolution animations
 
 _N.B.: Blue maps are inputs, and cyan maps are outputs. (Dilated: 膨胀的；扩张的)_
