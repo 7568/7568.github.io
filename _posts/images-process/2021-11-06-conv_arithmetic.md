@@ -94,7 +94,7 @@ _N.B.: Blue maps are inputs, and cyan maps are outputs. (转置卷积)_
 
 而在计算机计算转置卷积的时候，在计算机中处理的时候是这个样子的  ( 图片来自于[机器人博士 【图解】卷积和反卷积过程Convolution&Deconvolution](https://zhuanlan.zhihu.com/p/52407509) )  
 ![计算反卷积](https://7568.github.io/images/2021-11-06-conv_arithmetic/transposed_convolution_conputation.png)
-
+所以称转置卷积也叫反卷积
 ## Dilated convolution animations
 
 _N.B.: Blue maps are inputs, and cyan maps are outputs. (Dilated: 膨胀的；扩张的)_
