@@ -1117,6 +1117,10 @@ input:-ms-input-placeholder, textarea:-ms-input-placeholder {
     max-width: 700px;
 }
 
+.post-content{
+    width:86%;
+}
+
 .post-content p {
     font-size: 17px;
     word-wrap: break-word;
@@ -1965,11 +1969,17 @@ p.post-info {
  .directory-content {
       display: none;
      }
+     .post-content{
+        width:100%;
+    }
 }
 
 @media (max-width: 1000px) {
     .post-header-thumb {
         height: 280px;
+    }
+    .post-content{
+        width:100%;
     }
 
     .post-header-thumb-cover {
@@ -1988,6 +1998,9 @@ p.post-info {
 @media (max-width: 880px) {
     .main-content{
         width: 96%;
+    }
+    .post-content{
+        width:100%;
     }
     .index-page {
         padding: 90px 0 0;
@@ -2055,6 +2068,9 @@ p.post-info {
     .main-content{
         width: 96%;
     }
+    .post-content{
+        width:100%;
+    }
     .comment-form .input-control {
         max-width: 100%;
     }
@@ -2099,6 +2115,9 @@ p.post-info {
 @media (max-width: 650px) {
     .main-content{
         width: 96%;
+    }
+    .post-content{
+        width:100%;
     }
     .navbar-menu {
         display: none;
@@ -2180,6 +2199,9 @@ p.post-info {
 @media (max-width: 580px) {
     .main-content{
         width: 96%;
+    }
+    .post-content{
+        width:100%;
     }
     .navbar-search form {
         width: 150px;
