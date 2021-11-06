@@ -1,6 +1,6 @@
 ---
 layout: blog
-images_process: true
+images-process: true
 istop: true
 title: "神经网络中的各种卷积操作"
 background-image: {{ site.url }}/imagegs/2021-11-06-conv_arithmetic/no_padding_no_strides.gif
