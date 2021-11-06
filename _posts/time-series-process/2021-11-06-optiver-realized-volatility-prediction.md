@@ -7,6 +7,7 @@ date:   2021-11-06 10:06:42
 background-image: http://7568.github.io/images/2021-11-06-optiver-realized-volatility-prediction/img.png
 tags:
 - Volatility Prediction
+- time series
 ---
 
 
