@@ -5,10 +5,10 @@ url:              https://7568.github.io # 域名
 signoff:          "Louis" # Your name
 google_analytics: level-choir-331113
 share:            true
-markdown:         Kramdown
-mathjax:          true
-head_scripts:
-  - http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML
+#markdown:         Kramdown
+#mathjax:          true
+#head_scripts:
+#  - http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML
 #markdown:         redcarpet
 #redcarpet:
 #    extensions: [ "hard_wrap","autolink", "tables", "strikethrough", "superscript", "with_toc_data", "highlight", "prettify","no_intra_emphasis"]
