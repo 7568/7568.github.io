@@ -83,6 +83,12 @@ _N.B.: Blue maps are inputs, and cyan maps are outputs. (转置卷积)_
   </tr>
 </table>
 
+按照[dive into deep learning](https://d2l.ai/chapter_computer-vision/transposed-conv.html) 中的描述，转置卷积相对于普通卷积的区别就是，普通卷积是在一次卷积中，卷积核乘以相应大小的输入之后，会相加，最后变成一个输出，而转置卷积则是卷积核与输入中的一个值相乘，得到一个与卷积核大小一致的输出。
+![img_2.png](https://7568.github.io/images/2021-11-06-conv_arithmetic/transposed-convolution.png)
+一次反卷积计算中，0先跟kernel相乘，得到[[0,0],[0,0]]，变成 2x2 的矩阵，并没有再相加为一个数，如如果是普通卷积操作，就会再相加成一个数
+
+下面是带步长的转置卷积![img_1.png](https://7568.github.io/images/2021-11-06-conv_arithmetic/transposed_convolution_with_stride_2.png)
+转置卷积通常能够使得输出变大，在U型网络中常常被用到
 ## Dilated convolution animations
 
 _N.B.: Blue maps are inputs, and cyan maps are outputs. (Dilated: 膨胀的；扩张的)_
