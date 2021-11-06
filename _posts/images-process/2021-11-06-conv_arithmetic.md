@@ -9,6 +9,7 @@ tags:
 - 神经网络
 - 卷积
 ---
+本文大部分内容来自于 [vdumoulin/conv_arithmetic](https://github.com/vdumoulin/conv_arithmetic/blob/master/README.md) 
 
 # Convolution arithmetic
 
