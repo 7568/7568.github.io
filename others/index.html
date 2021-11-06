@@ -22,8 +22,10 @@ description: "记录一些非科研的东西"
 								<div class="item-title"><a href="{{ posts.url }}">{{ posts.title }}</a></div>
 								<div class="item-meta clearfix">
 									<div class="item-meta-ico bg-ico-book" style="background: url('../style/images/bg-ico.png') no-repeat;background-size: 40px auto;"></div>
-									 <span style="float: left;"  data-hover="{{ posts.date }}">{{ posts.date | date: "%F " }}</span>
-									 <span style="float: right;" data-hover="{{ posts.category }}" title="访问 {{ posts.category }}">{{ posts.category }}</span>
+									 <div class="item-meta-cat" style=" padding-top: 3%; width: 80%; text-align: left; ">
+										 <span style="float: left;"  data-hover="{{ posts.date }}">{{ posts.date | date: "%F " }}</span>
+										 <span style="float: right;" data-hover="{{ posts.category }}" title="访问 {{ posts.category }}">{{ posts.category }}</span>
+									 </div>
 								</div>
 							</div>
 						</div>
