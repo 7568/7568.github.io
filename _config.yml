@@ -5,9 +5,10 @@ url:              https://7568.github.io # 域名
 signoff:          "Louis" # Your name
 google_analytics: level-choir-331113
 share:            true
-markdown:         redcarpet
-redcarpet:
-    extensions: [ "hard_wrap","autolink", "tables", "strikethrough", "superscript", "with_toc_data", "highlight", "prettify","no_intra_emphasis"]
+markdown:         Kramdown
+#markdown:         redcarpet
+#redcarpet:
+#    extensions: [ "hard_wrap","autolink", "tables", "strikethrough", "superscript", "with_toc_data", "highlight", "prettify","no_intra_emphasis"]
 # 分页
 paginate: 16
 paginate_path: "/:num"
