@@ -4,7 +4,8 @@ description:      "机器学习应用研究。"
 url:              https://7568.github.io # 域名
 signoff:          "Louis" # Your name
 google_analytics: level-choir-331113
-share:            true 
+share:            true
+markdown:         redcarpet
 # 分页
 paginate: 16
 paginate_path: "num"
