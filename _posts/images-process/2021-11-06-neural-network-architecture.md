@@ -1,13 +1,13 @@
 ---
 layout: blog
 images-process: true
-title: "神经网络中的各种卷积操作"
+title: "神经网络结构"
 background-image: https://7568.github.io/images/2021-11-06-neural-network-architecture/img.png
 date:  2021-11-06
 category: 图像处理
 tags:
 - 神经网络
-- 卷积
+- 网络结构
 ---
 
 #归一化方法
