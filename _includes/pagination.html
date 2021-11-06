@@ -13,7 +13,7 @@
             {% if paginator.previous_page == 1 %}
             <a href="/">
             {% else %}
-            <a href="/louispage{{ paginator.previous_page }}" >
+            <a href="/{{ paginator.previous_page }}" >
             {% endif %}
                 <span>&laquo;</span>
             </a>
@@ -28,7 +28,7 @@
             {% if i == 1 %}
             <a href="/" data-hover="{{i}}">{{i}}</a>
             {% else %}
-            <a href="/louispage{{i}}" data-hover="{{i}}">{{i}}</a>
+            <a href="/{{i}}" data-hover="{{i}}">{{i}}</a>
             {% endif %}
         </li>
         {% endfor %}
@@ -36,13 +36,13 @@
             {% if paginator.page == paginator.total_pages %}
             <span>&raquo;</span>
             {% else %}
-            <a href="/louispage{{ paginator.next_page }}" data-hover="&raquo;">
+            <a href="/{{ paginator.next_page }}" data-hover="&raquo;">
                 <span>&raquo;</span>
             </a>
             {% endif %}
         </li>
         <li>
-            <a href="/louispage{{paginator.total_pages}}" data-hover="末页">
+            <a href="/{{paginator.total_pages}}" data-hover="末页">
                 <span>末页</span>
             </a>
         </li>
