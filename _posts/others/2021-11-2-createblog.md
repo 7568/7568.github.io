@@ -3,7 +3,7 @@ layout: blog
 others: true
 istop: true
 title: "本blog搭建的方法"
-background-image: http://7568.github.io/images/2021-11-02_2.jpeg
+background-image: http://7568.github.io/images/2021-11-2-createblog/2021-11-02_2.jpeg
 date:  2021-11-02
 category: 杂记
 tags:
@@ -22,7 +22,7 @@ tags:
 1. 首先我们要找的模版一定要是 jekyll 的，这个是 github 自动支持的，也就是说当我们提交了脚本到 github 服务器之后，github 的系统会自动帮我们编译成网站的形式
 [Liberxue](http://www.liberxue.com) 就是 jekyll 的一个轻量级的blog模版
 当我们下载了这个模版之后，首先我们需要到 `_config.yml` 文件中修改相应的内容，包括本bblog的作者信息，其中最主要是修改 `links` 中的内容，当然，如果你的内容跟原作者的一样，就不需要修改
-`links` 中的内容就是网页的头的部分的修改，比如我修改之后是这个样子的![head](http://7568.github.io/images/2021-11-02_1.png)
+`links` 中的内容就是网页的头的部分的修改，比如我修改之后是这个样子的![head](http://7568.github.io/images/2021-11-2-createblog/2021-11-02_1.png)
 
 2. 接下来就是修改原来目录中的文件夹的名字，修改成`_config.yml`中`links`部分一一对应。比如我将`_config.yml`中`links`中的 book 改成了 images_process ，
    那么我就要把原来的 book 目录的名字改成 images_process ，然后在 images_process 中的 `index.html`文件中第10行的
@@ -47,7 +47,7 @@ tags:
    - blog
    ---
    ```
-   页面显示与设置的关系如下图所示![image 1](https://7568.github.io/images/2021-11-02-createblog_1.png)
+   页面显示与设置的关系如下图所示![image 1](https://7568.github.io/images/2021-11-2-createblog/2021-11-02-createblog_1.png)
 
 5. 原来的blog中有很多原作者的信息，文字内容，全部修改成自己的就行了，换一下'style/favicons/favicon.ico'和
    'style/images/logo-liberxue.png.ico'图片，搜索整个目录，将'liberxue'改成自己的名字就可以了。

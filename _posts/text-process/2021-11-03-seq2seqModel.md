@@ -1,7 +1,7 @@
 ---
 layout: blog
 text-process: true
-background-image: http://7568.github.io/images/2021-11-03_2.png
+background-image: http://7568.github.io/images/2021-11-03-seq2seqModel/2021-11-03_2.png
 category: 文本处理，机器翻译
 title: 机器翻译 - Seq2Seq with Attention
 tags:
@@ -31,14 +31,14 @@ Sequence-to-sequence模型是一个深度学习神经网络模型，在很多像
 Seq2Seq 模型是典型的 encoder-decoder 模型，下面的动画将介绍 Seq2Seq 进行机器翻译时候的基本工作流程。左边是输入，右边是输出。
 
 <video width="100%" height="auto" loop autoplay controls>
-  <source src="http://7568.github.io/images/2021-11-04_seq2seq_1.mp4" type="video/mp4">
+  <source src="http://7568.github.io/images/2021-11-03-seq2seqModel/2021-11-04_seq2seq_1.mp4" type="video/mp4">
   Your browser does not support the video tag.
 </video>
 
 下面这个视频来自于 [https://github.com/google/seq2seq](https://github.com/google/seq2seq) 不过 `https://github.com/google/seq2seq`中的内容对本文关系不大
 
 <video width="100%" height="auto" loop autoplay controls>
-  <source src="http://7568.github.io/images/2021-11-04_seq2seq_2.mp4" type="video/mp4">
+  <source src="http://7568.github.io/images/2021-11-03-seq2seqModel/2021-11-04_seq2seq_2.mp4" type="video/mp4">
   Your browser does not support the video tag.
 </video>
 
@@ -49,7 +49,7 @@ Seq2Seq 模型是典型的 encoder-decoder 模型，下面的动画将介绍 Seq
 1. 将输入 X1 字符编码，变成数字类型，即 Word2Vec，得到 X1_Vec，如果我们的输入是 "早上好"，在 Word2Vec 中，先会加上开始标志 `<sos>` 和结束标志 `<eos>` ，
    这样输入就变成了5个字符，然后每个字符用一串0和1表示，于是得到5个Vector，就是我们想要的 X1_Vec 。
 2. 将 X1_Vec 中的5个 Vector 依次按顺序放入到RNN中，得到一个输出 Z
-   比如这样 ![encoder](http://7568.github.io/images/2021-11-04_seq2seq_3.png)
+   比如这样 ![encoder](http://7568.github.io/images/2021-11-03-seq2seqModel/2021-11-04_seq2seq_3.png)
 
 ### 代码实现
 
@@ -170,7 +170,7 @@ print(f"Unique tokens in target (en) vocabulary: {len(TRG.vocab)}")
 
 在RNN系列中，传统的RNN存在比较大的梯度消失和梯度爆炸的问题，所以现在大家常常用LSTM来代替RNN，本文也将使用 LSTM 来进行编码
 我们先看看LSTM的结构，该结构图来自于[dive into deep learning](https://d2l.ai/chapter_recurrent-modern/lstm.html)
-![LSTM](http://7568.github.io/images/2021-11-04_seq2seq_4.png)
+![LSTM](http://7568.github.io/images/2021-11-03-seq2seqModel/2021-11-04_seq2seq_4.png)
 
 最终的输出就是把 $$ h_t $$ [ h_t ]做一个线性. 换，直接将 $ h_t $ 当作输出也是可以的。
 $$ h_t $$

@@ -2,7 +2,7 @@
 layout: blog
 images-process: true
 title: "神经网络中的各种卷积操作"
-background-image: https://7568.github.io/images/2021-11-06-conv_arithmetic/no_padding_no_strides.gif
+background-image: https://7568.github.io/images/2021-11-06-neural-network-architecture/img.png
 date:  2021-11-06
 category: 图像处理
 tags:
@@ -11,6 +11,7 @@ tags:
 ---
 
 #归一化方法
+
 神经网络中结构中，归一化方法通常有BN(Batch Normalization)，LN(Layer normalization)，IN(Instance Normalization)，GN(Group Normalization)
 - BatchNorm：batch方向做归一化，跨样本、单通道，就是说一个batch中的不同的样本，相同的通道之间进行归一化
 - LayerNorm：channel方向做归一化，单样本、跨通道，就是说，在batch中，每一个样本，自己的通道一起做归一化。如果输入只有一个样本，计算到第i层的时候，输出为(C,H,W)，则LayerNorm就是对该输出整个做归一化。
