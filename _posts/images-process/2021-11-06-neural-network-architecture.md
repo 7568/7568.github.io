@@ -19,4 +19,19 @@ tags:
   如果在分组的时候，组数为通道数，那么GroupNorm就与InstanceNorm等价。如果组数为1，那么GroupNorm就与LayerNorm等价
   在网上找到这个人的解释[amaarora](https://amaarora.github.io/2020/08/09/groupnorm.html) ，挺详细的 。最后还有个总结，说是在他的一个普通测试中，GN效果挺差，但是在[ Big Transfer (BiT): General Visual Representation Learning ](https://arxiv.org/abs/1912.11370) 
   中，将 [ Weight Standardization ](https://arxiv.org/abs/1903.10520) 和GN结合使用过，会有很好的效果
+Bert layer norm实现代码
+```python
+class LayerNorm(nn.Module):
+    "Construct a layernorm module (See citation for details)."
+    def __init__(self, features, eps=1e-6):
+        super(LayerNorm, self).__init__()
+        self.a_2 = nn.Parameter(torch.ones(features))
+        self.b_2 = nn.Parameter(torch.zeros(features))
+        self.eps = eps
 
+    def forward(self, x):
+        # mean(-1) 表示 mean(len(x)), 这里的-1就是最后一个维度，也就是hidden_size维
+        mean = x.mean(-1, keepdim=True)
+        std = x.std(-1, keepdim=True)
+        return self.a_2 * (x - mean) / (std + self.eps) + self.b_2
+```
