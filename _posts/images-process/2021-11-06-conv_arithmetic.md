@@ -2,7 +2,7 @@
 layout: blog
 images-process: true
 title: "神经网络中的各种卷积操作"
-background-image: {{ site.url }}/imagegs/2021-11-06-conv_arithmetic/no_padding_no_strides.gif
+background-image: https://7568.github.io/images/2021-11-06-conv_arithmetic/no_padding_no_strides.gif
 date:  2021-11-06
 category: 图像处理
 tags:
@@ -27,10 +27,10 @@ _N.B.: Blue maps are inputs, and cyan maps are outputs._
 
 <table style="width:100%; table-layout:fixed;">
   <tr>
-    <td><img width="150px" src="{{ site.url }}/imagegs/2021-11-06-conv_arithmetic/no_padding_no_strides.gif"></td>
-    <td><img width="150px" src="{{ site.url }}/imagegs/2021-11-06-conv_arithmetic/arbitrary_padding_no_strides.gif"></td>
-    <td><img width="150px" src="{{ site.url }}/imagegs/2021-11-06-conv_arithmetic/same_padding_no_strides.gif"></td>
-    <td><img width="150px" src="{{ site.url }}/imagegs/2021-11-06-conv_arithmetic/full_padding_no_strides.gif"></td>
+    <td><img width="150px" src="https://7568.github.io/images/2021-11-06-conv_arithmetic/no_padding_no_strides.gif"></td>
+    <td><img width="150px" src="https://7568.github.io/images/2021-11-06-conv_arithmetic/arbitrary_padding_no_strides.gif"></td>
+    <td><img width="150px" src="https://7568.github.io/images/2021-11-06-conv_arithmetic/same_padding_no_strides.gif"></td>
+    <td><img width="150px" src="https://7568.github.io/images/2021-11-06-conv_arithmetic/full_padding_no_strides.gif"></td>
   </tr>
   <tr>
     <td>No padding, no strides</td>
@@ -39,9 +39,9 @@ _N.B.: Blue maps are inputs, and cyan maps are outputs._
     <td>Full padding, no strides</td>
   </tr>
   <tr>
-    <td><img width="150px" src="{{ site.url }}/imagegs/2021-11-06-conv_arithmetic/no_padding_strides.gif"></td>
-    <td><img width="150px" src="{{ site.url }}/imagegs/2021-11-06-conv_arithmetic/padding_strides.gif"></td>
-    <td><img width="150px" src="{{ site.url }}/imagegs/2021-11-06-conv_arithmetic/padding_strides_odd.gif"></td>
+    <td><img width="150px" src="https://7568.github.io/images/2021-11-06-conv_arithmetic/no_padding_strides.gif"></td>
+    <td><img width="150px" src="https://7568.github.io/images/2021-11-06-conv_arithmetic/padding_strides.gif"></td>
+    <td><img width="150px" src="https://7568.github.io/images/2021-11-06-conv_arithmetic/padding_strides_odd.gif"></td>
     <td></td>
   </tr>
   <tr>
@@ -58,10 +58,10 @@ _N.B.: Blue maps are inputs, and cyan maps are outputs._
 
 <table style="width:100%; table-layout:fixed;">
   <tr>
-    <td><img width="150px" src="{{ site.url }}/imagegs/2021-11-06-conv_arithmetic/no_padding_no_strides_transposed.gif"></td>
-    <td><img width="150px" src="{{ site.url }}/imagegs/2021-11-06-conv_arithmetic/arbitrary_padding_no_strides_transposed.gif"></td>
-    <td><img width="150px" src="{{ site.url }}/imagegs/2021-11-06-conv_arithmetic/same_padding_no_strides_transposed.gif"></td>
-    <td><img width="150px" src="{{ site.url }}/imagegs/2021-11-06-conv_arithmetic/full_padding_no_strides_transposed.gif"></td>
+    <td><img width="150px" src="https://7568.github.io/images/2021-11-06-conv_arithmetic/no_padding_no_strides_transposed.gif"></td>
+    <td><img width="150px" src="https://7568.github.io/images/2021-11-06-conv_arithmetic/arbitrary_padding_no_strides_transposed.gif"></td>
+    <td><img width="150px" src="https://7568.github.io/images/2021-11-06-conv_arithmetic/same_padding_no_strides_transposed.gif"></td>
+    <td><img width="150px" src="https://7568.github.io/images/2021-11-06-conv_arithmetic/full_padding_no_strides_transposed.gif"></td>
   </tr>
   <tr>
     <td>No padding, no strides, transposed</td>
@@ -70,9 +70,9 @@ _N.B.: Blue maps are inputs, and cyan maps are outputs._
     <td>Full padding, no strides, transposed</td>
   </tr>
   <tr>
-    <td><img width="150px" src="{{ site.url }}/imagegs/2021-11-06-conv_arithmetic/no_padding_strides_transposed.gif"></td>
-    <td><img width="150px" src="{{ site.url }}/imagegs/2021-11-06-conv_arithmetic/padding_strides_transposed.gif"></td>
-    <td><img width="150px" src="{{ site.url }}/imagegs/2021-11-06-conv_arithmetic/padding_strides_odd_transposed.gif"></td>
+    <td><img width="150px" src="https://7568.github.io/images/2021-11-06-conv_arithmetic/no_padding_strides_transposed.gif"></td>
+    <td><img width="150px" src="https://7568.github.io/images/2021-11-06-conv_arithmetic/padding_strides_transposed.gif"></td>
+    <td><img width="150px" src="https://7568.github.io/images/2021-11-06-conv_arithmetic/padding_strides_odd_transposed.gif"></td>
     <td></td>
   </tr>
   <tr>
@@ -89,7 +89,7 @@ _N.B.: Blue maps are inputs, and cyan maps are outputs._
 
 <table style="width:25%"; table-layout:fixed;>
   <tr>
-    <td><img width="150px" src="{{ site.url }}/imagegs/2021-11-06-conv_arithmetic/dilation.gif"></td>
+    <td><img width="150px" src="https://7568.github.io/images/2021-11-06-conv_arithmetic/dilation.gif"></td>
   </tr>
   <tr>
     <td>No padding, no stride, dilation</td>
