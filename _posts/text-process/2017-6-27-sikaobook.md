@@ -1,7 +1,7 @@
 ---
 layout: blog
-text_process: true
-background-image: http://ot1cc1u9t.bkt.clouddn.com/17-7-17/89166189.jpg
+text-process: true
+background-image: http://7568.github.io/images/img.jpg
 title:  "思考快与慢"
 date:   2017-06-27
 category: 书籍
