@@ -10,7 +10,7 @@ tags:
 - 网络结构
 ---
 
-#归一化方法
+# 归一化方法
 
 神经网络中结构中，归一化方法通常有BN(Batch Normalization)，LN(Layer normalization)，IN(Instance Normalization)，GN(Group Normalization)
 - BatchNorm：batch方向做归一化，跨样本、单通道，就是说一个batch中的不同的样本，相同的通道之间进行归一化
