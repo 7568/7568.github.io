@@ -54,7 +54,7 @@ _N.B.: Blue maps are inputs, and cyan maps are outputs._
 
 ## Transposed convolution animations
 
-_N.B.: Blue maps are inputs, and cyan maps are outputs._
+_N.B.: Blue maps are inputs, and cyan maps are outputs. (转置卷积)_
 
 <table style="width:100%; table-layout:fixed;">
   <tr>
@@ -85,7 +85,7 @@ _N.B.: Blue maps are inputs, and cyan maps are outputs._
 
 ## Dilated convolution animations
 
-_N.B.: Blue maps are inputs, and cyan maps are outputs._
+_N.B.: Blue maps are inputs, and cyan maps are outputs. (Dilated: 膨胀的；扩张的)_
 
 <table style="width:25%; table-layout:fixed;">
   <tr>
