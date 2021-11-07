@@ -52,7 +52,13 @@ Seq2Seq 模型是典型的 encoder-decoder 模型，下面的动画将介绍 Seq
 2. 将 X1_Vec 中的5个 Vector 依次按顺序放入到RNN中，得到一个输出 Z
    比如这样 ![encoder](http://7568.github.io/images/2021-11-03-seq2seqModel/2021-11-04_seq2seq_3.png)
 
+## decoder
+
+在 decoder 中，首先我们要对标签进行编码，然后，将编码后的结果放入到一个神经网络中，用来提取特征，
+
 ### 代码实现
+
+#### 代码实现
 
 首先我们要安装pytorch(1.0以上)，torchtext，spacy
 
@@ -173,13 +179,6 @@ print(f"Unique tokens in target (en) vocabulary: {len(TRG.vocab)}")
 我们先看看LSTM的结构，该结构图来自于[dive into deep learning](https://d2l.ai/chapter_recurrent-modern/lstm.html)
 ![LSTM](http://7568.github.io/images/2021-11-03-seq2seqModel/2021-11-04_seq2seq_4.png)
 
-最终的输出就是把 $$ h_t $$ [ h_t ]做一个线性. 换，直接将 $ h_t $ 当作输出也是可以的。
-$$ h_t $$
-最终的输出就是把 $$ h_t $$ [ h_t ]做一个线性. 换，直接将 $ h_t $ 当作输出也是可以的。
+最终的输出就是把 $$ h_t $$ 做一个线性变换，直接将 $$ h_t $$ 当作输出也是可以的。
 
-最终的输出就是把 $$ h_t $$ [ h_t ]做一个线性. 换，直接将 $ h_t $ 当作输出也是可以的。
-
-$$ h_t $$
-
-最终的输出就是把 $$ h_t $$ [ h_t ]做一个线性. 换，直接将 $ h_t $ 当作输出也是可以的。
 

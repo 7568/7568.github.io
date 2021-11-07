@@ -89,13 +89,50 @@ _N.B.: Blue maps are inputs, and cyan maps are outputs. (转置卷积)_
 一次反卷积计算中，0先跟kernel相乘，得到[[0,0],[0,0]]，变成 2x2 的矩阵，并没有再相加为一个数，如如果是普通卷积操作，就会再相加成一个数
 
 下面是带步长的转置卷积![img_1.png](https://7568.github.io/images/2021-11-06-conv_arithmetic/transposed_convolution_with_stride_2.png)
-转置卷积通常能够使得输出变大，在U型网络中常常被用到
+
 转置卷积通常也叫做反卷积，因为，普通的卷积操作，为了将卷积操作转换成矩阵相乘，在计算机中处理的时候是这个样子的 ( 图片来自于[机器人博士 【图解】卷积和反卷积过程Convolution&Deconvolution](https://zhuanlan.zhihu.com/p/52407509) )  
 ![计算卷积](https://7568.github.io/images/2021-11-06-conv_arithmetic/convolution_in_conputation.png)
 
 而在计算机计算转置卷积的时候，在计算机中处理的时候是这个样子的  ( 图片来自于[机器人博士 【图解】卷积和反卷积过程Convolution&Deconvolution](https://zhuanlan.zhihu.com/p/52407509) )  
 ![计算反卷积](https://7568.github.io/images/2021-11-06-conv_arithmetic/transposed_convolution_conputation.png)
-所以称转置卷积也叫反卷积
+所以称转置卷积也叫反卷积。
+
+转置卷积通常能够使得输出变大，也就是常说的上采样，在U型网络中常常被用到，在pytorch中，上采样的方法还有 torch.nn.Upsample ，torch.nn.ReflectionPad2d 等
+torch.nn.Upsample 通常我们可以理解为将每个元素进行重复，或者是重复之后按照特定规则做一下变换
+例如下面就是简单的重复，参数不同，变换的规则不一样
+```python
+input = torch.arange(1, 5, dtype=torch.float32).view(1, 1, 2, 2)
+input
+tensor([[[[ 1.,  2.],
+          [ 3.,  4.]]]])
+
+m = nn.Upsample(scale_factor=2, mode='nearest')
+m(input)
+tensor([[[[ 1.,  1.,  2.,  2.],
+          [ 1.,  1.,  2.,  2.],
+          [ 3.,  3.,  4.,  4.],
+          [ 3.,  3.,  4.,  4.]]]])
+```
+
+torch.nn.ReflectionPad2d 指的是将输入添加padding，但是不是添加0，而是添加输入的镜像，效果如下：
+```python
+m = nn.ReflectionPad2d(2)
+input = torch.arange(9, dtype=torch.float).reshape(1, 1, 3, 3)
+input
+tensor([[[[0., 1., 2.],
+          [3., 4., 5.],
+          [6., 7., 8.]]]])
+m(input)
+tensor([[[[8., 7., 6., 7., 8., 7., 6.],
+          [5., 4., 3., 4., 5., 4., 3.],
+          [2., 1.,'0','1','2', 1., 0.],
+          [5., 4.,'3','4','5', 4., 3.],
+          [8., 7.,'6','7','8', 7., 6.],
+          [5., 4., 3., 4., 5., 4., 3.],
+          [2., 1., 0., 1., 2., 1., 0.]]]])
+# 加上引号的部分是输入的值，其余的部分是padding的值，可以看到padding的值都是输入的镜像
+```
+
 ## Dilated convolution animations
 
 _N.B.: Blue maps are inputs, and cyan maps are outputs. (Dilated: 膨胀的；扩张的)_
