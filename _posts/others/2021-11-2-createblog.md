@@ -42,6 +42,7 @@ tags:
    background-image: http://7568.github.io/imaegs/2021-11-02_2.jpeg   本文在展示页面中显示的图像
    date:  2021-11-02 本文的编辑时间
    category: others 本文的分类，这个可以是任意分类，只会在展示页面中显示出'others'来，只是展示作用，不是真正的分类，最好与网页的头上的中文名一样，方便显示，且不要太长，否则
+   mathjax: true md页面中是否需要显示数学表达式，如果有就为true
    tags:  本文的标签
    - github
    - blog
