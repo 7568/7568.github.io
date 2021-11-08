@@ -1122,6 +1122,7 @@ input:-ms-input-placeholder, textarea:-ms-input-placeholder {
 .post-content{
         width: 91%;
         padding-left: 10%;
+        padding-top: 1px;
 }
 
 .post-content p {
@@ -1975,6 +1976,7 @@ p.post-info {
      .post-content{
         width:100%;
         padding-left: 0;
+        padding-top: 1px;
     }
 }
 
@@ -1984,6 +1986,8 @@ p.post-info {
     }
     .post-content{
         width:100%;
+        padding-left: 0;
+        padding-top: 1px;
     }
 
     .post-header-thumb-cover {
@@ -2006,6 +2010,8 @@ p.post-info {
     }
     .post-content{
         width:100%;
+        padding-left: 0;
+        padding-top: 1px;
     }
     .index-page {
         padding: 90px 0 0;
@@ -2075,6 +2081,8 @@ p.post-info {
     }
     .post-content{
         width:100%;
+        padding-left: 0;
+        padding-top: 1px;
     }
     .comment-form .input-control {
         max-width: 100%;
@@ -2123,6 +2131,8 @@ p.post-info {
     }
     .post-content{
         width:100%;
+        padding-left: 0;
+        padding-top: 1px;
     }
     .navbar-menu {
         display: none;
@@ -2207,6 +2217,8 @@ p.post-info {
     }
     .post-content{
         width:100%;
+        padding-left: 0;
+        padding-top: 1px;
     }
     .navbar-search form {
         width: 150px;
