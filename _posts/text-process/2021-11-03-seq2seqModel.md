@@ -160,16 +160,41 @@ print(vars(train_data.examples[0]))
 {'src': ['.', 'büsche', 'vieler', 'nähe', 'der', 'in', 'freien', 'im', 'sind', 'männer', 'weiße', 'junge', 'zwei'], 'trg': ['two', 'young', ',', 'white', 'males', 'are', 'outside', 'near', 'many', 'bushes', '.']}
 ```
 
-接下来我们对训练集的输出和输出进行 vocabulary 处理， vocabulary 处理其实就是找出输入输出中所有的单词，然后去重，然后给去重后的每个单词排序，得到每个单词的index，这个index就是每个单词的编码
+接下来我们对训练集的输出和输出进行 vocabulary 处理， vocabulary 处理其实就是找出输入输出中所有的单词，然后去重，然后给去重后的每个单词排序，得到每个单词的index，这个index就是每个单词的编码。
+
 执行 vocabulary 处理代码如下
 
 ```python
+# 构建词汇，构建之后，SRC 就多了个 vocab 属性，vocab 中包含有 freqs、itos、stoi 三个属性，其中freqs 表示的是 SRC 中每个单词和该单词的频数，也就是个数。
+# itos 是一个列表，包含的的是频数 >= 2 的单词，stoi 用来标记 itos 中每个单词的索引，从0开始。
+# 例如 输入是['two', 'two', ',', 'two', 'two', 'are', 'outside', 'near', 'many', 'bushes', 'two', 'young', ',', 'white', 'white', 'near', 'outside', 'near', 'many', 'bushes', '.']
+# 则 freqs 是({'two': 5, 'near': 3, ',': 2, 'outside': 2, 'many': 2, 'bushes': 2, 'white': 2, 'are': 1, 'young': 1, '.': 1})
+# itos 是 ['<unk>', '<pad>', '<sos>', '<eos>', 'two', 'near', ',', 'bushes', 'many', 'outside', 'white']
+# 其中 <sos>：一个句子的开始，<eos>：一句话的结束，<UNK>: 低频词或未在词表中的词，
+# <PAD>: 补全字符，由于我们在进行批量计算的时候，每个样本的长度不一样，<PAD>就是用于保证样本长度一样的。参考于 https://github.com/nicolas-ivanov/tf_seq2seq_chatbot/issues/15
+# 由于我们的 min_freq = 2 ，所以可以看到频数为1的 'are'，'young'， '.' 都没有在 itos 中。
+# stoi 是 {'<unk>': 0, '<pad>': 1, '<sos>': 2, '<eos>': 3, 'two': 4, 'near': 5, ',': 6, 'bushes': 7, 'many': 8, 'outside': 9, 'white': 10})
 SRC.build_vocab(train_data, min_freq = 2)
 TRG.build_vocab(train_data, min_freq = 2)
 # 输出一下结果
 print(f"Unique tokens in source (de) vocabulary: {len(SRC.vocab)}")
 print(f"Unique tokens in target (en) vocabulary: {len(TRG.vocab)}")
 ```
+
+我们接下来看看我们的数据在进入到神经网络之前，都经历了怎样的处理 ：
+
+- 首先是我们的原始数据，如下图展示。
+  
+  ![input-batch.png](http://7568.github.io/images/2021-11-03-seq2seqModel/input-batch.png)
+
+- 接下来是我们的填充，首先在每句话的开始和结束分别加上'<sos>'和 '<eos>' ， 然后将整个 batch 中的数据对齐，按照最长的句子对齐，
+  不够的用 <pad> 来填充，如下图所示。
+  
+  ![padded-input-batch.png](http://7568.github.io/images/2021-11-03-seq2seqModel/padded-input-batch.png)
+  
+- 最后就是将输入数据进行数字化处理，将每个单词分别转换成它所对应的索引，该索引就是 SRC.vocab 中的 ，如下图所示。
+  
+  ![input-numericalize.png](http://7568.github.io/images/2021-11-03-seq2seqModel/input-numericalize.png)
 
 到此，我们的数据预处理就完成了。
 
