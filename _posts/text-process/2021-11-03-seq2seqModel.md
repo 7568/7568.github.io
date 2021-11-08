@@ -187,7 +187,7 @@ print(f"Unique tokens in target (en) vocabulary: {len(TRG.vocab)}")
   ![input-batch.png](http://7568.github.io/images/2021-11-03-seq2seqModel/input-batch.png)
 
 - 接下来是我们的填充，首先在每句话的开始和结束分别加上'\<sos\>'和 '\<eos\>' ， 然后将整个 batch 中的数据对齐，按照最长的句子对齐，
-  不够的用 <pad> 来填充，如下图所示。
+  不够的用 \<pad\> 来填充，如下图所示。
   
   ![padded-input-batch.png](http://7568.github.io/images/2021-11-03-seq2seqModel/padded-input-batch.png)
   
