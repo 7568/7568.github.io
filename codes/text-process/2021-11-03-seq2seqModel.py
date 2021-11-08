@@ -28,11 +28,13 @@ torch.backends.cudnn.deterministic = True
 spacy_de = spacy.load('de_core_news_sm')
 spacy_en = spacy.load('en_core_web_sm')
 
+
 def tokenize_de(text):
     """
     Tokenizes German text from a string into a list of strings (tokens) and reverses it
     """
     return [tok.text for tok in spacy_de.tokenizer(text)][::-1]
+
 
 def tokenize_en(text):
     """
@@ -40,18 +42,12 @@ def tokenize_en(text):
     """
     return [tok.text for tok in spacy_en.tokenizer(text)]
 
-SRC = Field(tokenize = tokenize_de,
-            init_token = '<sos>',
-            eos_token = '<eos>',
-            lower = True)
 
-TRG = Field(tokenize = tokenize_en,
-            init_token = '<sos>',
-            eos_token = '<eos>',
-            lower = True)
+SRC = Field(tokenize=tokenize_de, init_token='<sos>', eos_token='<eos>', lower=True)
 
-train_data, valid_data, test_data = Multi30k.splits(exts = ('.de', '.en'),
-                                                    fields = (SRC, TRG))
+TRG = Field(tokenize=tokenize_en, init_token='<sos>', eos_token='<eos>', lower=True)
+
+train_data, valid_data, test_data = Multi30k.splits(exts=('.de', '.en'), fields=(SRC, TRG))
 
 print(f"Number of training examples: {len(train_data.examples)}")
 print(f"Number of validation examples: {len(valid_data.examples)}")
@@ -59,9 +55,16 @@ print(f"Number of testing examples: {len(test_data.examples)}")
 
 print(vars(train_data.examples[0]))
 
-
-SRC.build_vocab(train_data, min_freq = 2)
-TRG.build_vocab(train_data, min_freq = 2)
+# 构建词汇，构建之后，SRC 就多了个 vocab 属性，vocab 中包含有 freqs、itos、stoi 三个属性，其中freqs 表示的是 SRC 中每个单词和该单词的频数，也就是个数。
+# itos 是一个列表，包含的的是频数 >= 2 的单词，stoi 用来标记 itos 中每个单词的索引，从0开始。
+# 例如 输入是['two', 'two', ',', 'two', 'two', 'are', 'outside', 'near', 'many', 'bushes', 'two', 'young', ',', 'white', 'white', 'near', 'outside', 'near', 'many', 'bushes', '.']
+# 则 freqs 是({'two': 5, 'near': 3, ',': 2, 'outside': 2, 'many': 2, 'bushes': 2, 'white': 2, 'are': 1, 'young': 1, '.': 1})
+# itos 是 ['<unk>', '<pad>', '<sos>', '<eos>', 'two', 'near', ',', 'bushes', 'many', 'outside', 'white']
+# 其中 <sos>：一个句子的开始，<eos>：一句话的结束，<UNK>: 低频词或未在词表中的词，<PAD>: 补全字符
+# 由于我们的 min_freq = 2 ，所以可以看到频数为1的 'are'，'young'， '.' 都没有在 itos 中。
+# stoi 是 {'<unk>': 0, '<pad>': 1, '<sos>': 2, '<eos>': 3, 'two': 4, 'near': 5, ',': 6, 'bushes': 7, 'many': 8, 'outside': 9, 'white': 10})
+SRC.build_vocab(train_data, min_freq=2)
+TRG.build_vocab(train_data, min_freq=2)
 
 print(f"Unique tokens in source (de) vocabulary: {len(SRC.vocab)}")
 print(f"Unique tokens in target (en) vocabulary: {len(TRG.vocab)}")
@@ -72,8 +75,8 @@ BATCH_SIZE = 128
 
 train_iterator, valid_iterator, test_iterator = BucketIterator.splits(
     (train_data, valid_data, test_data),
-    batch_size = BATCH_SIZE,
-    device = device)
+    batch_size=BATCH_SIZE,
+    device=device)
 
 
 class Encoder(nn.Module):
@@ -210,6 +213,7 @@ class Seq2Seq(nn.Module):
 
         return outputs
 
+
 INPUT_DIM = len(SRC.vocab)
 OUTPUT_DIM = len(TRG.vocab)
 ENC_EMB_DIM = 256
@@ -236,13 +240,14 @@ model.apply(init_weights)
 def count_parameters(model):
     return sum(p.numel() for p in model.parameters() if p.requires_grad)
 
+
 print(f'The model has {count_parameters(model):,} trainable parameters')
 
 optimizer = optim.Adam(model.parameters())
 
 TRG_PAD_IDX = TRG.vocab.stoi[TRG.pad_token]
 
-criterion = nn.CrossEntropyLoss(ignore_index = TRG_PAD_IDX)
+criterion = nn.CrossEntropyLoss(ignore_index=TRG_PAD_IDX)
 
 
 def train(model, iterator, optimizer, criterion, clip):
@@ -310,6 +315,7 @@ def evaluate(model, iterator, criterion):
             epoch_loss += loss.item()
 
     return epoch_loss / len(iterator)
+
 
 def epoch_time(start_time, end_time):
     elapsed_time = end_time - start_time
