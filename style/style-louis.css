@@ -1118,7 +1118,8 @@ input:-ms-input-placeholder, textarea:-ms-input-placeholder {
 }
 
 .post-content{
-    width:86%;
+        width: 91%;
+        padding-left: 10%;
 }
 
 .post-content p {
@@ -1971,6 +1972,7 @@ p.post-info {
      }
      .post-content{
         width:100%;
+        padding-left: 0;
     }
 }
 
