@@ -192,7 +192,6 @@ print(f"Unique tokens in target (en) vocabulary: {len(TRG.vocab)}")
   ![padded-input-batch.png](http://7568.github.io/images/2021-11-03-seq2seqModel/padded-input-batch.png)
   
 - 最后就是将输入数据进行数字化处理，将每个单词分别转换成它所对应的索引，该索引就是 SRC.vocab stoi 中的值 ，如下图所示。
-  每一列表示一个句子。
   
   ![input-numericalize.png](http://7568.github.io/images/2021-11-03-seq2seqModel/input-numericalize.png)
 
