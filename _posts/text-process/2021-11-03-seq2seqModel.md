@@ -209,5 +209,7 @@ print(f"Unique tokens in target (en) vocabulary: {len(TRG.vocab)}")
 
 ![seq2seq-lstm.png](http://7568.github.io/images/2021-11-03-seq2seqModel/seq2seq-lstm.png)
 
+[code path](https://7568.github.io/codes/text-process/2021-11-03-seq2seqModel.py)
+
 
 
