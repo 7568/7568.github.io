@@ -49,6 +49,7 @@ body {
     -khtml-user-select: none;
     user-select: none;
     -moz-osx-font-smoothing: grayscale;
+    background-color: #eaeaea;
 }
 
 body > * :first-child {
@@ -756,6 +757,7 @@ input:-ms-input-placeholder, textarea:-ms-input-placeholder {
     animation: fade-in;
     animation-duration: .5s;
     width: 68%;
+    background-color: #ffffff;
 }
 
 .index-page {
@@ -2000,6 +2002,7 @@ p.post-info {
 @media (max-width: 880px) {
     .main-content{
         width: 96%;
+        background-color: #ffffff;
     }
     .post-content{
         width:100%;
