@@ -58,7 +58,6 @@ Seq2Seq 模型是典型的 encoder-decoder 模型，下面的动画将介绍 Seq
 
 ### 代码实现
 
-#### 代码实现
 
 首先我们要安装pytorch(1.0以上)，torchtext，spacy
 
