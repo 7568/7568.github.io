@@ -2005,7 +2005,7 @@ p.post-info {
 
 @media (max-width: 880px) {
     .main-content{
-        width: 96%;
+        width: 100%;
         background-color: #ffffff;
     }
     .post-content{
@@ -2077,7 +2077,7 @@ p.post-info {
 
 @media (max-width: 700px) {
     .main-content{
-        width: 96%;
+        width: 100%;
     }
     .post-content{
         width:100%;
@@ -2127,7 +2127,7 @@ p.post-info {
 
 @media (max-width: 650px) {
     .main-content{
-        width: 96%;
+        width: 100%;
     }
     .post-content{
         width:100%;
@@ -2213,7 +2213,7 @@ p.post-info {
 
 @media (max-width: 580px) {
     .main-content{
-        width: 96%;
+        width: 100%;
     }
     .post-content{
         width:100%;
