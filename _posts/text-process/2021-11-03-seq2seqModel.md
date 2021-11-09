@@ -58,7 +58,7 @@ Seq2Seq 模型是典型的 encoder-decoder 模型，下面的动画将介绍 Seq
 
 ### 代码实现
 
-####数据准备
+#### 数据准备
 
 首先我们要安装pytorch(1.0以上)，torchtext，spacy
 
@@ -200,7 +200,7 @@ print(f"Unique tokens in target (en) vocabulary: {len(TRG.vocab)}")
 
 到此，我们的数据预处理就完成了。
 
-####Encoder
+#### Encoder
 
 接下来我们构造我们的 encoder 模型
 
@@ -275,7 +275,7 @@ class Encoder(nn.Module):
 
 ````
 
-####Decoder
+#### Decoder
 
 我们再来构造我们的 decoder 模型
 
@@ -345,7 +345,7 @@ class Decoder(nn.Module):
 
 ````
 
-###Seq2Seq
+#### Seq2Seq
 
 接下来我们看看我们的 Seq2Seq 整体的结构，在我们的 Seq2Seq 模型中，我们将 Seq2Seq 分成三部分，分别是：
 1. 接收输入数据和目标数据，并将他们进行预处理
