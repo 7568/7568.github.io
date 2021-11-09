@@ -66,6 +66,7 @@
     function setIframeHeight(iframe) {
         var obj = document.getElementById("post-content");
         obj.style.width= "100%";
+        obj.style.padding-left= 0;
         setTimeout(function(){
             if (iframe) {
               var iframeWin = iframe.contentWindow || iframe.contentDocument.parentWindow;
