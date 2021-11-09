@@ -1864,13 +1864,25 @@ p.post-info {
 /* ==========================================================================
    #footer
    ========================================================================== */
-.footer {
+/*.footer {
     position: relative;
     z-index: 1;
     margin-top: 0;
     padding-bottom: 50px;
     background-color: #fff;
-}
+}*/
+
+.footer{
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    height: 90px;
+    background-color: rgb(245,245,245);
+    font-family: 'CMS', 'Droid Sans', Helvetica, Arial, sans-serif;
+    font-size: 90%;
+    text-align: right;
+    }
 
 .footer-social {
     border-bottom: 1px solid rgba(184, 197, 214, .2);
