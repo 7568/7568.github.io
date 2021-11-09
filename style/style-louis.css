@@ -1874,16 +1874,15 @@ p.post-info {
 
 .footer{
     position: relative;
-    padding-top: 38px;
+    padding-top: 22px;
     left: 0;
     bottom: 0;
     width: 100%;
-    height: 90px;
-    background-color: rgb(245,245,245);
-    font-family: 'CMS', 'Droid Sans', Helvetica, Arial, sans-serif;
+    height: 60px;
+    background-color: #ccc;
     font-size: 90%;
     text-align: center;
-    }
+}
 
 .footer a{
     color: rgb(109,109,109);
