@@ -159,7 +159,7 @@ print(vars(train_data.examples[0]))
 {'src': ['.', 'büsche', 'vieler', 'nähe', 'der', 'in', 'freien', 'im', 'sind', 'männer', 'weiße', 'junge', 'zwei'], 'trg': ['two', 'young', ',', 'white', 'males', 'are', 'outside', 'near', 'many', 'bushes', '.']}
 ```
 
-接下来我们对训练集的输出和输出进行 vocabulary 处理， vocabulary 处理其实就是找出输入输出中所有的单词，然后去重，然后给去重后的每个单词排序，得到每个单词的index，这个index就是每个单词的编码。
+接下来我们对训练集的输入和输出进行 vocabulary 处理， vocabulary 处理其实就是找出输入输出中所有的单词，然后去重，然后给去重后的每个单词排序，得到每个单词的index，这个index就是每个单词的编码。
 
 执行 vocabulary 处理代码如下
 
@@ -169,7 +169,7 @@ print(vars(train_data.examples[0]))
 # 例如 输入是['two', 'two', ',', 'two', 'two', 'are', 'outside', 'near', 'many', 'bushes', 'two', 'young', ',', 'white', 'white', 'near', 'outside', 'near', 'many', 'bushes', '.']
 # 则 freqs 是({'two': 5, 'near': 3, ',': 2, 'outside': 2, 'many': 2, 'bushes': 2, 'white': 2, 'are': 1, 'young': 1, '.': 1})
 # itos 是 ['<unk>', '<pad>', '<sos>', '<eos>', 'two', 'near', ',', 'bushes', 'many', 'outside', 'white']
-# 其中 <sos>：一个句子的开始，<eos>：一句话的结束，<UNK>: 低频词或未在词表中的词，
+# 其中 <sos>：一个句子的开始，<eos>：一句话的结束，<UNK>: 低频词或未在词表中的词，比如我们设置 min_freq = 2 ，那么那些只出现了 1 次的单词，将来在放入到神经网络之前都会被 <UNK> 替换掉
 # <PAD>: 补全字符，由于我们在进行批量计算的时候，每个样本的长度不一样，<PAD>就是用于保证样本长度一样的。参考于 https://github.com/nicolas-ivanov/tf_seq2seq_chatbot/issues/15
 # 由于我们的 min_freq = 2 ，所以可以看到频数为1的 'are'，'young'， '.' 都没有在 itos 中。
 # stoi 是 {'<unk>': 0, '<pad>': 1, '<sos>': 2, '<eos>': 3, 'two': 4, 'near': 5, ',': 6, 'bushes': 7, 'many': 8, 'outside': 9, 'white': 10})
@@ -186,11 +186,13 @@ print(f"Unique tokens in target (en) vocabulary: {len(TRG.vocab)}")
   
   ![input-batch.png](http://7568.github.io/images/2021-11-03-seq2seqModel/input-batch.png)
 
+
 - 接下来是我们的填充，首先在每句话的开始和结束分别加上'\<sos\>'和 '\<eos\>' ， 然后将整个 batch 中的数据对齐，按照最长的句子对齐，
-  不够的用 \<pad\> 来填充，如下图所示。
+  不够的用 '\<pad\>' 来填充，如下图所示。
   
   ![padded-input-batch.png](http://7568.github.io/images/2021-11-03-seq2seqModel/padded-input-batch.png)
   
+
 - 最后就是将输入数据进行数字化处理，将每个单词分别转换成它所对应的索引，该索引就是 SRC.vocab stoi 中的值 ，如下图所示。
   
   ![input-numericalize.png](http://7568.github.io/images/2021-11-03-seq2seqModel/input-numericalize.png)
@@ -203,11 +205,141 @@ print(f"Unique tokens in target (en) vocabulary: {len(TRG.vocab)}")
 我们先看看LSTM的结构，该结构图来自于[dive into deep learning](https://d2l.ai/chapter_recurrent-modern/lstm.html)
 ![LSTM](http://7568.github.io/images/2021-11-03-seq2seqModel/lstm-struct.png)
 
-最终的输出就是把 $$ H_t $$ 做一个线性变换，直接将 $$ H_t $$ 当作输出也是可以的。
+最终的输出就是把 $$ H_t $$ 做一个线性变换，直接将 $$ H_t $$ 当作输出也是可以的。在 [Understanding LSTM Networks](https://colah.github.io/posts/2015-08-Understanding-LSTMs/) 这篇文章中有关于 LSTM 更加详细的介绍。
 
-于是我们的seq2seq模型就变成了如下结构
+于是我们的seq2seq模型就变成了如下结构，该图来自于 [nicolas-ivanov](https://github.com/nicolas-ivanov/tf_seq2seq_chatbot/issues/15)
 
 ![seq2seq-lstm.png](http://7568.github.io/images/2021-11-03-seq2seqModel/seq2seq-lstm.png)
+
+在原论文中作者使用的是4层LSTM，本文我们只使用2层LSTM进行训练。其中每层中又包含有多个LSTM单元，具体有多少个是根据输入的长度决定的。LSTM我们可以表示成如下表达式：
+
+$$(h_t,c_t) = LSTM(e(x_t),h_(t-1),c_(t-1))$$
+
+其中 $$h_t$$ 和 $$c_t$$ 分别表示第 t 个LSTM的输出中的隐藏单元和记忆单元，$$x_t$$ 表示第 t 个输入，$$e(x_t)$$ 表示将第 t 个输入进行 one-hot 处理。$$h_(t-1),c_(t-1))$$ 分别表示上一层的输出中的隐藏单元和记忆单元。
+在理解上我们可以把 $$h_t$$ 和 $$c_t$$ 都当成隐藏单元，只不过计算方式不一样。** 其中 $$h_0$$ 和 $$c_0$$ ，是初始化随机生成的 ** 。
+
+$$z^i = (h_l^i,c_l^i)$$
+
+我们令 $$z^1$$ , $$z^2$$ 分别为每个隐藏单元的输出。$$z^i$$ 表示第 i 层的输出。$$h_l^i$$ 和 $$c_l^i$$ 表示第 i 层的最后一个LSTM单元的隐藏单元的输出和记忆单元的输出。
+
+下图是一个LSTM编码的例子。其中黄色方块表示对输入进行 one-hot 处理，有2层绿色方块，表示有两层LSTM网络，每个绿色方块都表示一个LSTM单元，红色方块表示每层的输出。
+
+![seq2seq2-encoder](http://7568.github.io/images/2021-11-03-seq2seqModel/seq2seq-encoder.png)
+
+在 PyTorch 中，我们可以使用 nn.LSTM(emb_dim, hid_dim, n_layers, dropout = dropout) 来创建一个LSTM网络，其中 ：
+
+* emb_dim：输入的维度， 不是指一句话的长度，而是每个单词 one-hot 之后的向量的长度。
+* hid_dim：隐藏单元的维度。
+* n_layers：网络的层数，也是深度。
+* dropout：每一层的 dropout。
+
+**Note:** 需要注意的是，在LSTM中，如果我们的输入的维度只有1，那么我们就不能直接使用 nn.LSTM，而是使用 nn.LSTMCell，因为如果直接使用 nn.LSTM 会有维度转换的问题
+
+代码如下：
+
+````python
+
+class Encoder(nn.Module):
+    def __init__(self, input_dim, emb_dim, hid_dim, n_layers, dropout):
+        super().__init__()
+        
+        self.hid_dim = hid_dim
+        self.n_layers = n_layers
+        
+        self.embedding = nn.Embedding(input_dim, emb_dim)
+        
+        self.rnn = nn.LSTM(emb_dim, hid_dim, n_layers, dropout = dropout)
+        
+        self.dropout = nn.Dropout(dropout)
+        
+    def forward(self, src):
+        
+        #src = [src len, batch size]
+        
+        embedded = self.dropout(self.embedding(src))
+        
+        #embedded = [src len, batch size, emb dim]
+        
+        outputs, (hidden, cell) = self.rnn(embedded)
+        
+        #outputs = [src len, batch size, hid dim * n directions]
+        #hidden = [n layers * n directions, batch size, hid dim]
+        #cell = [n layers * n directions, batch size, hid dim]
+        
+        #outputs are always from the top hidden layer
+        
+        return hidden, cell
+
+````
+
+我们再来构造我们的 decoder 模型
+
+decoder 模型我们也是使用2层 LSTM ，原论文是4层。 网络结构跟 encoder 非常相似，是不过这里的 $$h_0$$ 和 $$c_0$$ 变成了 encoder 中的 $$z^1$$ , $$z^2$$ 。
+
+下图展示的是我们的decoder的结构图
+
+![seq2seq2-decoder](http://7568.github.io/images/2021-11-03-seq2seqModel/seq2seq-decoder.png)
+
+
+
+接下来是 decoder 的代码实现：
+
+````python
+
+class Decoder(nn.Module):
+    def __init__(self, output_dim, emb_dim, hid_dim, n_layers, dropout):
+        super().__init__()
+        
+        self.output_dim = output_dim
+        self.hid_dim = hid_dim
+        self.n_layers = n_layers
+        
+        self.embedding = nn.Embedding(output_dim, emb_dim)
+        
+        self.rnn = nn.LSTM(emb_dim, hid_dim, n_layers, dropout = dropout)
+        
+        self.fc_out = nn.Linear(hid_dim, output_dim)
+        
+        self.dropout = nn.Dropout(dropout)
+        
+    def forward(self, input, hidden, cell):
+        
+        #input = [batch size]
+        #hidden = [n layers * n directions, batch size, hid dim]
+        #cell = [n layers * n directions, batch size, hid dim]
+        
+        #n directions in the decoder will both always be 1, therefore:
+        #hidden = [n layers, batch size, hid dim]
+        #context = [n layers, batch size, hid dim]
+        
+        input = input.unsqueeze(0)
+        
+        #input = [1, batch size]
+        
+        embedded = self.dropout(self.embedding(input))
+        
+        #embedded = [1, batch size, emb dim]
+                
+        output, (hidden, cell) = self.rnn(embedded, (hidden, cell))
+        
+        #output = [seq len, batch size, hid dim * n directions]
+        #hidden = [n layers * n directions, batch size, hid dim]
+        #cell = [n layers * n directions, batch size, hid dim]
+        
+        #seq len and n directions will always be 1 in the decoder, therefore:
+        #output = [1, batch size, hid dim]
+        #hidden = [n layers, batch size, hid dim]
+        #cell = [n layers, batch size, hid dim]
+        
+        prediction = self.fc_out(output.squeeze(0))
+        
+        #prediction = [batch size, output dim]
+        
+        return prediction, hidden, cell
+
+````
+
+
 
 [code path](https://7568.github.io/codes/text-process/2021-11-03-seq2seqModel.py)
 
