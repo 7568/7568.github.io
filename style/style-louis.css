@@ -1985,6 +1985,9 @@ p.post-info {
         top: 96px;
         padding-left:0
     }
+    .navbar-menu {
+        display: none;
+    }
 
 }
 @media (min-width: 1000px){
