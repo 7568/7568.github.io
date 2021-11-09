@@ -1987,7 +1987,13 @@ p.post-info {
     }
 
 }
+@media (min-width: 1000px){
 
+    .post-header-thumb-container {
+        width: 68%;
+    }
+
+}
 @media (max-width: 700px) {
     .main-content{
         width: 100%;
