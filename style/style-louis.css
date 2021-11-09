@@ -1991,6 +1991,7 @@ p.post-info {
 
     .post-header-thumb-container {
         width: 68%;
+        max-width: 100%;
     }
 
 }
