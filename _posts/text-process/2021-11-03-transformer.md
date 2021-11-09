@@ -2,7 +2,7 @@
 layout: blog
 text-process: true
 background-image: http://7568.github.io/images/2021-11-03-transformer/2021-11-03_3.png
-category: 文本处理，机器翻译
+category: 文本处理
 title: 机器翻译 - Transformer
 tags:
 - Transformer
