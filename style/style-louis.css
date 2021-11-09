@@ -1983,6 +1983,7 @@ p.post-info {
 
     .post-header-thumb-container {
         top: 96px;
+        padding-left:0
     }
 
 }
