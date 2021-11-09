@@ -1921,7 +1921,7 @@ p.post-info {
     }
 
     .post-header-thumb-container {
-        top: 80px;
+        top: 0px;
     }
 }
 
@@ -1981,7 +1981,7 @@ p.post-info {
     }
 
     .post-header-thumb-container {
-        top: 60px;
+        top: 0px;
     }
 
 }
@@ -2012,7 +2012,7 @@ p.post-info {
     }
 
     .post-header-thumb-container {
-        top: 40px;
+        top: 0px;
     }
 
     .post-page {
