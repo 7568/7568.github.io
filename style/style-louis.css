@@ -1988,6 +1988,9 @@ p.post-info {
     .navbar-menu {
         display: none;
     }
+    .navbar-mobile-menu {
+        display: inline-block;
+    }
 
 }
 @media (min-width: 1000px){
