@@ -759,6 +759,9 @@ input:-ms-input-placeholder, textarea:-ms-input-placeholder {
     width: 68%;
     background-color: #ffffff;
 }
+.post-header{
+    padding-left: 10px;
+}
 
 .index-page {
     padding: 120px 20px 0;
