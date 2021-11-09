@@ -58,6 +58,7 @@ Seq2Seq 模型是典型的 encoder-decoder 模型，下面的动画将介绍 Seq
 
 ### 代码实现
 
+####数据准备
 
 首先我们要安装pytorch(1.0以上)，torchtext，spacy
 
@@ -199,6 +200,8 @@ print(f"Unique tokens in target (en) vocabulary: {len(TRG.vocab)}")
 
 到此，我们的数据预处理就完成了。
 
+####Encoder
+
 接下来我们构造我们的 encoder 模型
 
 在RNN系列中，传统的RNN存在比较大的梯度消失和梯度爆炸的问题，所以现在大家常常用LSTM来代替RNN，本文也将使用 LSTM 来进行编码
@@ -233,7 +236,7 @@ $$z^i = (h_l^i,c_l^i)$$
 * n_layers：网络的层数，也是深度。
 * dropout：每一层的 dropout。
 
-**Note:** 需要注意的是，在LSTM中，如果我们的输入的维度只有1，那么我们就不能直接使用 nn.LSTM，而是使用 nn.LSTMCell，因为如果直接使用 nn.LSTM 会有维度转换的问题
+**Note:** 需要注意的是，在LSTM中，如果我们的输入的维度只有1，那么我们就不能直接使用 nn.LSTM，而是使用 nn.LSTMCell，因为如果直接使用 nn.LSTM 会有维度转换的问题。
 
 代码如下：
 
@@ -272,6 +275,8 @@ class Encoder(nn.Module):
 
 ````
 
+####Decoder
+
 我们再来构造我们的 decoder 模型
 
 decoder 模型我们也是使用2层 LSTM ，原论文是4层。 网络结构跟 encoder 非常相似，是不过这里的 $$h_0$$ 和 $$c_0$$ 变成了 encoder 中的 $$z^1$$ , $$z^2$$ 。
@@ -280,6 +285,7 @@ decoder 模型我们也是使用2层 LSTM ，原论文是4层。 网络结构跟
 
 ![seq2seq2-decoder](http://7568.github.io/images/2021-11-03-seq2seqModel/seq2seq-decoder.png)
 
+在最后我们将输出传入到一个全连接网络中，得到我们的输出。
 
 
 接下来是 decoder 的代码实现：
@@ -338,6 +344,20 @@ class Decoder(nn.Module):
         return prediction, hidden, cell
 
 ````
+
+###Seq2Seq
+
+接下来我们看看我们的 Seq2Seq 整体的结构，在我们的 Seq2Seq 模型中，我们将 Seq2Seq 分成三部分，分别是：
+1. 接收输入数据和目标数据，并将他们进行预处理
+- 将输入数据进行 encoder ，得到输入的特征。
+- 将目标数据进行预处理，同时将 encoder 中得到的输入特征作为 LSTM 的初试值，一起放入到 decoder 网络中，得到输出。
+
+整体结构如下图所示：
+
+![Seq2Seq-model](http://7568.github.io/images/2021-11-03-seq2seqModel/Seq2Seq-model.png)
+
+在 Seq2Seq 模型中，我们通常将 encoder 的层数与 decoder 的层数设置为一样，这不是必须的，但是这样做能方便我们处理模型。
+
 
 
 
