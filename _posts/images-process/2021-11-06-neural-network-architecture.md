@@ -39,7 +39,7 @@ class LayerNorm(nn.Module):
         return self.a_2 * (x - mean) / (std + self.eps) + self.b_2
 ```
 
-# 防止梯度爆炸活着梯度消失
+# 防止梯度爆炸或者梯度消失
 
 梯度爆炸和梯度消失在深度神经网络中是个很普遍的问题，只要网络很深，就一定会碰到该问题，以下是防止梯度爆炸和梯度消失的常用方法
 - 使用RELU或者类似RELU的激活函数。
