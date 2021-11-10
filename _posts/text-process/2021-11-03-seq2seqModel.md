@@ -514,7 +514,7 @@ def train(model, iterator, optimizer, criterion, clip):
 - 我们将输出保存下来，然后将该输出与新的 hidden, cell 一起当作输入放入到decoder中去，如此循环，就可以得到我们的翻译语句了。
 
 
-点击[这里](https://7568.github.io/codes/text-process/2021-11-03-seq2seqModel.py) 可以直接下载所有代码。将代码中 `is_train = False` 改成 `is_train = True` 就可以训练了，测试的时候再改回来即可。
+☝️ ☝️ ☝️ ️点击[这里可以直接下载所有代码](https://7568.github.io/codes/text-process/2021-11-03-seq2seqModel.py)。将代码中 `is_train = False` 改成 `is_train = True` 就可以训练了，测试的时候再改回来即可。
 
 暂时完结 ✨⭐ ✨⭐ ✨⭐ 。
 
