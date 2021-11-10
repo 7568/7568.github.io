@@ -516,6 +516,8 @@ def train(model, iterator, optimizer, criterion, clip):
 
 点击[这里](https://7568.github.io/codes/text-process/2021-11-03-seq2seqModel.py) 可以直接下载所有代码。将代码中 `is_train = False` 改成 `is_train = True` 就可以训练了，测试的时候再改回来即可。
 
+暂时完结。
+
 更多参考来自于
 - [Towards Data Science - Attention — Seq2Seq Models](https://towardsdatascience.com/day-1-2-attention-seq2seq-models-65df3f49e263)
 - [Sequence to Sequence Learning with Neural Networks](https://github.com/bentrevett/pytorch-seq2seq/blob/master/1%20-%20Sequence%20to%20Sequence%20Learning%20with%20Neural%20Networks.ipynb)
