@@ -43,5 +43,6 @@ tags:
 梯度爆炸和梯度消失在深度神经网络中是个很普遍的问题，只要网络很深，就一定会碰到该问题，以下是防止梯度爆炸和梯度消失的常用方法
 - 使用RELU或者类似RELU的激活函数。
 - clip the gradients 能很好的防止梯度爆炸和梯度消失，其实就是让 gradients 在更新的时候，锁定在一个区间内，防止梯度爆炸。通常在[Recurrent Neural Networks(RNN)](https://d2l.ai/chapter_recurrent-neural-networks/rnn.html) ，[Gated Recurrent Units (GRU)](https://d2l.ai/chapter_recurrent-modern/gru.html) ，[Long Short-Term Memory (LSTM)](https://d2l.ai/chapter_recurrent-modern/lstm.html) 等循环神经网络中用到。
+  clip the gradients 的实现在pytorch中有`torch.nn.utils.clip_grad_value_()` , `torch.nn.utils.clip_grad.clip_grad_norm()` , `torch.nn.utils.clip_grad_norm_()`，他们的区别是 `torch.nn.utils.clip_grad_value_()` 将 grad 限制在一个区间，`torch.nn.utils.clip_grad.clip_grad_norm()` 指先将grad进行归一化处理，然后再将grad限制在一个区间，`torch.nn.utils.clip_grad_norm_()` 是 `torch.nn.utils.clip_grad.clip_grad_norm()` 的最新版， 是过期的版本。
 - 使用残差网络能有效防止梯度爆炸和梯度消失，通常的做法是在网络中加入残差块
 - 将卷积核参数进行正交规范化 orthogonal regularization

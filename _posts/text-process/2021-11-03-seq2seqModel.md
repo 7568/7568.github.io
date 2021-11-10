@@ -358,10 +358,168 @@ class Decoder(nn.Module):
 
 在 Seq2Seq 模型中，我们通常将 encoder 的层数与 decoder 的层数设置为一样，这不是必须的，但是这样做能方便我们处理模型。
 
+代码如下：
+
+```python
+class Seq2Seq(nn.Module):
+    def __init__(self, encoder, decoder, device):
+        super().__init__()
+        
+        self.encoder = encoder
+        self.decoder = decoder
+        self.device = device
+        
+        assert encoder.hid_dim == decoder.hid_dim, \
+            "Hidden dimensions of encoder and decoder must be equal!"
+        assert encoder.n_layers == decoder.n_layers, \
+            "Encoder and decoder must have equal number of layers!"
+        
+    def forward(self, src, trg, teacher_forcing_ratio = 0.5):
+        
+        #src = [src len, batch size]
+        #trg = [trg len, batch size]
+        #teacher_forcing_ratio is probability to use teacher forcing
+        #e.g. if teacher_forcing_ratio is 0.75 we use ground-truth inputs 75% of the time
+        
+        batch_size = trg.shape[1]
+        trg_len = trg.shape[0]
+        trg_vocab_size = self.decoder.output_dim
+        
+        #tensor to store decoder outputs
+        outputs = torch.zeros(trg_len, batch_size, trg_vocab_size).to(self.device)
+        
+        #last hidden state of the encoder is used as the initial hidden state of the decoder
+        hidden, cell = self.encoder(src)
+        
+        #first input to the decoder is the <sos> tokens
+        input = trg[0,:]
+        
+        for t in range(1, trg_len):
+            
+            #insert input token embedding, previous hidden and previous cell states
+            #receive output tensor (predictions) and new hidden and cell states
+            output, hidden, cell = self.decoder(input, hidden, cell)
+            
+            #place predictions in a tensor holding predictions for each token
+            outputs[t] = output
+            
+            #decide if we are going to use teacher forcing or not
+            teacher_force = random.random() < teacher_forcing_ratio
+            
+            #get the highest predicted token from our predictions
+            top1 = output.argmax(1) 
+            
+            #if teacher forcing, use actual next token as next input
+            #if not, use predicted token
+            # 判断下一个的输入，是使用训练集中的还是使用从 decoder 中预测的
+            input = trg[t] if teacher_force else top1
+        
+        return outputs
+```
+从代码中我们可以看到，我们先是将整个源数据放入 encoder 中（源数据指的是训练数据中的 src 数据），然后我们一个一个的遍历目标数据，
+首先我们将 '\<sos\>' 放入到 decoder 中，得到一个输出，保存到输出的结果中。然后我们以一定的概率来判断是否要使用目标数据中的下一个当作输入，
+也就是说我们的decoder的输入不一定全是目标数据。
+
+接下来我们看看我们的训练代码
+
+```python
+
+INPUT_DIM = len(SRC.vocab)
+OUTPUT_DIM = len(TRG.vocab)
+ENC_EMB_DIM = 256
+DEC_EMB_DIM = 256
+HID_DIM = 512
+N_LAYERS = 2
+ENC_DROPOUT = 0.5
+DEC_DROPOUT = 0.5
+
+enc = Encoder(INPUT_DIM, ENC_EMB_DIM, HID_DIM, N_LAYERS, ENC_DROPOUT)
+dec = Decoder(OUTPUT_DIM, DEC_EMB_DIM, HID_DIM, N_LAYERS, DEC_DROPOUT)
+
+model = Seq2Seq(enc, dec, device).to(device)
 
 
+def init_weights(m):
+    for name, param in m.named_parameters():
+        nn.init.uniform_(param.data, -0.08, 0.08)
 
-[code path](https://7568.github.io/codes/text-process/2021-11-03-seq2seqModel.py)
+
+model.apply(init_weights)
+
+
+def count_parameters(model):
+    return sum(p.numel() for p in model.parameters() if p.requires_grad)
+
+
+print(f'The model has {count_parameters(model):,} trainable parameters')
+
+optimizer = optim.Adam(model.parameters())
+
+TRG_PAD_IDX = TRG.vocab.stoi[TRG.pad_token]
+
+criterion = nn.CrossEntropyLoss(ignore_index=TRG_PAD_IDX)
+
+
+def train(model, iterator, optimizer, criterion, clip):
+    model.train()
+
+    epoch_loss = 0
+
+    for i, batch in enumerate(iterator):
+        src = batch.src
+        trg = batch.trg
+
+        optimizer.zero_grad()
+
+        output = model(src, trg)
+
+        # trg = [trg len, batch size]
+        # output = [trg len, batch size, output dim]
+
+        output_dim = output.shape[-1]
+
+        output = output[1:].view(-1, output_dim)
+        trg = trg[1:].view(-1)
+
+        # trg = [(trg len - 1) * batch size]
+        # output = [(trg len - 1) * batch size, output dim]
+
+        loss = criterion(output, trg)
+
+        loss.backward()
+
+        torch.nn.utils.clip_grad_norm_(model.parameters(), clip)
+
+        optimizer.step()
+
+        epoch_loss += loss.item()
+
+    return epoch_loss / len(iterator)
+
+
+```
+ 
+我们使用 Adam 优化器，CrossEntropyLoss 损失函数，在 CrossEntropyLoss 中我们不计算为了保持batch中样本长度一致而填充的部分。
+训练中还使用了 torch.nn.utils.clip_grad_norm_ 方法，该方法指的是将每一次迭代中，反向传播时候的梯度进行归一化并限制住grad，防止梯度爆炸和消失。
+
+接下来就是开始我们的训练了。
+
+训练了20个epoche之后，我们来进行测试以下
+
+### 测试
+
+测试过程为：
+- 我们将我们的要翻译的源数据先进行encoder计算，得到 hidden, cell ，
+- 然后我们将开始描述符 `\<sos\>` 当作输入，跟 hidden, cell 一起放入到decoder中去，这个时候得到一个输出和新的 hidden, cell 。 
+- 我们将输出保存下来，然后将该输出与新的 hidden, cell 一起当作输入放入到decoder中去，如此循环，就可以得到我们的翻译语句了。
+
+
+点击[这里](https://7568.github.io/codes/text-process/2021-11-03-seq2seqModel.py) 可以直接下载所有代码。将代码中 `is_train = False` 改成 `is_train = True` 就可以训练了，测试的时候再改回来即可。
+
+更多参考来自于
+- [Towards Data Science - Attention — Seq2Seq Models](https://towardsdatascience.com/day-1-2-attention-seq2seq-models-65df3f49e263)
+- [Sequence to Sequence Learning with Neural Networks](https://github.com/bentrevett/pytorch-seq2seq/blob/master/1%20-%20Sequence%20to%20Sequence%20Learning%20with%20Neural%20Networks.ipynb)
+-[Jay Alammar Visualizing A Neural Machine Translation Model (Mechanics of Seq2seq Models With Attention)](https://jalammar.github.io/visualizing-neural-machine-translation-mechanics-of-seq2seq-models-with-attention/)
 
 
 

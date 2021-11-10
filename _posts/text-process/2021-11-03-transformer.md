@@ -22,3 +22,6 @@ tags:
 我们在上一篇[文章](https://7568.github.io/2021/11/03/seq2seqModel.html) 中讲述了 Seq2Seq with attention，也就是 [Seq2seq Models With Attention](https://jalammar.github.io/visualizing-neural-machine-translation-mechanics-of-seq2seq-models-with-attention/) 中的内容
 
 代码资料主要来源于[哈佛大学NPL团队的一个blog](http://nlp.seas.harvard.edu/2018/04/03/attention.html)
+
+更多参考来自于
+- [graykode / nlp-tutorial](https://github.com/graykode/nlp-tutorial/blob/d05e31ec81d56d70c1db89b99ab07e948f7ebc11/5-1.Transformer/Transformer(Greedy_decoder).py)
