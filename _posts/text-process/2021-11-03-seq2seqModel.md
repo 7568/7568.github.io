@@ -567,7 +567,7 @@ def train(model, iterator, optimizer, criterion, clip):
 
 ![bidirectional-rnn-math]
 
-其中$$x_0{^\to}=\<sos\> , x_1{\to}=guten$$ ，$$x_1{^\gets}=\<eos\> , x_1{\gets}=morgen$$ 
+其中$$x_0{^\to}=<sos> , x_1{\to}=guten$$ ，$$x_0{^\gets}=<eos> , x_1{\gets}=morgen$$ 
 
 # Attention 介绍
 
