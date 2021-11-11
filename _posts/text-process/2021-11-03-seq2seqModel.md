@@ -568,6 +568,7 @@ def train(model, iterator, optimizer, criterion, clip):
 ![bidirectional-rnn-math]
 
 $$h_t{\to} = EncoderGRU^{\to}(e(x_t^{\to}) , h_{t-1}^{\to})$$
+
 $$h_t{\get} = EncoderGRU^{\get}(e(x_t^{\get}) , h_{t-1}^{\get})$$
 
 其中$$x_0{^\to}=<sos> , x_1{\to}=guten$$ ，$$x_0{^\gets}=<eos> , x_1{\gets}=morgen$$ 
