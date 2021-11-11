@@ -19,6 +19,8 @@ tags:
 [seq2seq-lstm]:http://7568.github.io/images/2021-11-03-seq2seqModel/seq2seq-lstm.png
 [seq2seq2-encoder]:http://7568.github.io/images/2021-11-03-seq2seqModel/seq2seq-encoder.png
 [seq2seq2-decoder]:http://7568.github.io/images/2021-11-03-seq2seqModel/seq2seq-decoder.png
+[gru-encoder]:http://7568.github.io/images/2021-11-03-seq2seqModel/gru-encoder.png
+[gru-decoder]:http://7568.github.io/images/2021-11-03-seq2seqModel/gru-decoder.png
 [Seq2Seq-model]:http://7568.github.io/images/2021-11-03-seq2seqModel/Seq2Seq-model.png
 [seq2seq-with-gru]:http://7568.github.io/images/2021-11-03-seq2seqModel/seq2seq-with-gru.png
 [bidirectional-rnn]:http://7568.github.io/images/2021-11-03-seq2seqModel/bidirectional-rnn.png
