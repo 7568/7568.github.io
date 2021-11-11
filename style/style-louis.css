@@ -874,6 +874,7 @@ input:-ms-input-placeholder, textarea:-ms-input-placeholder {
 
 .post-list-item-container .item-slant {
     position: absolute;
+    opacity: .6;
     z-index: 0;
     right: 0;
     bottom: 50px;
@@ -890,7 +891,7 @@ input:-ms-input-placeholder, textarea:-ms-input-placeholder {
     -webkit-transform: rotate(-10deg) translate(10px, -10px);
     -ms-transform: rotate(-10deg) translate(10px, -10px);
     transform: rotate(-10deg) translate(10px, -10px);
-    opacity: .7;
+    opacity: .6;
     background-color: #f68e5f;
     -webkit-box-shadow: none;
     box-shadow: none;
