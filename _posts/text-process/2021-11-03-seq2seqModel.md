@@ -21,6 +21,8 @@ tags:
 [seq2seq2-decoder]:http://7568.github.io/images/2021-11-03-seq2seqModel/seq2seq-decoder.png
 [Seq2Seq-model]:http://7568.github.io/images/2021-11-03-seq2seqModel/Seq2Seq-model.png
 [seq2seq-with-gru]:http://7568.github.io/images/2021-11-03-seq2seqModel/seq2seq-with-gru.png
+[bidirectional-rnn]:http://7568.github.io/images/2021-11-03-seq2seqModel/bidirectional-rnn.png
+[bidirectional-rnn-math]:http://7568.github.io/images/2021-11-03-seq2seqModel/bidirectional-rnn-math.png
 
 # 简介
 
@@ -527,6 +529,8 @@ def train(model, iterator, optimizer, criterion, clip):
 
 最终结果：`| Test Loss: 3.943 | Test PPL:  51.571 |`
 
+### GRU 的简单介绍
+
 在 [2 - Learning Phrase Representations using RNN Encoder-Decoder for Statistical Machine Translation](https://github.com/bentrevett/pytorch-seq2seq/blob/master/2%20-%20Learning%20Phrase%20Representations%20using%20RNN%20Encoder-Decoder%20for%20Statistical%20Machine%20Translation.ipynb) 中
 作者还做了使用 GRU (Gated Recurrent Unit) 来替代 LSTM 进行机器翻译的训练，使用了更多的参数，有更好的效果。不过其实有人做过实验，发现其实 GRU 与 LSTM 性能几乎是差不多的 [论文链接](https://arxiv.org/abs/1412.3555) 在此。
 
@@ -549,7 +553,23 @@ def train(model, iterator, optimizer, criterion, clip):
 
 整个结构与使用 LSTM 结构的seq2seq 模型并无太大的差别，此处就不过多介绍。在 [2 - Learning Phrase Representations using RNN Encoder-Decoder for Statistical Machine Translation](https://github.com/bentrevett/pytorch-seq2seq/blob/master/2%20-%20Learning%20Phrase%20Representations%20using%20RNN%20Encoder-Decoder%20for%20Statistical%20Machine%20Translation.ipynb) 中有详细的代码实现。
 
+
 ☝️ ☝️ ☝️ ️点击[这里可以直接下载使用 LSTM 结构的seq2seq 模型的代码](https://7568.github.io/codes/text-process/2021-11-03-seq2seqModel.py)。将代码中 `is_train = False` 改成 `is_train = True` 就可以训练了，测试的时候再改回来即可。
+
+# Align 介绍
+
+在前面我们介绍了 LSTM 和 GRU 模型，他们在处理输入的时候，都是将一句话从头到尾都经过一次神经网络，在 [Neural Machine Translation by Jointly Learning to Align and Translate](https://arxiv.org/abs/1409.0473) 论文中，作者提出了双向的网络模型，就是说让我们的输入先从头到尾进入一个网络，然后再从尾到头经过另一个网络，即双向 RNN ，这样我们就有了两个输出。
+具体结构如下：
+
+![bidirectional-rnn]
+
+数学表达为：
+
+![bidirectional-rnn-math]
+
+其中$$x_0{^\to}=\<sos\> , x_1{\to}=guten$$ ，$$x_1{^\gets}=\<eos\> , x_1{\gets}=morgen$$ 
+
+# Attention 介绍
 
 暂时完结 ✨⭐ ✨⭐ ✨⭐ 。
 
