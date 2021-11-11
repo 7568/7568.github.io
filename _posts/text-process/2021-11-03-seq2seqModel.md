@@ -22,7 +22,6 @@ tags:
 [Seq2Seq-model]:http://7568.github.io/images/2021-11-03-seq2seqModel/Seq2Seq-model.png
 [seq2seq-with-gru]:http://7568.github.io/images/2021-11-03-seq2seqModel/seq2seq-with-gru.png
 [bidirectional-rnn]:http://7568.github.io/images/2021-11-03-seq2seqModel/bidirectional-rnn.png
-[bidirectional-rnn-math]:http://7568.github.io/images/2021-11-03-seq2seqModel/bidirectional-rnn-math.png
 
 # 简介
 
@@ -564,8 +563,6 @@ def train(model, iterator, optimizer, criterion, clip):
 ![bidirectional-rnn]
 
 数学表达为：
-
-![bidirectional-rnn-math]
 
 $$h_t^{\to} = EncoderGRU^{\to}(e(x_t^{\to}) , h_{t-1}^{\to})$$
 
