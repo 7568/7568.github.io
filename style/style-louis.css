@@ -1,6 +1,6 @@
 @charset 'UTF-8';
 .MathJax{
-    font-weight: bolder;
+    font-weight: bolder!important;
 }
 /* ==========================================================================
    #reset
