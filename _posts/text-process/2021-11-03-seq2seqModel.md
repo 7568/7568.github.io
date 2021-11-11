@@ -555,7 +555,9 @@ def train(model, iterator, optimizer, criterion, clip):
 整个结构与使用 LSTM 结构的seq2seq 模型并无太大的差别，此处就不过多介绍。在 [2 - Learning Phrase Representations using RNN Encoder-Decoder for Statistical Machine Translation](https://github.com/bentrevett/pytorch-seq2seq/blob/master/2%20-%20Learning%20Phrase%20Representations%20using%20RNN%20Encoder-Decoder%20for%20Statistical%20Machine%20Translation.ipynb) 中有详细的代码实现。
 
 
-☝️ ☝️ ☝️ ️点击[这里可以直接下载使用 LSTM 结构的seq2seq 模型的代码](https://7568.github.io/codes/text-process/2021-11-03-seq2seqModel.py)。将代码中 `is_train = False` 改成 `is_train = True` 就可以训练了，测试的时候再改回来即可。
+👉️ 👉️ 👉️ 点击[ 💝 💝 💝 可以直接下载使用 LSTM 结构的seq2seq 模型的代码](https://7568.github.io/codes/text-process/2021-11-03-seq2seqModel-lstm.py)。将代码中 `is_train = False` 改成 `is_train = True` 就可以训练了，测试的时候再改回来即可。
+👉️ 👉️ 👉️ 点击[ 💝 💝 💝 可以直接下载使用 GRU 结构的seq2seq 模型的代码](https://7568.github.io/codes/text-process/2021-11-03-seq2seqModel-gru.py)。将代码中 `is_train = False` 改成 `is_train = True` 就可以训练了，测试的时候再改回来即可。
+👉️ 👉️ 👉️ 点击[ 💝 💝 💝 可以直接下载使用 GRU 结构的seq2seq 模型的代码](https://7568.github.io/codes/text-process/2021-11-03-seq2seqModel-gru.py)。将代码中 `is_train = False` 改成 `is_train = True` 就可以训练了，测试的时候再改回来即可。
 
 # Align 介绍
 
@@ -580,14 +582,16 @@ Attention 也叫注意力机制，原理就是接受输入，然后输出一个�
 
 ![rnn-attention-encoder]
 
-从图中可以看到，z为 rnn 的输出，$$h_1 ~ h_4$$为每个输入的隐藏单元，我们将 z 与 $$h_1 ~ h_4$$ 一起放进一个神经网络中，得到 Attention a，该神经网络通常选择为全连接。
+从图中可以看到，z为 rnn 的输出，$$h_1 $$ ~ $$ h_4$$为每个输入的隐藏单元，我们将 z 与 $$h_1 $$ ~ $$ h_4$$ 一起放进一个神经网络中，得到 Attention a，该神经网络通常选择为全连接。
 
 下图是 decoder部分，
 
 ![rnn-attention-arcitecture]
 
 在我们没有 Attention 机制的 RNN 中，encoder 的输出 z 是要参与到 decoder 的所有操作中的。而在带有 Attention 机制的 RNN 中，z 此时只是参与到 GRU 中当作输入，
-此时表示 Attention 的 a 参与到 decoder 的所有操作中的，相比于传统的 GRU，带 Attention 机制的 RNN 能够携带上在 encoder 中的每一次计算的隐藏单元h，能够把能多的信息传递到 decoder 中。
+此时表示 Attention 的 a 参与到 decoder 的所有操作中的，相比于传统的 GRU，带 Attention 机制的 RNN 能够携带上在 encoder 中的每一次计算的隐藏单元 h，能够把能多的信息传递到 decoder 中。
+
+在 decoder 中我们需要关注两个地方，1：是 w 是如何参与蓝色方框的运算，2：w 是如何参与到紫色方框的运算。从代码中我们可以看到，
 
 在 [Neural Machine Translation by Jointly Learning to Align and Translate](https://github.com/bentrevett/pytorch-seq2seq/blob/master/3%20-%20Neural%20Machine%20Translation%20by%20Jointly%20Learning%20to%20Align%20and%20Translate.ipynb) 中有完整的 Align 和 Attention 的实现
 
