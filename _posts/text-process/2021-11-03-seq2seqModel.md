@@ -22,6 +22,8 @@ tags:
 [Seq2Seq-model]:http://7568.github.io/images/2021-11-03-seq2seqModel/Seq2Seq-model.png
 [seq2seq-with-gru]:http://7568.github.io/images/2021-11-03-seq2seqModel/seq2seq-with-gru.png
 [bidirectional-rnn]:http://7568.github.io/images/2021-11-03-seq2seqModel/bidirectional-rnn.png
+[rnn-attention-encoder]:http://7568.github.io/images/2021-11-03-seq2seqModel/rnn-attention-encoder.png
+[rnn-attention-arcitecture]:http://7568.github.io/images/2021-11-03-seq2seqModel/rnn-attention-arcitecture.png
 
 # 简介
 
@@ -562,7 +564,7 @@ def train(model, iterator, optimizer, criterion, clip):
 
 ![bidirectional-rnn]
 
-数学表达为：
+可以用数学表达为：
 
 $$h_t^{\to} = EncoderGRU^{\to}(e(x_t^{\to}) , h_{t-1}^{\to})$$
 
@@ -571,6 +573,23 @@ $$h_t^{\gets} = EncoderGRU^{\gets}(e(x_t^{\gets}) , h_{t-1}^{\gets})$$
 其中 $$x_0^{\to}=<sos> , x_1^{\to}=guten$$ ，$$x_0{^\gets}=<eos> , x_1^{\gets}=morgen$$ 
 
 # Attention 介绍
+
+Attention 也叫注意力机制，原理就是接受输入，然后输出一个向量，该向量所有的值都是[0，1]之间的数，向量的和为1，通常的做法是通过最后一层网络后，加上一个SoftMax激活函数。
+
+下图是一个RNN中计算 Attention 的一种方式：
+
+![rnn-attention-encoder]
+
+从图中可以看到，z为 rnn 的输出，$$h_1 ~ h_4$$为每个输入的隐藏单元，我们将 z 与 $$h_1 ~ h_4$$ 一起放进一个神经网络中，得到 Attention a，该神经网络通常选择为全连接。
+
+下图是 decoder部分，
+
+![rnn-attention-arcitecture]
+
+在我们没有 Attention 机制的 RNN 中，encoder 的输出 z 是要参与到 decoder 的所有操作中的。而在带有 Attention 机制的 RNN 中，z 此时只是参与到 GRU 中当作输入，
+此时表示 Attention 的 a 参与到 decoder 的所有操作中的，相比于传统的 GRU，带 Attention 机制的 RNN 能够携带上在 encoder 中的每一次计算的隐藏单元h，能够把能多的信息传递到 decoder 中。
+
+在 [Neural Machine Translation by Jointly Learning to Align and Translate](https://github.com/bentrevett/pytorch-seq2seq/blob/master/3%20-%20Neural%20Machine%20Translation%20by%20Jointly%20Learning%20to%20Align%20and%20Translate.ipynb) 中有完整的 Align 和 Attention 的实现
 
 暂时完结 ✨⭐ ✨⭐ ✨⭐ 。
 
