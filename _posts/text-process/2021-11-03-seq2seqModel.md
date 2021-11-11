@@ -1,7 +1,7 @@
 ---
 layout: blog
 text-process: true
-background-image: http://7568.github.io/images/2021-11-03-seq2seqModel/2021-11-03_2.png
+background-image: http://7568.github.io/images/2021-11-03-seq2seqModel/img.png
 category: 文本处理
 title: 机器翻译 - Seq2Seq with Attention
 mathjax: true
@@ -10,6 +10,16 @@ tags:
 - Attention
 - 文本处理
 ---
+
+[2021-11-04_seq2seq_3]:(http://7568.github.io/images/2021-11-03-seq2seqModel/2021-11-04_seq2seq_3.png)
+[input-batch]:(http://7568.github.io/images/2021-11-03-seq2seqModel/input-batch.png)
+[padded-input-batch]:(http://7568.github.io/images/2021-11-03-seq2seqModel/padded-input-batch.png)
+[input-numericalize]:(http://7568.github.io/images/2021-11-03-seq2seqModel/input-numericalize.png)
+[lstm-struct]:(http://7568.github.io/images/2021-11-03-seq2seqModel/lstm-struct.png)
+[seq2seq-lstm]:(http://7568.github.io/images/2021-11-03-seq2seqModel/seq2seq-lstm.png)
+[seq2seq2-encoder]:(http://7568.github.io/images/2021-11-03-seq2seqModel/seq2seq-encoder.png)
+[seq2seq2-decoder]:(http://7568.github.io/images/2021-11-03-seq2seqModel/seq2seq-decoder.png)
+[Seq2Seq-model]:(http://7568.github.io/images/2021-11-03-seq2seqModel/Seq2Seq-model.png)
 
 # 简介
 
@@ -50,7 +60,7 @@ Seq2Seq 模型是典型的 encoder-decoder 模型，下面的动画将介绍 Seq
 1. 将输入 X1 字符编码，变成数字类型，即 Word2Vec，得到 X1_Vec，如果我们的输入是 "早上好"，在 Word2Vec 中，先会加上开始标志 `<sos>` 和结束标志 `<eos>` ，
    这样输入就变成了5个字符，然后每个字符用一串0和1表示，于是得到5个Vector，就是我们想要的 X1_Vec 。
 2. 将 X1_Vec 中的5个 Vector 依次按顺序放入到RNN中，得到一个输出 Z
-   比如这样 ![encoder](http://7568.github.io/images/2021-11-03-seq2seqModel/2021-11-04_seq2seq_3.png)
+   比如这样 ![2021-11-04_seq2seq_3]
 
 ## decoder
 
@@ -185,18 +195,18 @@ print(f"Unique tokens in target (en) vocabulary: {len(TRG.vocab)}")
 
 - 首先是我们的原始数据，如下图展示。
   
-  ![input-batch.png](http://7568.github.io/images/2021-11-03-seq2seqModel/input-batch.png)
+  ![input-batch]
 
 
 - 接下来是我们的填充，首先在每句话的开始和结束分别加上'\<sos\>'和 '\<eos\>' ， 然后将整个 batch 中的数据对齐，按照最长的句子对齐，
   不够的用 '\<pad\>' 来填充，如下图所示。
   
-  ![padded-input-batch.png](http://7568.github.io/images/2021-11-03-seq2seqModel/padded-input-batch.png)
+  ![padded-input-batch]
   
 
 - 最后就是将输入数据进行数字化处理，将每个单词分别转换成它所对应的索引，该索引就是 SRC.vocab stoi 中的值 ，如下图所示。
   
-  ![input-numericalize.png](http://7568.github.io/images/2021-11-03-seq2seqModel/input-numericalize.png)
+  ![input-numericalize]
 
 到此，我们的数据预处理就完成了。
 
@@ -204,15 +214,15 @@ print(f"Unique tokens in target (en) vocabulary: {len(TRG.vocab)}")
 
 接下来我们构造我们的 encoder 模型
 
-在RNN系列中，传统的RNN存在比较大的梯度消失和梯度爆炸的问题，所以现在大家常常用LSTM来代替RNN，本文也将使用 LSTM 来进行编码
+在RNN系列中，传统的RNN存在比较大的梯度消失和梯度爆炸的问题，所以现在大家常常用LSTM来代替RNN，本文也将使用 LSTM 来进行编码，在 [Understanding LSTM Networks](https://colah.github.io/posts/2015-08-Understanding-LSTMs/) 中有对 LSTM 的详细介绍。
 我们先看看LSTM的结构，该结构图来自于[dive into deep learning](https://d2l.ai/chapter_recurrent-modern/lstm.html)
-![LSTM](http://7568.github.io/images/2021-11-03-seq2seqModel/lstm-struct.png)
+![lstm-struct]
 
 最终的输出就是把 $$ H_t $$ 做一个线性变换，直接将 $$ H_t $$ 当作输出也是可以的。在 [Understanding LSTM Networks](https://colah.github.io/posts/2015-08-Understanding-LSTMs/) 这篇文章中有关于 LSTM 更加详细的介绍。
 
 于是我们的seq2seq模型就变成了如下结构，该图来自于 [nicolas-ivanov](https://github.com/nicolas-ivanov/tf_seq2seq_chatbot/issues/15)
 
-![seq2seq-lstm.png](http://7568.github.io/images/2021-11-03-seq2seqModel/seq2seq-lstm.png)
+![seq2seq-lstm]
 
 在原论文中作者使用的是4层LSTM，本文我们只使用2层LSTM进行训练。其中每层中又包含有多个LSTM单元，具体有多少个是根据输入的长度决定的。LSTM我们可以表示成如下表达式：
 
@@ -227,7 +237,7 @@ $$z^i = (h_l^i,c_l^i)$$
 
 下图是一个LSTM编码的例子。其中黄色方块表示对输入进行 one-hot 处理，有2层绿色方块，表示有两层LSTM网络，每个绿色方块都表示一个LSTM单元，红色方块表示每层的输出。
 
-![seq2seq2-encoder](http://7568.github.io/images/2021-11-03-seq2seqModel/seq2seq-encoder.png)
+![seq2seq2-encoder]
 
 在 PyTorch 中，我们可以使用 nn.LSTM(emb_dim, hid_dim, n_layers, dropout = dropout) 来创建一个LSTM网络，其中 ：
 
@@ -235,6 +245,7 @@ $$z^i = (h_l^i,c_l^i)$$
 * hid_dim：隐藏单元的维度。
 * n_layers：网络的层数，也是深度。
 * dropout：每一层的 dropout。
+
 
 **Note:** 需要注意的是，在LSTM中，如果我们的输入的维度只有1，那么我们就不能直接使用 nn.LSTM，而是使用 nn.LSTMCell，因为如果直接使用 nn.LSTM 会有维度转换的问题。
 
@@ -283,7 +294,7 @@ decoder 模型我们也是使用2层 LSTM ，原论文是4层。 网络结构跟
 
 下图展示的是我们的decoder的结构图
 
-![seq2seq2-decoder](http://7568.github.io/images/2021-11-03-seq2seqModel/seq2seq-decoder.png)
+![seq2seq2-decoder]
 
 在最后我们将输出传入到一个全连接网络中，得到我们的输出。
 
@@ -354,7 +365,7 @@ class Decoder(nn.Module):
 
 整体结构如下图所示：
 
-![Seq2Seq-model](http://7568.github.io/images/2021-11-03-seq2seqModel/Seq2Seq-model.png)
+![Seq2Seq-model]
 
 在 Seq2Seq 模型中，我们通常将 encoder 的层数与 decoder 的层数设置为一样，这不是必须的，但是这样做能方便我们处理模型。
 
@@ -512,6 +523,25 @@ def train(model, iterator, optimizer, criterion, clip):
 - 我们将我们的要翻译的源数据先进行encoder计算，得到 hidden, cell ，
 - 然后我们将开始描述符 `\<sos\>` 当作输入，跟 hidden, cell 一起放入到decoder中去，这个时候得到一个输出和新的 hidden, cell 。 
 - 我们将输出保存下来，然后将该输出与新的 hidden, cell 一起当作输入放入到decoder中去，如此循环，就可以得到我们的翻译语句了。
+
+最终结果：`| Test Loss: 3.943 | Test PPL:  51.571 |`
+
+在 [2 - Learning Phrase Representations using RNN Encoder-Decoder for Statistical Machine Translation](https://github.com/bentrevett/pytorch-seq2seq/blob/master/2%20-%20Learning%20Phrase%20Representations%20using%20RNN%20Encoder-Decoder%20for%20Statistical%20Machine%20Translation.ipynb) 中
+作者还做了使用 GRU (Gated Recurrent Unit) 来替代 LSTM 进行机器翻译的训练，使用了更多的参数，有更好的效果。不过其实有人做过实验，发现其实 GRU 与 LSTM 性能几乎是差不多的 [论文链接](https://arxiv.org/abs/1412.3555) 在此。
+
+下图是 GRU 的encoder结构图，这里使用的是一层网络
+
+![gru-encoder]
+
+从图上我们可以看到，几乎与LSTM一样，需要提醒的是每一个绿色的方块都代表一次GRU操作，每次GRU都是一样的，也就是说上图是一个单层，单个GRU的模型，
+即 '\<sos\>' 先进入 GRU，运算后得到输出，再 guten 进入 GRU，还是之前的那个 GRU，只是输入参数不一样了，GRU 里面的参数此时是一样的。
+
+下图是 GRU 的decoder结构图，其实跟 LSTM 很相似
+
+![gru-decoder]
+
+其中紫色的方块表示全连接。decoder与之前的LSTM结构的decoder的连结方式不一样，在 GRU 中 encoder 的输出会被使用到每一个 decoder 的节点中来。
+
 
 
 ☝️ ☝️ ☝️ ️点击[这里可以直接下载所有代码](https://7568.github.io/codes/text-process/2021-11-03-seq2seqModel.py)。将代码中 `is_train = False` 改成 `is_train = True` 就可以训练了，测试的时候再改回来即可。
