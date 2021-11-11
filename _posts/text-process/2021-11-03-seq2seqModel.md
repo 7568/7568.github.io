@@ -11,15 +11,16 @@ tags:
 - 文本处理
 ---
 
-[2021-11-04_seq2seq_3]:(http://7568.github.io/images/2021-11-03-seq2seqModel/2021-11-04_seq2seq_3.png)
-[input-batch]:(http://7568.github.io/images/2021-11-03-seq2seqModel/input-batch.png)
-[padded-input-batch]:(http://7568.github.io/images/2021-11-03-seq2seqModel/padded-input-batch.png)
-[input-numericalize]:(http://7568.github.io/images/2021-11-03-seq2seqModel/input-numericalize.png)
-[lstm-struct]:(http://7568.github.io/images/2021-11-03-seq2seqModel/lstm-struct.png)
-[seq2seq-lstm]:(http://7568.github.io/images/2021-11-03-seq2seqModel/seq2seq-lstm.png)
-[seq2seq2-encoder]:(http://7568.github.io/images/2021-11-03-seq2seqModel/seq2seq-encoder.png)
-[seq2seq2-decoder]:(http://7568.github.io/images/2021-11-03-seq2seqModel/seq2seq-decoder.png)
-[Seq2Seq-model]:(http://7568.github.io/images/2021-11-03-seq2seqModel/Seq2Seq-model.png)
+[2021-11-04_seq2seq_3]:http://7568.github.io/images/2021-11-03-seq2seqModel/2021-11-04_seq2seq_3.png
+[input-batch]:http://7568.github.io/images/2021-11-03-seq2seqModel/input-batch.png
+[padded-input-batch]:http://7568.github.io/images/2021-11-03-seq2seqModel/padded-input-batch.png
+[input-numericalize]:http://7568.github.io/images/2021-11-03-seq2seqModel/input-numericalize.png
+[lstm-struct]:http://7568.github.io/images/2021-11-03-seq2seqModel/lstm-struct.png
+[seq2seq-lstm]:http://7568.github.io/images/2021-11-03-seq2seqModel/seq2seq-lstm.png
+[seq2seq2-encoder]:http://7568.github.io/images/2021-11-03-seq2seqModel/seq2seq-encoder.png
+[seq2seq2-decoder]:http://7568.github.io/images/2021-11-03-seq2seqModel/seq2seq-decoder.png
+[Seq2Seq-model]:http://7568.github.io/images/2021-11-03-seq2seqModel/Seq2Seq-model.png
+[seq2seq-with-gru]:http://7568.github.io/images/2021-11-03-seq2seqModel/seq2seq-with-gru.png
 
 # 简介
 
@@ -542,9 +543,13 @@ def train(model, iterator, optimizer, criterion, clip):
 
 其中紫色的方块表示全连接。decoder与之前的LSTM结构的decoder的连结方式不一样，在 GRU 中 encoder 的输出会被使用到每一个 decoder 的节点中来。
 
+下图是使用 GRU 模型的seq2seq模型
 
+![seq2seq-with-gru]
 
-☝️ ☝️ ☝️ ️点击[这里可以直接下载所有代码](https://7568.github.io/codes/text-process/2021-11-03-seq2seqModel.py)。将代码中 `is_train = False` 改成 `is_train = True` 就可以训练了，测试的时候再改回来即可。
+整个结构与使用 LSTM 结构的seq2seq 模型并无太大的差别，此处就不过多介绍。在 [2 - Learning Phrase Representations using RNN Encoder-Decoder for Statistical Machine Translation](https://github.com/bentrevett/pytorch-seq2seq/blob/master/2%20-%20Learning%20Phrase%20Representations%20using%20RNN%20Encoder-Decoder%20for%20Statistical%20Machine%20Translation.ipynb) 中有详细的代码实现。
+
+☝️ ☝️ ☝️ ️点击[这里可以直接下载使用 LSTM 结构的seq2seq 模型的代码](https://7568.github.io/codes/text-process/2021-11-03-seq2seqModel.py)。将代码中 `is_train = False` 改成 `is_train = True` 就可以训练了，测试的时候再改回来即可。
 
 暂时完结 ✨⭐ ✨⭐ ✨⭐ 。
 
