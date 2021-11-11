@@ -38,6 +38,8 @@ tags:
 中的内容，Seq2seq的相关论文地址在[Sutskever et al.](https://papers.nips.cc/paper/5346-sequence-to-sequence-learning-with-neural-networks.pdf) , [Cho et al., 2014](http://emnlp2014.org/papers/pdf/EMNLP2014179.pdf)
 我们将在下一篇[文章](https://7568.github.io/2021/11/03/transformer.html) 中讲述Transformer，也就是[The Illustrated Transformer](https://jalammar.github.io/illustrated-transformer/) 中的内容
 
+所有代码都可在文末下载，这些代码都是我从[bentrevett / pytorch-seq2seq](https://github.com/bentrevett/pytorch-seq2seq) 中提取出的
+
 # 模型介绍
 
 Sequence-to-sequence模型是一个深度学习神经网络模型，在很多像机器翻译，短文总结，和图像描述等任务中都取得了很好的成绩。接下来我将通过本blog来介绍 Seq2Seq 模型的相关内容和代码。希望对于初学者有所帮助。
@@ -589,16 +591,98 @@ Attention 也叫注意力机制，原理就是接受输入，然后输出一个�
 
 在 decoder 中我们需要关注两个地方，1：是 w 是如何参与蓝色方框的运算，2：w 是如何参与到紫色方框的运算。从代码中我们可以看到，
 
-在 [Neural Machine Translation by Jointly Learning to Align and Translate](https://github.com/bentrevett/pytorch-seq2seq/blob/master/3%20-%20Neural%20Machine%20Translation%20by%20Jointly%20Learning%20to%20Align%20and%20Translate.ipynb) 中有完整的 Align 和 Attention 的实现
+```python
+class Decoder(nn.Module):
+    def __init__(self, output_dim, emb_dim, enc_hid_dim, dec_hid_dim, dropout, attention):
+        super().__init__()
+
+        self.output_dim = output_dim
+        self.attention = attention
+        
+        self.embedding = nn.Embedding(output_dim, emb_dim)
+        
+        self.rnn = nn.GRU((enc_hid_dim * 2) + emb_dim, dec_hid_dim)
+        
+        self.fc_out = nn.Linear((enc_hid_dim * 2) + dec_hid_dim + emb_dim, output_dim)
+        
+        self.dropout = nn.Dropout(dropout)
+        
+    def forward(self, input, hidden, encoder_outputs):
+             
+        #input = [batch size]
+        #hidden = [batch size, dec hid dim]
+        #encoder_outputs = [src len, batch size, enc hid dim * 2]
+        
+        input = input.unsqueeze(0)
+        
+        #input = [1, batch size]
+        
+        embedded = self.dropout(self.embedding(input))
+        
+        #embedded = [1, batch size, emb dim]
+        
+        a = self.attention(hidden, encoder_outputs)
+                
+        #a = [batch size, src len]
+        
+        a = a.unsqueeze(1)
+        
+        #a = [batch size, 1, src len]
+        
+        encoder_outputs = encoder_outputs.permute(1, 0, 2)
+        
+        #encoder_outputs = [batch size, src len, enc hid dim * 2]
+        
+        weighted = torch.bmm(a, encoder_outputs)
+        
+        #weighted = [batch size, 1, enc hid dim * 2]
+        
+        weighted = weighted.permute(1, 0, 2)
+        
+        #weighted = [1, batch size, enc hid dim * 2]
+        
+        rnn_input = torch.cat((embedded, weighted), dim = 2)
+        
+        #rnn_input = [1, batch size, (enc hid dim * 2) + emb dim]
+            
+        output, hidden = self.rnn(rnn_input, hidden.unsqueeze(0))
+        
+        #output = [seq len, batch size, dec hid dim * n directions]
+        #hidden = [n layers * n directions, batch size, dec hid dim]
+        
+        #seq len, n layers and n directions will always be 1 in this decoder, therefore:
+        #output = [1, batch size, dec hid dim]
+        #hidden = [1, batch size, dec hid dim]
+        #this also means that output == hidden
+        assert (output == hidden).all()
+        
+        embedded = embedded.squeeze(0)
+        output = output.squeeze(0)
+        weighted = weighted.squeeze(0)
+        
+        prediction = self.fc_out(torch.cat((output, weighted, embedded), dim = 1))
+        
+        #prediction = [batch size, output dim]
+        
+        return prediction, hidden.squeeze(0)
+```
+
+input是decoder的输入, hidden是encoder输出的隐藏单元, encoder_outputs是encoder的输出，`a = self.attention(hidden, encoder_outputs)` 就是计算Attention，
+`weighted = torch.bmm(a, encoder_outputs)` 将Attention与encoder_outputs进行矩阵相乘得到weighted，然后将weighted拼装进input编码之后的矩阵embedded中，
+于是的到了新的 decoder的输入，将该新输入放入到GRU中去计算得到output。最后`prediction = self.fc_out(torch.cat((output, weighted, embedded), dim = 1))` 将
+'output', 'weighted', 'embedded' 一起拼装放入到一个全连接中，得到最终的预测值。
 
 暂时完结 ✨⭐ ✨⭐ ✨⭐ 。
 
+# 代码下载
+
+从[bentrevett / pytorch-seq2seq](https://github.com/bentrevett/pytorch-seq2seq) 中提取出的代码如下：
 
 👉️ 👉️ 👉️ 点击[ 💝 💝 💝 可以直接下载使用 LSTM 结构的seq2seq 模型的代码](https://7568.github.io/codes/text-process/2021-11-03-seq2seqModel-lstm.py)。将代码中 `is_train = False` 改成 `is_train = True` 就可以训练了，测试的时候再改回来即可。
 
 👉️ 👉️ 👉️ 点击[ 💝 💝 💝 可以直接下载使用 GRU 结构的seq2seq 模型的代码](https://7568.github.io/codes/text-process/2021-11-03-seq2seqModel-gru.py)。将代码中 `is_train = False` 改成 `is_train = True` 就可以训练了，测试的时候再改回来即可。
 
-👉️ 👉️ 👉️ 点击[ 💝 💝 💝 可以直接下载使用 GRU 结构的seq2seq 模型的代码](https://7568.github.io/codes/text-process/2021-11-03-seq2seqModel-gru.py)。将代码中 `is_train = False` 改成 `is_train = True` 就可以训练了，测试的时候再改回来即可。
+👉️ 👉️ 👉️ 点击[ 💝 💝 💝 可以直接下载使用 Attention 结构的seq2seq 模型的代码](https://7568.github.io/codes/text-process/2021-11-03-seq2seqModel-attention.py)。将代码中 `is_train = False` 改成 `is_train = True` 就可以训练了，测试的时候再改回来即可。
 
 
 更多参考资料来自于
