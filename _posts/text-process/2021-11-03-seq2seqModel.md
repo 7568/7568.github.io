@@ -568,7 +568,7 @@ $$h_t^{\to} = EncoderGRU^{\to}(e(x_t^{\to}) , h_{t-1}^{\to})$$
 
 $$h_t^{\gets} = EncoderGRU^{\gets}(e(x_t^{\gets}) , h_{t-1}^{\gets})$$
 
-其中$$x_0^{\to}=<sos> , x_1^{\to}=guten$$ ，$$x_0{^\gets}=<eos> , x_1^{\gets}=morgen$$ 
+其中 $$x_0^{\to}=<sos> , x_1^{\to}=guten$$ ，$$x_0{^\gets}=<eos> , x_1^{\gets}=morgen$$ 
 
 # Attention 介绍
 
