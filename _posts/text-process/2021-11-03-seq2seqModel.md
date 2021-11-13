@@ -245,40 +245,17 @@ $$z^i = (h_l^i,c_l^i)$$
 
 我们令 $$z^1$$ , $$z^2$$ 分别为每个隐藏单元的输出。$$z^i$$ 表示第 i 层的输出。$$h_l^i$$ 和 $$c_l^i$$ 表示第 i 层的最后一个LSTM单元的隐藏单元的输出和记忆单元的输出。
 
-下图是一个LSTM编码的例子。其中黄色方块表示对输入进行 embedding 处理，有2层绿色方块，表示有两层LSTM网络，每个绿色方块都表示一个LSTM单元，红色方块表示每层的输出。
+下图是一个LSTM编码的例子。其中黄色方块表示对输入进行  [embedding](#embedding)  处理，有2层绿色方块，表示有两层LSTM网络，每个绿色方块都表示一个LSTM单元，红色方块表示每层的输出。
 
 ![seq2seq2-encoder]
 
 在 PyTorch 中，我们可以使用 nn.LSTM(emb_dim, hid_dim, n_layers, dropout = dropout) 来创建一个LSTM网络，其中 ：
 
-* emb_dim：输入的维度， 不是指一句话的长度，而是每个单词 embedding 之后的向量的长度。
+* emb_dim：输入的维度， 不是指一句话的长度，而是每个单词  [embedding](#embedding)  之后的向量的长度。
 * hid_dim：隐藏单元的维度。
 * n_layers：网络的层数，也是深度。
 * dropout：每一层的 dropout。
 
-#### embedding
-
-下面这张图很好的介绍了 embedding 的过程
-
-![seq2seq2-Embedding]
-
-下面是pytorch的embedding文档中的例子，`nn.Embedding(10, 3)` ，就是随机生成一个 10x3 的表，然后当进行embedding的时候，每一个输入都对应着一行数据。
-```python
->>> # an Embedding module containing 10 tensors of size 3
->>> embedding = nn.Embedding(10, 3)
->>> # a batch of 2 samples of 4 indices each
->>> input = torch.LongTensor([[1,2,4,5],[4,3,2,9]])
->>> embedding(input)
-tensor([[[-0.0251, -1.6902,  0.7172],
-         [-0.6431,  0.0748,  0.6969],
-         [ 1.4970,  1.3448, -0.9685],
-         [-0.3677, -2.7265, -0.1685]],
-
-        [[ 1.4970,  1.3448, -0.9685],
-         [ 0.4362, -0.4004,  0.9400],
-         [-0.6431,  0.0748,  0.6969],
-         [ 0.9124, -2.3616,  1.1151]]])
-```
 
 **Note:** 需要注意的是，在LSTM中，如果我们的输入的维度只有1，那么我们就不能直接使用 nn.LSTM，而是使用 nn.LSTMCell，因为如果直接使用 nn.LSTM 会有维度转换的问题。
 
@@ -318,6 +295,31 @@ class Encoder(nn.Module):
         return hidden, cell
 
 ````
+
+#### embedding
+
+下面这张图很好的介绍了 embedding 的过程
+
+![seq2seq2-Embedding]
+
+下面是pytorch的embedding文档中的例子，`nn.Embedding(10, 3)` ，就是随机生成一个 10x3 的表，然后当进行embedding的时候，每一个输入都对应着一行数据。
+```python
+>>> # an Embedding module containing 10 tensors of size 3
+>>> embedding = nn.Embedding(10, 3)
+>>> # a batch of 2 samples of 4 indices each
+>>> input = torch.LongTensor([[1,2,4,5],[4,3,2,9]])
+>>> embedding(input)
+tensor([[[-0.0251, -1.6902,  0.7172],
+         [-0.6431,  0.0748,  0.6969],
+         [ 1.4970,  1.3448, -0.9685],
+         [-0.3677, -2.7265, -0.1685]],
+
+        [[ 1.4970,  1.3448, -0.9685],
+         [ 0.4362, -0.4004,  0.9400],
+         [-0.6431,  0.0748,  0.6969],
+         [ 0.9124, -2.3616,  1.1151]]])
+```
+
 
 ### Decoder
 
