@@ -238,7 +238,7 @@ print(f"Unique tokens in target (en) vocabulary: {len(TRG.vocab)}")
 
 $$(h_t,c_t) = LSTM(e(x_t),h_{t-1},c_{t-1})$$
 
-其中 $$h_t$$ 和 $$c_t$$ 分别表示第 t 个LSTM的输出中的隐藏单元和记忆单元，$$x_t$$ 表示第 t 个输入，$$e(x_t)$$ 表示将第 t 个输入进行 [embedding](/#embedding) 处理。$$h_(t-1),c_(t-1))$$ 分别表示上一层的输出中的隐藏单元和记忆单元。
+其中 $$h_t$$ 和 $$c_t$$ 分别表示第 t 个LSTM的输出中的隐藏单元和记忆单元，$$x_t$$ 表示第 t 个输入，$$e(x_t)$$ 表示将第 t 个输入进行 [embedding](#embedding) 处理。$$h_(t-1),c_(t-1))$$ 分别表示上一层的输出中的隐藏单元和记忆单元。
 在理解上我们可以把 $$h_t$$ 和 $$c_t$$ 都当成隐藏单元，只不过计算方式不一样。**其中 $$h_0$$ 和 $$c_0$$ ，是初始化随机生成的** 。
 
 $$z^i = (h_l^i,c_l^i)$$
