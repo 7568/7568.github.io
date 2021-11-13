@@ -302,7 +302,7 @@ class Encoder(nn.Module):
 
 ![seq2seq2-Embedding]
 
-下面是pytorch的embedding文档中的例子，`nn.Embedding(10, 3)` ，就是随机生成一个 10x3 的表，然后当进行embedding的时候，每一个输入都对应着一行数据。
+下面是pytorch的embedding文档中的例子。`nn.Embedding(10, 3)` ，就是随机生成一个 10x3 的表，然后当进行embedding的时候，每一个输入都对应着一行数据。
 ```python
 >>> # an Embedding module containing 10 tensors of size 3
 >>> embedding = nn.Embedding(10, 3)
