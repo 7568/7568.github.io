@@ -26,6 +26,7 @@ tags:
 [bidirectional-rnn]:http://7568.github.io/images/2021-11-03-seq2seqModel/bidirectional-rnn.png
 [rnn-attention-encoder]:http://7568.github.io/images/2021-11-03-seq2seqModel/rnn-attention-encoder.png
 [rnn-attention-arcitecture]:http://7568.github.io/images/2021-11-03-seq2seqModel/rnn-attention-arcitecture.png
+[seq2seq2-Embedding]:http://7568.github.io/images/2021-11-03-seq2seqModel/Embedding.png
 
 # 简介
 
@@ -222,6 +223,7 @@ print(f"Unique tokens in target (en) vocabulary: {len(TRG.vocab)}")
 
 接下来我们构造我们的 encoder 模型
 
+
 在RNN系列中，传统的RNN存在比较大的梯度消失和梯度爆炸的问题，所以现在大家常常用LSTM来代替RNN，本文也将使用 LSTM 来进行编码，在 [Understanding LSTM Networks](https://colah.github.io/posts/2015-08-Understanding-LSTMs/) 中有对 LSTM 的详细介绍。
 我们先看看LSTM的结构，该结构图来自于[dive into deep learning](https://d2l.ai/chapter_recurrent-modern/lstm.html)
 ![lstm-struct]
@@ -236,24 +238,47 @@ print(f"Unique tokens in target (en) vocabulary: {len(TRG.vocab)}")
 
 $$(h_t,c_t) = LSTM(e(x_t),h_{t-1},c_{t-1})$$
 
-其中 $$h_t$$ 和 $$c_t$$ 分别表示第 t 个LSTM的输出中的隐藏单元和记忆单元，$$x_t$$ 表示第 t 个输入，$$e(x_t)$$ 表示将第 t 个输入进行 one-hot 处理。$$h_(t-1),c_(t-1))$$ 分别表示上一层的输出中的隐藏单元和记忆单元。
+其中 $$h_t$$ 和 $$c_t$$ 分别表示第 t 个LSTM的输出中的隐藏单元和记忆单元，$$x_t$$ 表示第 t 个输入，$$e(x_t)$$ 表示将第 t 个输入进行 [embedding](/#embedding) 处理。$$h_(t-1),c_(t-1))$$ 分别表示上一层的输出中的隐藏单元和记忆单元。
 在理解上我们可以把 $$h_t$$ 和 $$c_t$$ 都当成隐藏单元，只不过计算方式不一样。**其中 $$h_0$$ 和 $$c_0$$ ，是初始化随机生成的** 。
 
 $$z^i = (h_l^i,c_l^i)$$
 
 我们令 $$z^1$$ , $$z^2$$ 分别为每个隐藏单元的输出。$$z^i$$ 表示第 i 层的输出。$$h_l^i$$ 和 $$c_l^i$$ 表示第 i 层的最后一个LSTM单元的隐藏单元的输出和记忆单元的输出。
 
-下图是一个LSTM编码的例子。其中黄色方块表示对输入进行 one-hot 处理，有2层绿色方块，表示有两层LSTM网络，每个绿色方块都表示一个LSTM单元，红色方块表示每层的输出。
+下图是一个LSTM编码的例子。其中黄色方块表示对输入进行 embedding 处理，有2层绿色方块，表示有两层LSTM网络，每个绿色方块都表示一个LSTM单元，红色方块表示每层的输出。
 
 ![seq2seq2-encoder]
 
 在 PyTorch 中，我们可以使用 nn.LSTM(emb_dim, hid_dim, n_layers, dropout = dropout) 来创建一个LSTM网络，其中 ：
 
-* emb_dim：输入的维度， 不是指一句话的长度，而是每个单词 one-hot 之后的向量的长度。
+* emb_dim：输入的维度， 不是指一句话的长度，而是每个单词 embedding 之后的向量的长度。
 * hid_dim：隐藏单元的维度。
 * n_layers：网络的层数，也是深度。
 * dropout：每一层的 dropout。
 
+#### embedding
+
+下面这张图很好的介绍了 embedding 的过程
+
+![seq2seq2-Embedding]
+
+下面是pytorch的embedding文档中的例子，`nn.Embedding(10, 3)` ，就是随机生成一个 10x3 的表，然后当进行embedding的时候，每一个输入都对应着一行数据。
+```python
+>>> # an Embedding module containing 10 tensors of size 3
+>>> embedding = nn.Embedding(10, 3)
+>>> # a batch of 2 samples of 4 indices each
+>>> input = torch.LongTensor([[1,2,4,5],[4,3,2,9]])
+>>> embedding(input)
+tensor([[[-0.0251, -1.6902,  0.7172],
+         [-0.6431,  0.0748,  0.6969],
+         [ 1.4970,  1.3448, -0.9685],
+         [-0.3677, -2.7265, -0.1685]],
+
+        [[ 1.4970,  1.3448, -0.9685],
+         [ 0.4362, -0.4004,  0.9400],
+         [-0.6431,  0.0748,  0.6969],
+         [ 0.9124, -2.3616,  1.1151]]])
+```
 
 **Note:** 需要注意的是，在LSTM中，如果我们的输入的维度只有1，那么我们就不能直接使用 nn.LSTM，而是使用 nn.LSTMCell，因为如果直接使用 nn.LSTM 会有维度转换的问题。
 
@@ -673,6 +698,39 @@ input是decoder的输入, hidden是encoder输出的隐藏单元, encoder_outputs
 `weighted = torch.bmm(a, encoder_outputs)` 将Attention与encoder_outputs进行矩阵相乘得到weighted，然后将weighted拼装进input编码之后的矩阵embedded中，
 于是的到了新的 decoder的输入，将该新输入放入到GRU中去计算得到output。最后`prediction = self.fc_out(torch.cat((output, weighted, embedded), dim = 1))` 将
 'output', 'weighted', 'embedded' 一起拼装放入到一个全连接中，得到最终的预测值。
+
+# 提升准确率
+
+## packed padded sequences
+
+我们用 Packed padded sequences 来告诉我们的RNN网络，忽略掉 encoder 中为了对齐batch而添加 padding 的部分。
+具体的做法如下：
+```python
+SRC = Field(tokenize = tokenize_de, 
+            init_token = '<sos>', 
+            eos_token = '<eos>', 
+            lower = True, 
+            include_lengths = True)
+
+TRG = Field(tokenize = tokenize_en, 
+            init_token = '<sos>', 
+            eos_token = '<eos>', 
+            lower = True)
+
+train_iterator, valid_iterator, test_iterator = BucketIterator.splits(
+    (train_data, valid_data, test_data), 
+     batch_size = BATCH_SIZE,
+     sort_within_batch = True,
+     sort_key = lambda x : len(x.src),
+     device = device)
+```
+其中 `include_lengths = True` 表示将来在我们的 batch.src 中将不再进行 padding 操作。 `sort_within_batch = True，sort_key = lambda x : len(x.src),` 表示将 batch 中的样本按照 len(x.src) 输入的长度排序，第一个是最长的。
+这样我们的训练样本的 src 就不再是一个tensor了，而是一个 tuple ，里面的元素的长度都不一样，第一个最长，然后依次递减。
+既然我们的模型需要接收tensor，所以就需要来对encoder做一些修改。
+
+## masking
+
+Masking 是直接作用于网络让它直接忽略掉某些确定的值，例如让模型不将注意力使用到 padding 上。
 
 暂时完结 ✨⭐ ✨⭐ ✨⭐ 。
 
