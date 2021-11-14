@@ -778,7 +778,38 @@ def forward(self, src, src_len):
 
 可能有人会问为什么 packed_embedded 中的内容是交替着从 embedded 的每个 batch 中取，而不是每个每个句子的取。以下是我的粗浅的理解，如果错了，有人看到了话请提交issue，我以后也会持续关注这个问题，动态更新。
 
-![packed_embedded_from_batch]
+我们可以将神经网络的运算想象成为矩阵的乘法。
+
+比如batch为1的一个样本，例如是一个句子，句子长度为10，在全连接网络中，如果输出是一个数的话，整个网络我们可以描述出如下：
+$$
+[i_1,i_2,i_3,\dots,i_{10}] \times \begin{bmatrix}*  \\* \\ \vdots  \\ * \end{bmatrix}_{10\times 1} = O_{1\times1}
+$$
+其中 $$ [i_1,i_2,i_3,\dots,i_{10}] $$表示输入，$$\begin{bmatrix}*  \\* \\ \vdots  \\ * \end{bmatrix}_{10\times 1} $$表示神经网络，$$O_{1\times 1}$$ 表示输出。
+
+如果是在循环神经网络中，我们先看看循环神经网络是如何工作，下图是一个简单的rnn的流程图解
+
+![2021-11-04_seq2seq_3]
+
+所以循环神经网络的运算过程可以表示成
+$$
+i_1     \times    rnn = h_1 \\
+\phi(h_1,i_2) \times    rnn = h_2 \\
+\phi(h_2,i_3) \times    rnn = h_3 \\
+\vdots \\
+\phi(h_9,i_10) \times   rnn = O \\
+$$
+此时将 batch 换成 n 的话，如果样本是对齐的。则所以循环神经网络的运算过程可以表示成
+$$
+(i_{11},i_{21},...,i_{n1})     \times    rnn = (h_{11},h_{21},h_{31},...,h_{n1}) = H_1 \\
+\phi(H_1,(i_{12},i_{22},...,i_{n2})) \times    rnn = (h_{12},h_{22},h_{32},...,h_{n2}) = H_2 \\
+\phi(H_2,(i_{13},i_{23},...,i_{n3})) \times    rnn = (h_{13},h_{23},h_{33},...,h_{n3}) = H_3 \\
+\vdots \\
+\phi(H_9,(i_{19},i_{29},...,i_{n9})) \times   rnn = (O_1,O_2,O_3,...,O_n) \\
+$$
+所以每一次与 rnn 相乘的都是从batch中相应位置的单位数据。
+
+所以在进行 nn.utils.rnn.pack_padded_sequence 之后，输出都是每个样本交替拼接而成的向量，由于不是对齐的，所以输出只能是向量，而不能是矩阵。
+
 
 ## masking
 
