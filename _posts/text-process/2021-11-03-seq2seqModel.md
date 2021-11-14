@@ -28,6 +28,7 @@ tags:
 [rnn-attention-arcitecture]:http://7568.github.io/images/2021-11-03-seq2seqModel/rnn-attention-arcitecture.png
 [seq2seq2-Embedding]:http://7568.github.io/images/2021-11-03-seq2seqModel/Embedding.png
 [pack_padded_sequence]:http://7568.github.io/images/2021-11-03-seq2seqModel/pack_padded_sequence.png
+[align]:http://7568.github.io/images/2021-11-03-seq2seqModel/align.png
 
 # 简介
 
@@ -574,7 +575,8 @@ def train(model, iterator, optimizer, criterion, clip):
 从图上我们可以看到，几乎与LSTM一样，需要提醒的是每一个绿色的方块都代表一次GRU操作，每次GRU都是一样的，也就是说上图是一个单层，单个GRU的模型，
 即 '\<sos\>' 先进入 GRU，运算后得到输出，再 guten 进入 GRU，还是之前的那个 GRU，只是输入参数不一样了，GRU 里面的参数此时是一样的。
 
-下图是 GRU 的decoder结构图，其实跟 LSTM 很相似
+下图是 GRU 的decoder结构图，此处我们对decoder稍作修改，能让网络有更好的性能，具体做法是将 z 拼接到decoder的每一次运算中，再将 decoder 中运
+行的结果都拼接到后面，一起当作输入。其余的过程跟跟 LSTM 很相似。效果入下图。
 
 ![gru-decoder]
 
@@ -601,6 +603,13 @@ $$h_t^{\to} = EncoderGRU^{\to}(e(x_t^{\to}) , h_{t-1}^{\to})$$
 $$h_t^{\gets} = EncoderGRU^{\gets}(e(x_t^{\gets}) , h_{t-1}^{\gets})$$
 
 其中 $$x_0^{\to}=<sos> , x_1^{\to}=guten$$ ，$$x_0{^\gets}=<eos> , x_1^{\gets}=morgen$$ 
+
+我们再来看看论文中关于align的介绍如下图
+
+![align]
+
+在 decoder 中，输入包含了 一个双向的 encoder 的拼接，也就是说一句话中的某个单词的预测翻译，会加上所有的输入的信息。但是实际中我们往往不需要全部的信息，
+所有这里就引入了Attention机制，使得在拼接的时候有选择性的拼接。也就是说某个单词的预测翻译，与输入中的某几个单词有关，至于是哪几个，则是通过网络来学习的。
 
 # Attention 介绍
 
