@@ -381,6 +381,9 @@ input:-ms-input-placeholder, textarea:-ms-input-placeholder {
     font-size: 20px;
 }
 */
+.MathJax {
+    font-size: 1.3em;
+}
 #instantclick-bar {
     background: #eb5055;
 }
