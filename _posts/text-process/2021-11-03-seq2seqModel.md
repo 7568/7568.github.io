@@ -27,6 +27,7 @@ tags:
 [rnn-attention-encoder]:http://7568.github.io/images/2021-11-03-seq2seqModel/rnn-attention-encoder.png
 [rnn-attention-arcitecture]:http://7568.github.io/images/2021-11-03-seq2seqModel/rnn-attention-arcitecture.png
 [seq2seq2-Embedding]:http://7568.github.io/images/2021-11-03-seq2seqModel/Embedding.png
+[pack_padded_sequence]:http://7568.github.io/images/2021-11-03-seq2seqModel/pack_padded_sequence.png
 
 # 简介
 
@@ -726,9 +727,58 @@ train_iterator, valid_iterator, test_iterator = BucketIterator.splits(
      sort_key = lambda x : len(x.src),
      device = device)
 ```
-其中 `include_lengths = True` 表示将来在我们的 batch.src 中将不再进行 padding 操作。 `sort_within_batch = True，sort_key = lambda x : len(x.src),` 表示将 batch 中的样本按照 len(x.src) 输入的长度排序，第一个是最长的。
+其中 `include_lengths = True` 表示将来在我们的 batch.src 中将不再进行 padding 操作，还要记录每个句子的长度。 `sort_within_batch = True，sort_key = lambda x : len(x.src),` 表示将 batch 中的样本按照 len(x.src) 输入的长度排序，第一个是最长的。
 这样我们的训练样本的 src 就不再是一个tensor了，而是一个 tuple ，里面的元素的长度都不一样，第一个最长，然后依次递减。
-既然我们的模型需要接收tensor，所以就需要来对encoder做一些修改。
+既然我们的模型需要接收tensor，所以就需要来对encoder做一些修改。以下是encoder的主要代码：
+```python
+def forward(self, src, src_len):
+    # src = [src len, batch size]
+    # src_len = [batch size]
+
+    embedded = self.dropout(self.embedding(src))
+
+    # embedded = [src len, batch size, emb dim]
+
+    # need to explicitly put lengths on cpu!
+    packed_embedded = nn.utils.rnn.pack_padded_sequence(embedded, src_len.to('cpu'))
+
+    packed_outputs, hidden = self.rnn(packed_embedded)
+
+    # packed_outputs is a packed sequence containing all hidden states
+    # hidden is now from the final non-padded element in the batch
+
+    outputs, _ = nn.utils.rnn.pad_packed_sequence(packed_outputs)
+
+    # outputs is now a non-packed sequence, all hidden states obtained
+    #  when the input is a pad token are all zeros
+
+    # outputs = [src len, batch size, hid dim * num directions]
+    # hidden = [n layers * num directions, batch size, hid dim]
+
+    # hidden is stacked [forward_1, backward_1, forward_2, backward_2, ...]
+    # outputs are always from the last layer
+
+    # hidden [-2, :, : ] is the last of the forwards RNN
+    # hidden [-1, :, : ] is the last of the backwards RNN
+
+    # initial decoder hidden is final hidden state of the forwards and backwards
+    #  encoder RNNs fed through a linear layer
+    hidden = torch.tanh(self.fc(torch.cat((hidden[-2, :, :], hidden[-1, :, :]), dim=1)))
+
+    # outputs = [src len, batch size, enc hid dim * 2]
+    # hidden = [batch size, dec hid dim]
+
+    return outputs, hidden
+```
+代码中的 `nn.utils.rnn.pack_padded_sequence` 是用来打包我们的句子，从而可以放入到rnn中去。首先比如 `nn.utils.rnn.pack_padded_sequence` 的输入的维度是 [19, 128, 256]，
+19表示最长的句子的长度，128是batch，256表示每个单词的编码，此时的 embedded 是有 padding 的。还有一个输入是 `src_len.to('cpu')` ，表示每一个句子的长度， `nn.utils.rnn.pack_padded_sequence` 的输出是
+将 embedded 中的句子取出来，取句子的方式如下图所示：图像来自[stackoverflow](https://stackoverflow.com/questions/51030782/why-do-we-pack-the-sequences-in-pytorch) 
+![pack_padded_sequence]
+这个时候句子中就没有了 padding 了。
+
+可能有人会问为什么 packed_embedded 中的内容是交替着从 embedded 的每个 batch 中取，而不是每个每个句子的取。以下是我的粗浅的理解，如果错了，有人看到了话请提交issue，我以后也会持续关注这个问题，动态更新。
+
+![packed_embedded_from_batch]
 
 ## masking
 
