@@ -372,10 +372,11 @@ input:-ms-input-placeholder, textarea:-ms-input-placeholder {
 
 .MathJax {
     outline: 0;
+    padding: 0 8px 0 7px;
 }
 
 .MathJax span {
-    font-size: 15px;
+    font-size: 20px;
 }
 
 #instantclick-bar {
