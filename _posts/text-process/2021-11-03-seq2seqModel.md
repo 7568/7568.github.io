@@ -781,6 +781,7 @@ def forward(self, src, src_len):
 我们可以将神经网络的运算想象成为矩阵的乘法。
 
 比如batch为1的一个样本，例如是一个句子，句子长度为10，在全连接网络中，如果输出是一个数的话，整个网络我们可以描述出如下：
+
 $$
 [i_1,i_2,i_3,\dots,i_{10}] \times \begin{bmatrix}*  \\* \\ \vdots  \\ * \end{bmatrix}_{10\times 1} = O_{1\times1}
 $$
