@@ -1,7 +1,7 @@
 ---
 layout: blog
 text-process: true
-background-image: http://7568.github.io/images/2021-11-03-seq2seqModel/img.png
+background-image: http://7568.github.io/images/2021-11-03-rnn-seq2seqModel/img.png
 category: 文本处理
 title: 机器翻译 - Seq2Seq with Attention
 mathjax: true
@@ -11,24 +11,24 @@ tags:
 - 文本处理
 ---
 
-[2021-11-04_seq2seq_3]:http://7568.github.io/images/2021-11-03-seq2seqModel/2021-11-04_seq2seq_3.png
-[input-batch]:http://7568.github.io/images/2021-11-03-seq2seqModel/input-batch.png
-[padded-input-batch]:http://7568.github.io/images/2021-11-03-seq2seqModel/padded-input-batch.png
-[input-numericalize]:http://7568.github.io/images/2021-11-03-seq2seqModel/input-numericalize.png
-[lstm-struct]:http://7568.github.io/images/2021-11-03-seq2seqModel/lstm-struct.png
-[seq2seq-lstm]:http://7568.github.io/images/2021-11-03-seq2seqModel/seq2seq-lstm.png
-[seq2seq2-encoder]:http://7568.github.io/images/2021-11-03-seq2seqModel/seq2seq-encoder.png
-[seq2seq2-decoder]:http://7568.github.io/images/2021-11-03-seq2seqModel/seq2seq-decoder.png
-[gru-encoder]:http://7568.github.io/images/2021-11-03-seq2seqModel/gru-encoder.png
-[gru-decoder]:http://7568.github.io/images/2021-11-03-seq2seqModel/gru-decoder.png
-[Seq2Seq-model]:http://7568.github.io/images/2021-11-03-seq2seqModel/Seq2Seq-model.png
-[seq2seq-with-gru]:http://7568.github.io/images/2021-11-03-seq2seqModel/seq2seq-with-gru.png
-[bidirectional-rnn]:http://7568.github.io/images/2021-11-03-seq2seqModel/bidirectional-rnn.png
-[rnn-attention-encoder]:http://7568.github.io/images/2021-11-03-seq2seqModel/rnn-attention-encoder.png
-[rnn-attention-arcitecture]:http://7568.github.io/images/2021-11-03-seq2seqModel/rnn-attention-arcitecture.png
-[seq2seq2-Embedding]:http://7568.github.io/images/2021-11-03-seq2seqModel/Embedding.png
-[pack_padded_sequence]:http://7568.github.io/images/2021-11-03-seq2seqModel/pack_padded_sequence.png
-[align]:http://7568.github.io/images/2021-11-03-seq2seqModel/align.png
+[2021-11-04_seq2seq_3]:http://7568.github.io/images/2021-11-03-rnn-seq2seqModel/2021-11-04_seq2seq_3.png
+[input-batch]:http://7568.github.io/images/2021-11-03-rnn-seq2seqModel/input-batch.png
+[padded-input-batch]:http://7568.github.io/images/2021-11-03-rnn-seq2seqModel/padded-input-batch.png
+[input-numericalize]:http://7568.github.io/images/2021-11-03-rnn-seq2seqModel/input-numericalize.png
+[lstm-struct]:http://7568.github.io/images/2021-11-03-rnn-seq2seqModel/lstm-struct.png
+[seq2seq-lstm]:http://7568.github.io/images/2021-11-03-rnn-seq2seqModel/seq2seq-lstm.png
+[seq2seq2-encoder]:http://7568.github.io/images/2021-11-03-rnn-seq2seqModel/seq2seq-encoder.png
+[seq2seq2-decoder]:http://7568.github.io/images/2021-11-03-rnn-seq2seqModel/seq2seq-decoder.png
+[gru-encoder]:http://7568.github.io/images/2021-11-03-rnn-seq2seqModel/gru-encoder.png
+[gru-decoder]:http://7568.github.io/images/2021-11-03-rnn-seq2seqModel/gru-decoder.png
+[Seq2Seq-model]:http://7568.github.io/images/2021-11-03-rnn-seq2seqModel/Seq2Seq-model.png
+[seq2seq-with-gru]:http://7568.github.io/images/2021-11-03-rnn-seq2seqModel/seq2seq-with-gru.png
+[bidirectional-rnn]:http://7568.github.io/images/2021-11-03-rnn-seq2seqModel/bidirectional-rnn.png
+[rnn-attention-encoder]:http://7568.github.io/images/2021-11-03-rnn-seq2seqModel/rnn-attention-encoder.png
+[rnn-attention-arcitecture]:http://7568.github.io/images/2021-11-03-rnn-seq2seqModel/rnn-attention-arcitecture.png
+[seq2seq2-Embedding]:http://7568.github.io/images/2021-11-03-rnn-seq2seqModel/Embedding.png
+[pack_padded_sequence]:http://7568.github.io/images/2021-11-03-rnn-seq2seqModel/pack_padded_sequence.png
+[align]:http://7568.github.io/images/2021-11-03-rnn-seq2seqModel/align.png
 
 # 简介
 
@@ -53,14 +53,14 @@ Sequence-to-sequence模型是一个深度学习神经网络模型，在很多像
 Seq2Seq 模型是典型的 encoder-decoder 模型，下面的动画将介绍 Seq2Seq 进行机器翻译时候的基本工作流程。左边是输入，右边是输出。
 
 <video width="100%" height="auto" loop autoplay controls>
-  <source src="http://7568.github.io/images/2021-11-03-seq2seqModel/2021-11-04_seq2seq_1.mp4" type="video/mp4">
+  <source src="http://7568.github.io/images/2021-11-03-rnn-seq2seqModel/2021-11-04_seq2seq_1.mp4" type="video/mp4">
   Your browser does not support the video tag.
 </video>
 
 下面这个视频来自于 [https://github.com/google/seq2seq](https://github.com/google/seq2seq) 不过 `https://github.com/google/seq2seq`中的内容对本文关系不大
 
 <video width="100%" height="auto" loop autoplay controls>
-  <source src="http://7568.github.io/images/2021-11-03-seq2seqModel/2021-11-04_seq2seq_2.mp4" type="video/mp4">
+  <source src="http://7568.github.io/images/2021-11-03-rnn-seq2seqModel/2021-11-04_seq2seq_2.mp4" type="video/mp4">
   Your browser does not support the video tag.
 </video>
 
@@ -804,21 +804,21 @@ $$
 所以循环神经网络的运算过程可以表示成
 
 $$
-i_1     \times    rnn = h_1 \\
-\phi(h_1,i_2) \times    rnn = h_2 \\
-\phi(h_2,i_3) \times    rnn = h_3 \\
+i_1     \times    rnn = o_1 \\
+\phi(o_1,i_2) \times    rnn = o_2 \\
+\phi(o_2,i_3) \times    rnn = o_3 \\
 \vdots \\
-\phi(h_9,i_10) \times   rnn = O \\
+\phi(o_9,i_10) \times   rnn = O \\
 $$
 
 此时将 batch 换成 n 的话，如果样本是对齐的。则所以循环神经网络的运算过程可以表示成
 
 $$
-(i_{11},i_{21},...,i_{n1})     \times    rnn = (h_{11},h_{21},h_{31},...,h_{n1}) = H_1 \\
-\phi(H_1,(i_{12},i_{22},...,i_{n2})) \times    rnn = (h_{12},h_{22},h_{32},...,h_{n2}) = H_2 \\
-\phi(H_2,(i_{13},i_{23},...,i_{n3})) \times    rnn = (h_{13},h_{23},h_{33},...,h_{n3}) = H_3 \\
+(i_{11},i_{21},...,i_{n1})     \times    rnn = (o_{11},o_{21},o_{31},...,o_{n1}) = O_1 \\
+\phi(O_1,(i_{12},i_{22},...,i_{n2})) \times    rnn = (o_{12},o_{22},o_{32},...,o_{n2}) = O_2 \\
+\phi(O_2,(i_{13},i_{23},...,i_{n3})) \times    rnn = (o_{13},o_{23},o_{33},...,o_{n3}) = O_3 \\
 \vdots \\
-\phi(H_9,(i_{19},i_{29},...,i_{n9})) \times   rnn = (O_1,O_2,O_3,...,O_n) \\
+\phi(O_9,(i_{19},i_{29},...,i_{n9})) \times   rnn = (o_{19},o_{29},o_{39},...,o_{n9}) = O_9 \\
 $$
 
 每一次与 rnn 相乘的都是batch中相应位置的单位数据。
@@ -828,9 +828,56 @@ $$
 
 ## masking
 
-Masking 是直接作用于网络让它直接忽略掉某些确定的值，例如让模型不将注意力使用到 padding 上。
+Masking 是直接作用于网络让它直接忽略掉某些确定的值，例如让模型不将 Attention 使用到 padding 上。
+例如输入是 ["hello", "how", "are", "you", "?", <pad>, <pad>] 那么 masking 就是 [1, 1, 1, 1, 1, 0, 0] 。下面是带 masking 的 Attention 的代码。
+```python
+class Attention(nn.Module):
+    def __init__(self, enc_hid_dim, dec_hid_dim):
+        super().__init__()
+        
+        self.attn = nn.Linear((enc_hid_dim * 2) + dec_hid_dim, dec_hid_dim)
+        self.v = nn.Linear(dec_hid_dim, 1, bias = False)
+        
+    def forward(self, hidden, encoder_outputs, mask):
+        
+        #hidden = [batch size, dec hid dim]
+        #encoder_outputs = [src len, batch size, enc hid dim * 2]
+        
+        src_len = encoder_outputs.shape[0]
+        
+        #repeat decoder hidden state src_len times
+        hidden = hidden.unsqueeze(1).repeat(1, src_len, 1)
+  
+        encoder_outputs = encoder_outputs.permute(1, 0, 2)
+        
+        #hidden = [batch size, src len, dec hid dim]
+        #encoder_outputs = [batch size, src len, enc hid dim * 2]
+        
+        energy = torch.tanh(self.attn(torch.cat((hidden, encoder_outputs), dim = 2))) 
+        
+        #energy = [batch size, src len, dec hid dim]
+
+        attention = self.v(energy).squeeze(2)
+        
+        #attention = [batch size, src len]
+        
+        # attention.masked_fill(mask == 0, -1e10) 指的是将 attention 与 mask 相乘，然后为0的地方换成-1e10，
+        # 为 -1e10 的地方会在 softmax 之后变成0
+        attention = attention.masked_fill(mask == 0, -1e10)
+        
+        return F.softmax(attention, dim = 1)
+```
+通过代码我们可以看到 mask 通过参数传入到 Attention 中，然后在最后计算 softmax 之前将得到的 attention 与 mask 相乘。
+
+# BLEU 介绍
+
+在自然语言翻译任务中，一种常用的评价方法就是使用blue，该方法也很简单，就是计算预测的句子的 n-grams 与实际的句子的 n-grams 有多少单词是重合的。比如A为我们预测的句子的 n-grams，B为实际翻译出来的句子的 n-grams，
+那么$$blue = \frac{A \cap B}{B}$$
+
 
 暂时完结 ✨⭐ ✨⭐ ✨⭐ 。
+
+本文主要讲述的是使用 rnn 来进行自然语言的翻译，我们将会在[下一篇 blog](https://7568.github.io/2021/11/03/cnn-seq2seqModel) 中来讲述使用 cnn 来进行自然语言的繁育
 
 # 代码下载
 
@@ -841,6 +888,8 @@ Masking 是直接作用于网络让它直接忽略掉某些确定的值，例如
 👉️ 👉️ 👉️ 点击[ 💝 💝 💝 可以直接下载使用 GRU 结构的seq2seq 模型的代码](https://7568.github.io/codes/text-process/2021-11-03-seq2seqModel-gru.py)。将代码中 `is_train = False` 改成 `is_train = True` 就可以训练了，测试的时候再改回来即可。
 
 👉️ 👉️ 👉️ 点击[ 💝 💝 💝 可以直接下载使用 Attention 结构的seq2seq 模型的代码](https://7568.github.io/codes/text-process/2021-11-03-seq2seqModel-attention.py)。将代码中 `is_train = False` 改成 `is_train = True` 就可以训练了，测试的时候再改回来即可。
+
+👉️ 👉️ 👉️ 点击[ 💝 💝 💝 可以直接下载使用 Packed Padded Sequences ，Attention ，Masking 结构的seq2seq，并用 BLEU 评价模型的代码](https://7568.github.io/codes/text-process/2021-11-13-seq2seqModel-paddedSequences-masking.py)。将代码中 `is_train = False` 改成 `is_train = True` 就可以训练了，测试的时候再改回来即可。
 
 
 更多参考资料来自于
