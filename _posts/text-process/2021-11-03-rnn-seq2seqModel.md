@@ -32,7 +32,7 @@ tags:
 
 # 简介
 
-在文本处理中两个经典的网络模型，一个是基于循环神经网络加上 attention 的 Seq2Seq 和完全基于 attention 的 Transformer。这两个模型在机器翻译中都取得了很好的效果。
+在文本处理中有两个经典的网络模型，一个是基于循环神经网络加上 attention 的 Seq2Seq 和完全基于 attention 的 Transformer。这两个模型在机器翻译中都取得了很好的效果。
 本文中很大一部分内容来自翻译
 [Seq2seq Models With Attention](https://jalammar.github.io/visualizing-neural-machine-translation-mechanics-of-seq2seq-models-with-attention/)
 和
@@ -560,6 +560,8 @@ def train(model, iterator, optimizer, criterion, clip):
 - 我们将我们的要翻译的源数据先进行encoder计算，得到 hidden, cell ，
 - 然后我们将开始描述符 `\<sos\>` 当作输入，跟 hidden, cell 一起放入到decoder中去，这个时候得到一个输出和新的 hidden, cell 。 
 - 我们将输出保存下来，然后将该输出与新的 hidden, cell 一起当作输入放入到decoder中去，如此循环，就可以得到我们的翻译语句了。
+
+在测试中，通过设置max-len，也就是说输出的最大长度，从而来决定输出的句子的长度。当decoder中得到的结束符就停止，否则直到max-len结束。
 
 最终结果：`| Test Loss: 3.943 | Test PPL:  51.571 |`
 

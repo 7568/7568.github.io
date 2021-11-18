@@ -20,7 +20,9 @@ import numpy as np
 import random
 import math
 import time
+import os
 
+os.environ["CUDA_VISIBLE_DEVICES"]='1'
 SEED = 1234
 
 random.seed(SEED)

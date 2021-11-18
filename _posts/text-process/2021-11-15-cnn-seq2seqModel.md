@@ -3,11 +3,11 @@ layout: blog
 text-process: true
 background-image: http://7568.github.io/images/2021-11-15-cnn-seq2seqModel/img.png
 category: 文本处理
-title: 机器翻译 - Seq2Seq with Attention
+title: 机器翻译 - CNN in Seq2Seq
 mathjax: true
 tags:
 - Seq2Seq
-- Attention
+- CNN
 - 文本处理
 ---
 
