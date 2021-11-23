@@ -87,7 +87,7 @@ keys，和Values。其中矩阵<span style='color:#d436eb'>$$W^Q$$</span> , <spa
 
 ![self-attention-process]
 
-当我们得到了不同单词的<span style='color:#d436eb'>$$q$$</span> , <span style='color:#ff8b00'>$$k$$</span> , <span style='color:#30abff'>$$v$$</span>之后，我们就可以进行 self-attention 计算了。比如我们要计算<span style='color:green'>$$X_1$$</span>的self-attention结果，我们的操作流程如下：
+当我们得到了不同单词的<span style='color:#d436eb'>$$q$$</span> , <span style='color:#ff8b00'>$$k$$</span> , <span style='color:#30abff'>$$v$$</span>之后，我们就可以进行 self-attention 计算了。比如我们要计算<span style='color:07d015'>$$X_1$$</span>的self-attention结果，我们的操作流程如下：
 
 ![self-attention-process-2]
 
