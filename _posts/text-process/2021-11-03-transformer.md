@@ -80,8 +80,8 @@ Transformer 整体结构如下：
 
 ## self-attention 介绍
 
-首先假设我们有两个单词，分别是 Thinking，和 Machines。在计算 self-attention 之前首先要进行 embedding 运算，得到 <span style='color:green;'> $$X_1 , X_2$$ </span>  ，
-然后我们通过<span style='color:green;'> $$X_1 , X_2$$ </span> 分别乘以矩阵<span style='color:#d436eb'>$$W^Q $$</span>,<span style='color:#ff8b00'>$$ W^K $$</span>,<span style='color:#30abff'>$$ W^V$$</span>，
+首先假设我们有两个单词，分别是 Thinking，和 Machines。在计算 self-attention 之前首先要进行 embedding 运算，得到 <span style='color:#07d015;'> $$X_1 , X_2$$ </span>  ，
+然后我们通过<span style='color:#07d015;'> $$X_1 , X_2$$ </span> 分别乘以矩阵<span style='color:#d436eb'>$$W^Q $$</span>,<span style='color:#ff8b00'>$$ W^K $$</span>,<span style='color:#30abff'>$$ W^V$$</span>，
 得到<span style='color:#d436eb'>$$q_1 , q_2 $$</span>,<span style='color:#ff8b00'>$$ k_1 , k_2 $$</span>,<span style='color:#30abff'>$$ v_1 , v_2$$</span> ，他们分别表示为Querys，
 keys，和Values。其中矩阵<span style='color:#d436eb'>$$W^Q$$</span> , <span style='color:#ff8b00'>$$W^K$$</span> , <span style='color:#30abff'>$$W^V$$</span>使用默认初始化数据，然后在训练过程中不断学习优化。整个过程如下图所示
 
