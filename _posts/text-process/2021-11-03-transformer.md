@@ -80,7 +80,7 @@ Transformer 整体结构如下：
 
 ## self-attention 介绍
 
-首先假设我们有两个单词，分别是 Thinking，和 Machines。在计算 self-attention 之前首先要进行 embedding 运算，得到 <div style='color:red;'> $$X_1 , X_2$$ </div>  ，
+首先假设我们有两个单词，分别是 Thinking，和 Machines。在计算 self-attention 之前首先要进行 embedding 运算，得到 <span style='color:red;'> $$X_1 , X_2$$ </span>  ，
 然后我们通过$$X_1 , X_2$$ 分别乘以矩阵$$W^Q , W^K , W^V$$，得到$$q_1 , q_2 , k_1 , k_2 , v_1 , v_2$$ ，他们分别表示为Querys，
 keys，和Values。其中矩阵$$W^Q , W^K , W^V$$使用默认初始化数据，然后在训练过程中不断学习优化。整个过程如下图所示
 
