@@ -48,7 +48,7 @@ tags:
 # 模型介绍
 
 Sequence-to-sequence模型是一个深度学习神经网络模型，在很多像机器翻译，短文总结，和图像描述等任务中都取得了很好的成绩。接下来我将通过本blog来介绍 Seq2Seq 模型的相关内容和代码。希望对于初学者有所帮助。
-本文主要讲述的代码是 Seq2Seq 模型在机器翻译上英文对中文的翻译。
+本文主要讲述的代码是 Seq2Seq 模型在机器翻译上英文对德文的翻译。
 <br/>
 Seq2Seq 模型是典型的 encoder-decoder 模型，下面的动画将介绍 Seq2Seq 进行机器翻译时候的基本工作流程。左边是输入，右边是输出。
 
@@ -128,19 +128,19 @@ spacy_en = spacy.load('en_core_web_sm')
 def tokenize_cn(text):
     """
     Tokenizes German text from a string into a list of strings (tokens) and reverses it
-    将中文的一段话进行编码，将每个汉字都编码成一个字符串式的tokens。然后将他们反转，反转是为了放入RNN的时候保证最先放入的是一开始的字符，而不是最后的字符
+    将德文的一段话进行编码，将每个汉字都编码成一个字符串式的tokens。然后将他们反转，反转是为了放入RNN的时候保证最先放入的是一开始的字符，而不是最后的字符
     """
     return [tok.text for tok in spacy_de.tokenizer(text)][::-1]
 
 def tokenize_en(text):
     """
     Tokenizes English text from a string into a list of strings (tokens)
-    英文同中文一样
+    英文同德文一样
     """
     return [tok.text for tok in spacy_en.tokenizer(text)]
 ```
 
-在 torchtext 中已经有方法帮我们实现编码方法，我们只需要调用如下方法，分别进行中文和英文的编码
+在 torchtext 中已经有方法帮我们实现编码方法，我们只需要调用如下方法，分别进行德文和英文的编码
 
 ```python
 SRC = Field(tokenize = tokenize_de, 
