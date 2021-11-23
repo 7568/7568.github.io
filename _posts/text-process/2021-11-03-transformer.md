@@ -91,7 +91,7 @@ keys，和Values。其中矩阵$$W^Q , W^K , W^V$$使用默认初始化数据，
 ![self-attention-process-2]
 
 - 首先第一步就是计算得分，也就是图中的Score，Thinking 对自己的得分为$$q_1 * k_1^T$$，Thinking 对 Machines 的得分为$$q_1 * k_2^T$$，如果后面还有单词的化，计算得分为$$q_1 * k_i^T$$。
-- 第二步将得分Score  除以 $$\sqrt(d_k)$$，$$d_k$$为$$k$$的维度，此处假设为8。
+- 第二步将得分Score  除以 $$\sqrt{d_k}$$，$$d_k$$为$$k$$的维度，此处假设为8。
 - 第三步为将第二步的结果进行 softmax 操作。
 - 第四步将 softmax 的结果乘以各自的 Values，得到新的向量。
 - 第五步将第四步的结果全部进行向量相加，得到一个新的向量$$z_1$$，这个$$z_1$$就是 Thinking 经过 self-attention 运算的结果。
