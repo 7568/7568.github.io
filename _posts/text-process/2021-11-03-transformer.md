@@ -96,7 +96,7 @@ keys，和Values。其中矩阵<span style='color:#d436eb'>$$W^Q$$</span> , <spa
 - 第三步为将第二步的结果进行 softmax 操作。
 - 第四步将 softmax 的结果乘以各自的 Values，得到新的向量。
 - 第五步将第四步的结果全部进行向量相加，得到一个新的向量<span style='color:#ff5ab2'>$$z_1$$</span>，这个<span style='color:#ff5ab2'>$$z_1$$</span>就是 Thinking 经过 self-attention 运算的结果。
-- 当我们计算 Machines 的 self-attention 运算结果的时候，与 Thinking 流程是一样的，只是在计算 Score 的时候，使用的是$$q_2$$分别乘以<span style='color:#ff5ab2'>$$k_1 , k_2 , ... , k_i$$</span>，来计算Thinking相对于各个单词的Score。剩下的流程其实是一样的。
+- 当我们计算 Machines 的 self-attention 运算结果的时候，与 Thinking 流程是一样的，只是在计算 Score 的时候，使用的是<span style='color:#d436eb'>$$q_2$$</span>分别乘以<span style='color:#ff8b00'>$$k_1 , k_2 , ... , k_i$$</span>，来计算Thinking相对于各个单词的Score。剩下的流程其实是一样的。
 
 更多参考来自于
 - [graykode / nlp-tutorial](https://github.com/graykode/nlp-tutorial/blob/d05e31ec81d56d70c1db89b99ab07e948f7ebc11/5-1.Transformer/Transformer(Greedy_decoder).py)
