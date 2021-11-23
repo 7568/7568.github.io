@@ -1,6 +1,7 @@
 ---
 layout: blog
 text-process: true
+mathjax: true
 background-image: http://7568.github.io/images/2021-11-03-transformer/img.png
 category: 文本处理
 title: 机器翻译 - Transformer
@@ -17,7 +18,8 @@ tags:
 [a-high-level-look-4]:http://7568.github.io/images/2021-11-03-transformer/a-high-level-look-4.png
 [word-embedding]:http://7568.github.io/images/2021-11-03-transformer/word-embedding.png
 [encoder-process]:http://7568.github.io/images/2021-11-03-transformer/encoder-process.png
-[self-attention-process]:http://7568.github.io/images/2021-11-03-transformer/self-attention-precess.png
+[self-attention-process]:http://7568.github.io/images/2021-11-03-transformer/self-attention-process.png
+[self-attention-process-2]:http://7568.github.io/images/2021-11-03-transformer/self-attention-process-2.png
 
 # 简介
 在文本处理中有两个经典的网络模型，一个是基于循环神经网络加上 attention 的 Seq2Seq 和完全基于 attention 的 Transformer。这两个模型在机器翻译中都取得了很好的效果。
