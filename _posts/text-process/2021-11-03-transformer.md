@@ -186,6 +186,7 @@ keys，和Values。其中矩阵<span style='color:#d436eb'>$$W^Q$$</span> , <spa
 
 比如我们的翻译的结果为<span style='color:red'>"I am a student"</span>，那么我们在decoders中，第一次的输入是 <span style='color:red'>"\<sos\>"</span>，经过decoders之后得到 <span style='color:red'>"I"</span>，然后将 <span style='color:red'>"\<sos\> I"</span>一起当作输入，放入到decoders中，得到 <span style='color:red'>"am"</span>
 然后再将 <span style='color:red'>"\<sos\> I am"</span> 当作输入放入到decoders中，得到结果 <span style='color:red'>"a"</span> 依次类推下去，一直到得到结束符 <span style='color:red'>"\<eos\>"</span> 为止。
+最终得到的翻译结果为<span style='color:red'>"\<sos\> I am a student \<eos\>"</span>
 
 更多参考来自于
 - [graykode / nlp-tutorial](https://github.com/graykode/nlp-tutorial/blob/d05e31ec81d56d70c1db89b99ab07e948f7ebc11/5-1.Transformer/Transformer(Greedy_decoder).py)
