@@ -178,7 +178,7 @@ keys，和Values。其中矩阵<span style='color:#d436eb'>$$W^Q$$</span> , <spa
 跟在[卷积网络进行文本翻译](https://7568.github.io/2021/11/15/cnn-seq2seqModel.html) 中一样，我们最关心的还是在实际中，decoder是如何一步步生成翻译结果的。
 下面的动画就很好的解释了翻译的decoder的全过程
 <video width="100%" height="auto" loop autoplay controls>
-  <source src="http://7568.github.io/images/2021-11-03-rnn-seq2seqModel/transformer_decoding.mp4" type="video/mp4">
+  <source src="http://7568.github.io/images/2021-11-03-transformer/transformer_decoding.mp4" type="video/mp4">
   Your browser does not support the video tag.
 </video>
 
