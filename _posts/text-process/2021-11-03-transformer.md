@@ -184,8 +184,8 @@ keys，和Values。其中矩阵<span style='color:#d436eb'>$$W^Q$$</span> , <spa
 
 也就是说在我们训练的时候，我们的decoders只是从下到上运行一次，一次加载所有的输入，然后一次性的得到结果。而在我们实际翻译的时候，由于我们实际的答案是不能再当作输入的，或者我们此时根本就没有翻译的答案，这个时候decoders就会运行多次，比如翻译的结果句子长度为10，那么decoders就会运行12次，因为从开始符号一直要运行到结束符为止。
 
-比如我们的翻译的结果为<span style='color:red'>I am a student</span>，那么我们在decoders中，第一次的输入是 <span style='color:red'>\<sos\></span>，经过decoders之后得到 <span style='color:red'>I</span>，然后将 <span style='color:red'>\<sos\> I</span>一起当作输入，放入到decoders中，得到 <span style='color:red'>am</span>
-然后再将 <span style='color:red'>\<sos\> I am</span> 当作输入放入到decoders中，得到结果 <span style='color:red'>a</span> 依次类推下去，一直到得到结束符 <span style='color:red'>\<eos\></span> 为止。
+比如我们的翻译的结果为<span style='color:red'>"I am a student"</span>，那么我们在decoders中，第一次的输入是 <span style='color:red'>"\<sos\>"</span>，经过decoders之后得到 <span style='color:red'>"I"</span>，然后将 <span style='color:red'>"\<sos\> I"</span>一起当作输入，放入到decoders中，得到 <span style='color:red'>"am"</span>
+然后再将 <span style='color:red'>"\<sos\> I am"</span> 当作输入放入到decoders中，得到结果 <span style='color:red'>"a"</span> 依次类推下去，一直到得到结束符 <span style='color:red'>"\<eos\>"</span> 为止。
 
 更多参考来自于
 - [graykode / nlp-tutorial](https://github.com/graykode/nlp-tutorial/blob/d05e31ec81d56d70c1db89b99ab07e948f7ebc11/5-1.Transformer/Transformer(Greedy_decoder).py)
