@@ -113,6 +113,9 @@ body > h2:first-child, body > h1:first-child, body > h1:first-child + h2, body >
     margin-top: 0;
     padding-top: 0;
 }
+.markdown-body{
+    min-height: 90%;
+}
 
 a:first-child h1, a:first-child h2, a:first-child h3, a:first-child h4, a:first-child h5, a:first-child h6 {
     margin-top: 0;
