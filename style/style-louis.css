@@ -771,6 +771,7 @@ input:-ms-input-placeholder, textarea:-ms-input-placeholder {
     animation-duration: .5s;
     width: 68%;
     background-color: #ffffff;
+    min-height: 74%;
 }
 .post-header{
     padding-left: 10px;
