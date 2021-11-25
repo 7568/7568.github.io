@@ -831,7 +831,7 @@ $$
 ## masking
 
 Masking 是直接作用于网络让它直接忽略掉某些确定的值，例如让模型不将 Attention 使用到 padding 上。
-例如输入是 ["hello", "how", "are", "you", "?", <pad>, <pad>] 那么 masking 就是 [1, 1, 1, 1, 1, 0, 0] 。下面是带 masking 的 Attention 的代码。
+例如输入是 ["hello", "how", "are", "you", "?", \<pad\>, \<pad\>] 那么 masking 就是 [1, 1, 1, 1, 1, 0, 0] 。下面是带 masking 的 Attention 的代码。
 ```python
 class Attention(nn.Module):
     def __init__(self, enc_hid_dim, dec_hid_dim):

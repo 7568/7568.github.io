@@ -190,7 +190,7 @@ keys，和Values。其中矩阵<span style='color:#d436eb'>$$W^Q$$</span> , <spa
 
 # 代码分析
 
-由于本章内容过多，已将代码分析放于[💝 此处 💝 ](https://7568.github.io/2021/11/24/transformer-code-comments.html)
+由于本章内容过多，已将代码分析放于[ 💝 此处 💝 ](https://7568.github.io/2021/11/24/transformer-code-comments.html)
 
 更多参考来自于
 - [graykode / nlp-tutorial](https://github.com/graykode/nlp-tutorial/blob/d05e31ec81d56d70c1db89b99ab07e948f7ebc11/5-1.Transformer/Transformer(Greedy_decoder).py)
