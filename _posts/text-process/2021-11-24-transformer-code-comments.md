@@ -29,7 +29,7 @@ tags:
 ![aiayn]
 
 这下面是 transformer 的大概结构
-![ModalNet-19]
+![ModalNet-21]
 
 # 简介
 
@@ -498,7 +498,7 @@ class Seq2Seq(nn.Module):
 ```
 从代码中我们可以看到，对于 src，就是直接将非\<pad\>设置为true，将\<pad\>设置为false。 而对于trg，则不一样。
 对于trg，先通过句子中单词是否为非\<pad\>，生成一个mask1，然后生成一个内容全为1的下三角矩阵mask2，最后将他们进行"与"运算得到最后的trg-mask。
-比如trg为 ["hello", "how", "are", "you", "?", \<pad\>, \<pad\>] 那么 mask1 就是 $$\[ True,  True,  True,  True,  True, False, False \]$$ ，mask2就是
+比如trg为 ["hello", "how", "are", "you", "?", \<pad\>, \<pad\>] 那么 mask1 就是 $$[ True,  True,  True,  True,  True, False, False ]$$ ，mask2就是
 $$\begin{bmatrix}
 True, False, False, False, False, False, False \\
 True,  True, False, False, False, False, False \\
@@ -520,6 +520,7 @@ True,  True, True,  True,  True,  False, False \\
 True,  True, True,  True,  True,  False, False \\ 
 \end{bmatrix}
 $$
+
 至于为什么要这样做，我想一部分的理由是这样可以更加精细化attention，有的attention关注第一个单词，有个attention关注前两个单词，等等，这样更精细化的attention可能会提高attention的效果。
 
 ### Training the Seq2Seq Model
