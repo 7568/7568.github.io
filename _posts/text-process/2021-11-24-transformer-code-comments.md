@@ -510,7 +510,9 @@ True &  True & True &  True &  True &  False & False \\
 True &  True & True &  True &  True &  True &  False \\
 True &  True & True &  True &  True &  True &  True \\ 
 \end{bmatrix}$$
+
 然后将mask1和mask2进行"与"运算，得到最终的trg-mask如下
+
 $$
 \begin{bmatrix}
 True & False & False & False & False & False & False \\
