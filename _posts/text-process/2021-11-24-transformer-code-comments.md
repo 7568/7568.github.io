@@ -13,6 +13,7 @@ tags:
 
 [aiayn]:http://7568.github.io/images/2021-11-24-transformer-code-comments/aiayn.png
 [ModalNet-19]:http://7568.github.io/images/2021-11-24-transformer-code-comments/ModalNet-19.png
+[encoder-architecture]:http://7568.github.io/images/2021-11-24-transformer-code-comments/encoder-architecture.png
 [ModalNet-20]:http://7568.github.io/images/2021-11-24-transformer-code-comments/ModalNet-20.png
 [ModalNet-21]:http://7568.github.io/images/2021-11-24-transformer-code-comments/ModalNet-21.png
 [display-attention]:http://7568.github.io/images/2021-11-24-transformer-code-comments/display-attention.png
@@ -126,7 +127,7 @@ train_iterator, valid_iterator, test_iterator = BucketIterator.splits(
 ### encoder
 
 下面是encoder的结构图，在我的[💝 上一篇文章 💝](https://7568.github.io/2021/11/03/transformer.html ) 有对encoder做详细的介绍。
-![ModalNet-19]
+![encoder-architecture]
 
 从图中我们可以看到，encoder包括input embedding，Positional Encoding，Multi-Head Attention，Add&Norm，Feed Forward这些结构，代码如下：
 ```python
