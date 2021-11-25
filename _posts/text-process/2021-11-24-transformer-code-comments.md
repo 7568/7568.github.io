@@ -502,13 +502,13 @@ class Seq2Seq(nn.Module):
 对于trg，先通过句子中单词是否为非\<pad\>，生成一个mask1，然后生成一个内容全为1的下三角矩阵mask2，最后将他们进行"与"运算得到最后的trg-mask。
 比如trg为 ["hello", "how", "are", "you", "?", \<pad\>, \<pad\>] 那么 mask1 就是 $$[ True,  True,  True,  True,  True, False, False ]$$ ，mask2就是
 $$\begin{bmatrix}
-True, False, False, False, False, False, False \\
-True,  True, False, False, False, False, False \\
-True,  True, True,  False, False, False, False \\
-True,  True, True,  True,  False, False, False \\
-True,  True, True,  True,  True,  False, False \\
-True,  True, True,  True,  True,  True,  False \\
-True,  True, True,  True,  True,  True,  True \\ 
+True & False & False & False & False & False & False \\
+True &  True & False & False & False & False & False \\
+True &  True & True &  False & False & False & False \\
+True &  True & True &  True &  False & False & False \\
+True &  True & True &  True &  True &  False & False \\
+True &  True & True &  True &  True &  True &  False \\
+True &  True & True &  True &  True &  True &  True \\ 
 \end{bmatrix}$$
 然后将mask1和mask2进行"与"运算，得到最终的trg-mask如下
 $$
