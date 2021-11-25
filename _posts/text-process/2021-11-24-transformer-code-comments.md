@@ -14,6 +14,7 @@ tags:
 [aiayn]:http://7568.github.io/images/2021-11-24-transformer-code-comments/aiayn.png
 [ModalNet-19]:http://7568.github.io/images/2021-11-24-transformer-code-comments/ModalNet-19.png
 [encoder-architecture]:http://7568.github.io/images/2021-11-24-transformer-code-comments/encoder-architecture.png
+[mutli-head-attention]:http://7568.github.io/images/2021-11-24-transformer-code-comments/mutli-head-attention.png
 [ModalNet-20]:http://7568.github.io/images/2021-11-24-transformer-code-comments/ModalNet-20.png
 [ModalNet-21]:http://7568.github.io/images/2021-11-24-transformer-code-comments/ModalNet-21.png
 [display-attention]:http://7568.github.io/images/2021-11-24-transformer-code-comments/display-attention.png
@@ -213,7 +214,7 @@ class EncoderLayer(nn.Module):
 ### MultiHeadAttentionLayer
 
 其中多头注意力机制结构如下：
-![ModalNet-20]
+![mutli-head-attention]
 
 
 在我的[💝 上一篇文章 💝](https://7568.github.io/2021/11/03/transformer.html ) 有对多头注意力机制做详细的介绍。
