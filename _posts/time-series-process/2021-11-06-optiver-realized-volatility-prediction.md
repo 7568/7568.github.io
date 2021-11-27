@@ -3,7 +3,7 @@ layout: blog
 time-series-process: true
 category: time series 处理
 title:  Optiver Realized Volatility Prediction
-date:   2021-11-06 10:06:42
+date:   2021-11-06
 background-image: http://7568.github.io/images/2021-11-06-optiver-realized-volatility-prediction/img.png
 tags:
 - Volatility Prediction
