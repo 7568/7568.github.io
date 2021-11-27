@@ -23,7 +23,7 @@ tags:
 
 #前言
 
-本文的内容大多数翻译于[bentrevett / pytorch-seq2seq](https://github.com/bentrevett/pytorch-seq2seq/blob/master/6%20-%20Attention%20is%20All%20You%20Need.ipynb)，
+本文的内容大多数翻译于[bentrevett / pytorch-seq2seq](https://github.com/bentrevett/pytorch-seq2seq/blob/master/6%20-%20Attention%20is%20All%20You%20Need.ipynb) ，
 在本文中我们实现了[Attention is All You Need ](https://arxiv.org/abs/1706.03762) 文章中的transformer模型，在该模型的基础上我们做了轻微的改动。
 本文主要是介绍用代码来实现transformer，不对transformer做详细的介绍。更多关于transformer的信息，大家可以参考这三篇文章（[💝 一 💝](https://www.mihaileric.com/posts/transformers-attention-in-disguise )，[💝 二 💝](https://jalammar.github.io/illustrated-transformer )，[💝 三 💝](http://nlp.seas.harvard.edu/2018/04/03/attention.html )） ，也可以看我的[💝 上一篇文章 💝](https://7568.github.io/2021/11/03/transformer.html )。
 
