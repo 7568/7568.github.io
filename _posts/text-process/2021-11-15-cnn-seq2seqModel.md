@@ -11,11 +11,11 @@ tags:
 - 文本处理
 ---
 
-[convseq2seq0]:http://7568.github.io/images/2021-11-15-cnn-seq2seqModel/convseq2seq0.png
-[convseq2seq1]:http://7568.github.io/images/2021-11-15-cnn-seq2seqModel/convseq2seq1.png
-[gated-linear-unit]:http://7568.github.io/images/2021-11-15-cnn-seq2seqModel/gated-linear-unit.png
-[train-decoder]:http://7568.github.io/images/2021-11-15-cnn-seq2seqModel/train-decoder.png
-[train-decoder-cnn-struct]:http://7568.github.io/images/2021-11-15-cnn-seq2seqModel/train-decoder-cnn-struct.png
+[convseq2seq0]:https://7568.github.io/images/2021-11-15-cnn-seq2seqModel/convseq2seq0.png
+[convseq2seq1]:https://7568.github.io/images/2021-11-15-cnn-seq2seqModel/convseq2seq1.png
+[gated-linear-unit]:https://7568.github.io/images/2021-11-15-cnn-seq2seqModel/gated-linear-unit.png
+[train-decoder]:https://7568.github.io/images/2021-11-15-cnn-seq2seqModel/train-decoder.png
+[train-decoder-cnn-struct]:https://7568.github.io/images/2021-11-15-cnn-seq2seqModel/train-decoder-cnn-struct.png
 
 # 简介
 

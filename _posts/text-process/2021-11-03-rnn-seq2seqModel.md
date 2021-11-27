@@ -11,24 +11,24 @@ tags:
 - 文本处理
 ---
 
-[2021-11-04_seq2seq_3]:http://7568.github.io/images/2021-11-03-rnn-seq2seqModel/2021-11-04_seq2seq_3.png
-[input-batch]:http://7568.github.io/images/2021-11-03-rnn-seq2seqModel/input-batch.png
-[padded-input-batch]:http://7568.github.io/images/2021-11-03-rnn-seq2seqModel/padded-input-batch.png
-[input-numericalize]:http://7568.github.io/images/2021-11-03-rnn-seq2seqModel/input-numericalize.png
-[lstm-struct]:http://7568.github.io/images/2021-11-03-rnn-seq2seqModel/lstm-struct.png
-[seq2seq-lstm]:http://7568.github.io/images/2021-11-03-rnn-seq2seqModel/seq2seq-lstm.png
-[seq2seq2-encoder]:http://7568.github.io/images/2021-11-03-rnn-seq2seqModel/seq2seq-encoder.png
-[seq2seq2-decoder]:http://7568.github.io/images/2021-11-03-rnn-seq2seqModel/seq2seq-decoder.png
-[gru-encoder]:http://7568.github.io/images/2021-11-03-rnn-seq2seqModel/gru-encoder.png
-[gru-decoder]:http://7568.github.io/images/2021-11-03-rnn-seq2seqModel/gru-decoder.png
-[Seq2Seq-model]:http://7568.github.io/images/2021-11-03-rnn-seq2seqModel/Seq2Seq-model.png
-[seq2seq-with-gru]:http://7568.github.io/images/2021-11-03-rnn-seq2seqModel/seq2seq-with-gru.png
-[bidirectional-rnn]:http://7568.github.io/images/2021-11-03-rnn-seq2seqModel/bidirectional-rnn.png
-[rnn-attention-encoder]:http://7568.github.io/images/2021-11-03-rnn-seq2seqModel/rnn-attention-encoder.png
-[rnn-attention-arcitecture]:http://7568.github.io/images/2021-11-03-rnn-seq2seqModel/rnn-attention-arcitecture.png
-[seq2seq2-Embedding]:http://7568.github.io/images/2021-11-03-rnn-seq2seqModel/Embedding.png
-[pack_padded_sequence]:http://7568.github.io/images/2021-11-03-rnn-seq2seqModel/pack_padded_sequence.png
-[align]:http://7568.github.io/images/2021-11-03-rnn-seq2seqModel/align.png
+[2021-11-04_seq2seq_3]:https://7568.github.io/images/2021-11-03-rnn-seq2seqModel/2021-11-04_seq2seq_3.png
+[input-batch]:https://7568.github.io/images/2021-11-03-rnn-seq2seqModel/input-batch.png
+[padded-input-batch]:https://7568.github.io/images/2021-11-03-rnn-seq2seqModel/padded-input-batch.png
+[input-numericalize]:https://7568.github.io/images/2021-11-03-rnn-seq2seqModel/input-numericalize.png
+[lstm-struct]:https://7568.github.io/images/2021-11-03-rnn-seq2seqModel/lstm-struct.png
+[seq2seq-lstm]:https://7568.github.io/images/2021-11-03-rnn-seq2seqModel/seq2seq-lstm.png
+[seq2seq2-encoder]:https://7568.github.io/images/2021-11-03-rnn-seq2seqModel/seq2seq-encoder.png
+[seq2seq2-decoder]:https://7568.github.io/images/2021-11-03-rnn-seq2seqModel/seq2seq-decoder.png
+[gru-encoder]:https://7568.github.io/images/2021-11-03-rnn-seq2seqModel/gru-encoder.png
+[gru-decoder]:https://7568.github.io/images/2021-11-03-rnn-seq2seqModel/gru-decoder.png
+[Seq2Seq-model]:https://7568.github.io/images/2021-11-03-rnn-seq2seqModel/Seq2Seq-model.png
+[seq2seq-with-gru]:https://7568.github.io/images/2021-11-03-rnn-seq2seqModel/seq2seq-with-gru.png
+[bidirectional-rnn]:https://7568.github.io/images/2021-11-03-rnn-seq2seqModel/bidirectional-rnn.png
+[rnn-attention-encoder]:https://7568.github.io/images/2021-11-03-rnn-seq2seqModel/rnn-attention-encoder.png
+[rnn-attention-arcitecture]:https://7568.github.io/images/2021-11-03-rnn-seq2seqModel/rnn-attention-arcitecture.png
+[seq2seq2-Embedding]:https://7568.github.io/images/2021-11-03-rnn-seq2seqModel/Embedding.png
+[pack_padded_sequence]:https://7568.github.io/images/2021-11-03-rnn-seq2seqModel/pack_padded_sequence.png
+[align]:https://7568.github.io/images/2021-11-03-rnn-seq2seqModel/align.png
 
 # 简介
 

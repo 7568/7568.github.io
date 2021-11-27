@@ -11,15 +11,15 @@ tags:
 - 文本处理
 ---
 
-[aiayn]:http://7568.github.io/images/2021-11-24-transformer-code-comments/aiayn.png
-[ModalNet-19]:http://7568.github.io/images/2021-11-24-transformer-code-comments/ModalNet-19.png
-[encoder-architecture]:http://7568.github.io/images/2021-11-24-transformer-code-comments/encoder-architecture.png
-[mutli-head-attention]:http://7568.github.io/images/2021-11-24-transformer-code-comments/mutli-head-attention.png
-[ModalNet-20]:http://7568.github.io/images/2021-11-24-transformer-code-comments/ModalNet-20.png
-[ModalNet-21]:http://7568.github.io/images/2021-11-24-transformer-code-comments/ModalNet-21.png
-[display-attention]:http://7568.github.io/images/2021-11-24-transformer-code-comments/display-attention.png
-[display-attention-2]:http://7568.github.io/images/2021-11-24-transformer-code-comments/display-attention-2.png
-[display-attention-3]:http://7568.github.io/images/2021-11-24-transformer-code-comments/display-attention-3.png
+[aiayn]:https://7568.github.io/images/2021-11-24-transformer-code-comments/aiayn.png
+[ModalNet-19]:https://7568.github.io/images/2021-11-24-transformer-code-comments/ModalNet-19.png
+[encoder-architecture]:https://7568.github.io/images/2021-11-24-transformer-code-comments/encoder-architecture.png
+[mutli-head-attention]:https://7568.github.io/images/2021-11-24-transformer-code-comments/mutli-head-attention.png
+[ModalNet-20]:https://7568.github.io/images/2021-11-24-transformer-code-comments/ModalNet-20.png
+[ModalNet-21]:https://7568.github.io/images/2021-11-24-transformer-code-comments/ModalNet-21.png
+[display-attention]:https://7568.github.io/images/2021-11-24-transformer-code-comments/display-attention.png
+[display-attention-2]:https://7568.github.io/images/2021-11-24-transformer-code-comments/display-attention-2.png
+[display-attention-3]:https://7568.github.io/images/2021-11-24-transformer-code-comments/display-attention-3.png
 
 #前言
 
