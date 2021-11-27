@@ -57,6 +57,8 @@ tags:
 
 ![convseq2seq1]
 
+### GLU
+
 在上图中绿色的方块表示 gated linear units (GLU) 外加激活函数，该操作也是跟 GRU 和 LSTM 一样，带有门控单元，是一种带门控的网络结构。GLU 可用数学表达式为
 
 $$GLU(a,b) = a \otimes \sigma(b) $$
