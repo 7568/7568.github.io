@@ -9,6 +9,11 @@ tags:
 - 神经网络
 - 卷积
 ---
+
+[partial-convolution-1]:https://7568.github.io/images/2021-11-06-conv_arithmetic/partial-convolution-1.png
+[no_padding_no_strides_transposed]:https://7568.github.io/images/2021-11-06-conv_arithmetic/no_padding_no_strides_transposed.png
+
+
 本文大部分内容来自于 [vdumoulin/conv_arithmetic](https://github.com/vdumoulin/conv_arithmetic/blob/master/README.md) 
 
 # Convolution arithmetic
@@ -24,7 +29,7 @@ licence and subject to proper attribution:
 
 ## Convolution animations
 
-_N.B.: Blue maps are inputs, and cyan maps are outputs._
+_N.B.: 蓝色的 maps 是输入, 蓝绿色的 maps 是输出._（正常的卷积操作）
 
 <table style="width:100%; table-layout:fixed;">
   <tr>
@@ -55,11 +60,11 @@ _N.B.: Blue maps are inputs, and cyan maps are outputs._
 
 ## Transposed convolution animations
 
-_N.B.: Blue maps are inputs, and cyan maps are outputs. (转置卷积)_
+_N.B.: 蓝色的 maps 是输入, 蓝绿色的 maps 是输出. (转置卷积)_
 
 <table style="width:100%; table-layout:fixed;">
   <tr>
-    <td><img width="150px" src="https://7568.github.io/images/2021-11-06-conv_arithmetic/no_padding_no_strides_transposed.gif"></td>
+    <td><img width="150px" src="![no_padding_no_strides_transposed]"></td>
     <td><img width="150px" src="https://7568.github.io/images/2021-11-06-conv_arithmetic/arbitrary_padding_no_strides_transposed.gif"></td>
     <td><img width="150px" src="https://7568.github.io/images/2021-11-06-conv_arithmetic/same_padding_no_strides_transposed.gif"></td>
     <td><img width="150px" src="https://7568.github.io/images/2021-11-06-conv_arithmetic/full_padding_no_strides_transposed.gif"></td>
@@ -135,7 +140,7 @@ tensor([[[[8., 7., 6., 7., 8., 7., 6.],
 
 ## Dilated convolution animations
 
-_N.B.: Blue maps are inputs, and cyan maps are outputs. (Dilated: 膨胀的；扩张的)_
+_N.B.: 蓝色的 maps 是输入, 蓝绿色的 maps 是输出. (Dilated: 膨胀的；扩张的)_
 
 <table style="width:25%; table-layout:fixed;">
   <tr>
@@ -145,4 +150,12 @@ _N.B.: Blue maps are inputs, and cyan maps are outputs. (Dilated: 膨胀的；�
     <td>No padding, no stride, dilation</td>
   </tr>
 </table>
+
+## Partial Convolution 
+
+_N.B.:  [偏置卷积](https://arxiv.org/pdf/1811.11718.pdf) 
+偏置卷积是 NVIDIA 公司的团队在2018年提出来的一种填充机制（padding scheme）。对于我们通常需要padding的大多数任务，换成 Partial Convolution ，都会有一些提升效果。
+而且也没有过多的增加多少计算复杂度。
+
+我们将会使用如下的图来解释 Partial Convolution 的基本原理
 
