@@ -11,7 +11,6 @@ tags:
 ---
 
 [partial-convolution-1]:https://7568.github.io/images/2021-11-06-conv_arithmetic/partial-convolution-1.png
-[no_padding_no_strides_transposed]:https://7568.github.io/images/2021-11-06-conv_arithmetic/no_padding_no_strides_transposed.png
 
 
 本文大部分内容来自于 [vdumoulin/conv_arithmetic](https://github.com/vdumoulin/conv_arithmetic/blob/master/README.md) 
@@ -64,7 +63,7 @@ _N.B.: 蓝色的 maps 是输入, 蓝绿色的 maps 是输出. (转置卷积)_
 
 <table style="width:100%; table-layout:fixed;">
   <tr>
-    <td><img width="150px" src="![no_padding_no_strides_transposed]"></td>
+    <td><img width="150px" src="https://7568.github.io/images/2021-11-06-conv_arithmetic/no_padding_no_strides_transposed.png"></td>
     <td><img width="150px" src="https://7568.github.io/images/2021-11-06-conv_arithmetic/arbitrary_padding_no_strides_transposed.gif"></td>
     <td><img width="150px" src="https://7568.github.io/images/2021-11-06-conv_arithmetic/same_padding_no_strides_transposed.gif"></td>
     <td><img width="150px" src="https://7568.github.io/images/2021-11-06-conv_arithmetic/full_padding_no_strides_transposed.gif"></td>
@@ -159,3 +158,13 @@ _N.B.:  [偏置卷积](https://arxiv.org/pdf/1811.11718.pdf)
 
 我们将会使用如下的图来解释 Partial Convolution 的基本原理
 
+![partial-convolution-1]
+
+在图中（a）是我们的输入，（b）为跟（a）相同维度，值全为1的矩阵，（c）为将（a）进行用0进行填充一个单位的矩阵，（d）为将（b）进行用1进行填充的一个单位矩阵，
+（e）为将（b）进行用1进行填充一个单位的矩阵。其中红色框和绿色框指我们的卷积操作时候的卷积框。
+
+对于常规的padding为0的卷积操作，比如图中的（c），我们计算卷积的方法为：$$W^T X_{(i\to i+k,j\to j+k)}^{p0}+b$$，我们卷积核计算之后，计算的结果只与蓝色部位有关，而padding只是用来保持输出维度的，
+Partial Convolution 的思想是让padding也能够动态的学习，让卷积之后的结果也能依赖于padding，所以 Partial Convolution 中计算卷积时候，是这样计算的
+$$W^T X_{(i\to i+k,j\to j+k)}^{p0}\frac{{\Vert 1_{(i\to i+k,j\to j+k)}^{p1} \Vert}_1} {{\Vert 1_{(i\to i+k,j\to j+k)}^{p0} \Vert}_1}+b$$
+这样操作的好处就是，在处理边缘的地方，常规的补0的padding之后的卷积操作，不考虑边缘，而现在相当于我们把卷积框内不是填充的地方的值延展到原来填充0的地方。
+看起来这样似乎合理一些，因为对于一张图像，在小范围像素内通常像素的值是非常接近的。
