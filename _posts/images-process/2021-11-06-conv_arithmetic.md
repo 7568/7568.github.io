@@ -1,6 +1,7 @@
 ---
 layout: blog
 images-process: true
+mathjax: true
 title: "神经网络中的各种卷积操作"
 background-image: https://7568.github.io/images/2021-11-06-conv_arithmetic/no_padding_no_strides.gif
 date:  2021-11-06
