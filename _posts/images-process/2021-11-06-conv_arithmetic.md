@@ -166,7 +166,7 @@ _N.B.:  [偏置卷积](https://arxiv.org/pdf/1811.11718.pdf)
 
 对于常规的padding为0的卷积操作，比如图中的（c），我们计算卷积的方法为：
 
-$$W^T X_{(i\to i+k,j\to j+k)}^{p0}+b$$
+$$W^T X_{(i\to i+k,j\to j+k)}^{p0}+b $$
 
 ，我们卷积核计算之后，计算的结果只与蓝色部位有关，而padding只是用来保持输出维度的，
 Partial Convolution 的思想是让padding也能够动态的学习，让卷积之后的结果也能依赖于padding，所以 Partial Convolution 中计算卷积时候，是这样计算的
