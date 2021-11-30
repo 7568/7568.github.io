@@ -64,7 +64,7 @@ _N.B.: 蓝色的 maps 是输入, 蓝绿色的 maps 是输出. (转置卷积)_
 
 <table style="width:100%; table-layout:fixed;">
   <tr>
-    <td><img width="150px" src="https://7568.github.io/images/2021-11-06-conv_arithmetic/no_padding_no_strides_transposed.png"></td>
+    <td><img width="150px" src="https://7568.github.io/images/2021-11-06-conv_arithmetic/no_padding_no_strides_transposed.gif"></td>
     <td><img width="150px" src="https://7568.github.io/images/2021-11-06-conv_arithmetic/arbitrary_padding_no_strides_transposed.gif"></td>
     <td><img width="150px" src="https://7568.github.io/images/2021-11-06-conv_arithmetic/same_padding_no_strides_transposed.gif"></td>
     <td><img width="150px" src="https://7568.github.io/images/2021-11-06-conv_arithmetic/full_padding_no_strides_transposed.gif"></td>
