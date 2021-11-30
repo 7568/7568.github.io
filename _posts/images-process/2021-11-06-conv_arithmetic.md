@@ -168,6 +168,6 @@ _N.B.:  [偏置卷积](https://arxiv.org/pdf/1811.11718.pdf)
 $$W^T X_{(i\to i+k,j\to j+k)}^{p0}+b $$
 ，我们卷积核计算之后，计算的结果只与蓝色部位有关，而padding只是用来保持输出维度的，
 Partial Convolution 的思想是让padding也能够动态的学习，让卷积之后的结果也能依赖于padding，所以 Partial Convolution 中计算卷积时候，是这样计算的
-$$W^T X_{(i\to i+k,j\to j+k)}^{p0} \frac{{  x_{i\to i+k,j\to j+k}^{p1} }}{}+b$$
+$$W^T X_{(i\to i+k,j\to j+k)}^{p0} \frac{{  x_{(i\to i+k,j\to j+k)} }}{}+b$$
 这样操作的好处就是，在处理边缘的地方，常规的补0的padding之后的卷积操作，不考虑边缘，而现在相当于我们把卷积框内不是填充的地方的值延展到原来填充0的地方。
 看起来这样似乎合理一些，因为对于一张图像，在小范围像素内通常像素的值是非常接近的。
