@@ -21,10 +21,9 @@ date:  2021-11-06 category: 图像处理 tags:
   在网上找到这个人[amaarora](https://amaarora.github.io/2020/08/09/groupnorm.html) 的解释，挺详细的
   。最后还有个总结，说是在他的一个普通测试中，GN效果挺差，但是在[ Big Transfer (BiT): General Visual Representation Learning ](https://arxiv.org/abs/1912.11370)
   中，将 [ Weight Standardization ](https://arxiv.org/abs/1903.10520) 和GN结合使用过，会有很好的效果。
-- GhostBatchNorm：该方法是从 batch 中取出一个小样本当作batch，然后计算小样本的 BatchNorm，当作全部的归一化处理。比如原来我们设定的 batch size 为128，那么在 Ghost BatchNorm
-  的时候，就随机取出32个，计算这32个的 均值和方差， 然后当作全部128个的均值和方差，再计算BatchNorm，这个方法看起来很奇怪，但是有人将它和在网络中添加噪声进行和对比，发现结果差不多，
-  所以该方法其实可以当作在网络中添加噪声来理解。该方法对于大 batch 的时 候有用。但是在pytorch中速度没有 BatchNorm 快，因为 BatchNorm
-  经过了pytorch优化，是调用的底层的C代码，而 GhostBatchNorm 需要自己手动实现。
+- GhostBatchNorm：该方法是将一个大的batch size 切分成多个小的 batch size，然后计算每个小的 batch 的 BatchNorm ，最后再把他们拼接起来。
+  这个方法看起来很奇怪，但是有人将它和在网络中添加噪声进行和对比，发现结果差不多，
+  所以该方法其实可以当作在网络中添加噪声来理解。该方法对于大 batch size 的时候有用。
   在 [Ghost BatchNorm explained](https://medium.com/deeplearningmadeeasy/ghost-batchnorm-explained-e0fa9d651e03) 这篇 blog
   中有关于GhostBatchNorm 的详细介绍和代码实现。
 
