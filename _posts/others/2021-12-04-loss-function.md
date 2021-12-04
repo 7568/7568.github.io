@@ -4,7 +4,7 @@ others: true
 istop: true
 mathjax: true
 title: "机器学习中的损失函数"
-background-image: http://7568.github.io/images/2021-12-04-loss-function/img_1.png
+background-image: http://7568.github.io/images/2021-12-04-loss-function/img.png
 date:  2021-12-04
 category: 其他
 tags:
@@ -23,10 +23,10 @@ tags:
 ## L1 Loss
 
 Creates a criterion that measures the mean absolute error (MAE) between each element in the input $$x$$ and target $$y$$.
-![l1-loss-1]
+
 $$\ell(x, y) = L = \{l_1,\dots,l_N\}^\top, \quad
         l_n = \left| x_n - y_n \right|$$
-![l1-loss-2]
+
 $$\ell(x, y) =
         \begin{cases}
             \operatorname{mean}(L), & \text{if reduction} = \text{'mean';}\\
