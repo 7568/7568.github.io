@@ -105,7 +105,7 @@ $$\ell(x, y) = L = \{l_1,\dots,l_N\}^\top, \quad l_n = -w_{yn}\log\frac{exp(x_n,
 
 $$\ell(x, y) =
         \begin{cases}
-            \sum_{n=1}^N \frac{1}{\sum_{n=1}^{N}w_{yn}*1{\{y_n \neq ignore\_index\}}, & \text{if reduction} = \text{'mean';}\\
+            \sum_{n=1}^N \frac{1}{\sum_{n=1}^{N}w_{yn}}*1{\{y_n \neq ignore\_index\}} , & \text{if reduction} = \text{'mean';}\\
             \sum_{n=1}^N l_n,  & \text{if reduction} = \text{'sum'.}
         \end{cases}$$
 
