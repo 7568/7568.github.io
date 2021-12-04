@@ -64,6 +64,6 @@ class LayerNorm(nn.Module):
   的实现在pytorch中有`torch.nn.utils.clip_grad_value_()` , `torch.nn.utils.clip_grad.clip_grad_norm()`
   , `torch.nn.utils.clip_grad_norm_()`，他们的区别是 `torch.nn.utils.clip_grad_value_()` 将 grad
   限制在一个区间，`torch.nn.utils.clip_grad.clip_grad_norm()` 指先将grad进行归一化处理，然后再将grad限制在一个区间，`torch.nn.utils.clip_grad_norm_()`
-  是 `torch.nn.utils.clip_grad.clip_grad_norm()` 的最新版， 是过期的版本。
+  是 `torch.nn.utils.clip_grad.clip_grad_norm()` 的最新版，`torch.nn.utils.clip_grad.clip_grad_norm()` 是过期的版本。
 - 使用残差网络能有效防止梯度爆炸和梯度消失，通常的做法是在网络中加入残差块
 - 将卷积核参数进行正交规范化 orthogonal regularization
