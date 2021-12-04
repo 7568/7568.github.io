@@ -1,9 +1,4 @@
 @charset 'UTF-8';
-.MathJax{
-    font-weight: bolder!important;
-    /*font-style: italic!important;*/
-    font: normal 1.21em KaTeX_Main,Times New Roman,serif;
-}
 /* ==========================================================================
    #reset
    ========================================================================== */
@@ -377,6 +372,7 @@ input:-ms-input-placeholder, textarea:-ms-input-placeholder {
 .MathJax {
     outline: 0;
     padding: 0 7px 0 7px!important;
+    font: normal 1.21em KaTeX_Main,Times New Roman,serif;
 }
 
 /*
