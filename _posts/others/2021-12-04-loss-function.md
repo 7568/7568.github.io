@@ -34,7 +34,7 @@ $$\ell(x, y) =
             \operatorname{sum}(L),  & \text{if reduction} = \text{'sum'.}
         \end{cases}$$
 
-L1 Loss 通常比较适用于回归任务。L1 Loss 的缺点是在0的位置不可导。L1 Loss 的函数图会与 SmoothL1 Loss 和 L2 Loss 放在 L2 Loss 部分一起做对比。
+L1 Loss 通常比较适用于回归任务，也可以用于分类任务。L1 Loss 的缺点是在0的位置不可导。L1 Loss 的函数图会与 SmoothL1 Loss 和 L2 Loss 放在 L2 Loss 部分一起做对比。
 
 ## SmoothL1 Loss
 
@@ -98,7 +98,17 @@ $$\text{loss}(x, class) = -\log\left(\frac{\exp(x[class])}{\sum_j \exp(x[j])}\ri
 
 $$\ell(x, y) = L = \{l_1,\dots,l_N\}^\top, \quad l_n = -w_{yn}\log\frac{exp(x_n,y_n)}{\sum_{c=1}^C exp(x_n,c)}*1{\{y_n \neq ignore\_index\}}$$
 
-其中
+其中$$ignore\_index$$指的是不计算损失的类别。$$w_{yn}$$指的是手动设置的每个类别的权重，我个人猜想应该是对于一些分布不均匀的数据，可能会用得到。
+
+  
+然后我们对 N 个结果可以选择求和或者取平均，这样就得到了一个 CrossEntropy Loss。
+
+$$\ell(x, y) =
+        \begin{cases}
+            \sum_{n=1}^N \frac{1}{\sum_{n=1}^{N}w_{yn}*1{\{y_n \neq ignore\_index\}}, & \text{if reduction} = \text{'mean';}\\
+            \sum_{n=1}^N l_n,  & \text{if reduction} = \text{'sum'.}
+        \end{cases}$$
+
 
 
 ## NLL Loss
