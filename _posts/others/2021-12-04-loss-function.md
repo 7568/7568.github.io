@@ -26,6 +26,7 @@ tags:
 
 $$\ell(x, y) = L = \{l_1,\dots,l_N\}^\top, \quad l_n = \left| x_n - y_n \right|$$
 <br></br>
+
 然后我们对绝对误差可以选择求和或者取平均，这样就得到了L1 Loss。
 
 $$\ell(x, y) =
@@ -34,6 +35,7 @@ $$\ell(x, y) =
             \operatorname{sum}(L),  & \text{if reduction} = \text{'sum'.}
         \end{cases}$$
 <br></br>
+
 L1 Loss 通常比较适用于回归任务。L1 Loss 的缺点是在0的位置不可导。L1 Loss 的函数图会与 SmoothL1 Loss 和 L2 Loss 放在 L2 Loss 部分一起做对比。
 
 ## SmoothL1 Loss
