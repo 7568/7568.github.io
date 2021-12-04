@@ -22,11 +22,11 @@ tags:
 
 ## L1 Loss
 
-首先我们计算输入$$x$$和目标$$y$$中每个元素的绝对误差，方法如下：
+对于一个 Batch Size 为 N 的样本，首先我们计算输入$$x$$和目标$$y$$中每个元素的绝对误差，方法如下：
 
 $$\ell(x, y) = L = \{l_1,\dots,l_N\}^\top, \quad l_n = \left| x_n - y_n \right|$$
 
-然后我们对绝对误差可以选择求和或者取平均，这样就得到了L1 Loss。
+然后我们对 N 个绝对误差可以选择求和或者取平均，这样就得到了一个 Batch 的L1 Loss。
 
 $$\ell(x, y) =
         \begin{cases}
@@ -39,7 +39,8 @@ L1 Loss 通常比较适用于回归任务。L1 Loss 的缺点是在0的位置不
 ## SmoothL1 Loss
 
 SmoothL1 Loss 是在 L1 Loss 进行的修改，使得 L1 Loss 的在 0 的位置变得可导。
-首先我们还是要的到输入$$x$$和目标$$y$$中每个元素的误差。
+
+对于一个 Batch Size 为 N 的样本，首先我们还是要的到输入$$x$$和目标$$y$$中每个元素的误差。
 
 $$\ell(x, y) = L = \{l_1,\dots,l_N\}^\top$$
   
@@ -51,7 +52,7 @@ $$l_{i} =
         |x_i - y_i| - 0.5 * beta, & \text{otherwise }
         \end{cases}$$
   
-然后我们对误差可以选择求和或者取平均，这样就得到了L1 Loss。
+然后我们对 N 个误差可以选择求和或者取平均，这样就得到了一个 Batch L1 Loss。
 
 $$\ell(x, y) =
         \begin{cases}
@@ -65,11 +66,11 @@ SmoothL1 Loss 的函数图会与 L1 Loss 和 L2 Loss 放在 L2 Loss 部分一起
 ## L2 Loss（MSELoss）
 
 L2 Loss 与 L1 Loss 其实是很相近的，不同点是 L1 Loss 计算的是两个元素的绝对距离，而 L2 Loss 计算的是两个元素的均方误差。
-计算方式如下：
+对于一个 Batch Size 为 N 的样本，计算方式如下：
 
 $$\ell(x, y) = L = \{l_1,\dots,l_N\}^\top, \quad l_n = \left( x_n - y_n \right)^2$$
   
-然后我们对均方误差可以选择求和或者取平均，这样就得到了L2 Loss。
+然后我们对 N 个误差可以选择求和或者取平均，这样就得到了一个 L2 Loss。
 
 $$\ell(x, y) =
         \begin{cases}
@@ -85,11 +86,19 @@ L2 Loss ，L1 Loss 和 SmoothL1 Loss 他们的对比图如下：
 
 ## CrossEntropy Loss
 
-CrossEntropy Loss 也叫交叉熵损失函数。该损失函数通常用于深度学习中的分类任务。比如分类任务的类别为$$C$$，那么我们可以将类别用$$[0,1,...,C-1]$$来标志类别。
-CrossEntropy Loss 函数可表示成如下：
+CrossEntropy Loss 也叫交叉熵损失函数。该损失函数通常用于深度学习中的分类任务。比如分类任务的类别为$$C$$，那么我们可以将类别用$$class = [0,1,...,C-1]$$来标志类别。
+
+对于一个样本，假设经过神经网络之后，得到的输出为$$x$$，则$$x$$的内容应该是这样的：$$x=[x_1,x_2,\dot,x_{c-1}]$$，其中$$x_i$$指的是输入样本为第$$i-1$$类的概率。
+那么计算$$x$$的交叉熵损失为：
 
 $$\text{loss}(x, class) = -\log\left(\frac{\exp(x[class])}{\sum_j \exp(x[j])}\right)
                        = -x[class] + \log\left(\sum_j \exp(x[j])\right)$$
+
+而对于 Batch Size 为 N 的输入，假设得到的输出为$$x$$，实际的类别为$$y$$，CrossEntropy Loss 的计算方式如下：
+
+$$\ell(x, y) = L = \{l_1,\dots,l_N\}^\top, \quad l_n = -w_{yn}\log\frac{exp(x_n,y_n)}{\sum_{c=1}^{C}exp(x_n,c)}*1{\{y_n!=ignore_index\}}$$
+其中
+
 
 ## NLL Loss
 
