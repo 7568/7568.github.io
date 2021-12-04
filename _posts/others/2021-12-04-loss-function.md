@@ -43,8 +43,8 @@ $$\ell(x, y) = L = \{l_1,\dots,l_N\}^\top$$
 计算误差的方法如下：
 $$l_{i} =
         \begin{cases}
-        0.5 (x_i - y_i)^2, & \text{if } |x_i - y_i| < 1 \\
-        |x_i - y_i| - 0.5, & \text{otherwise }
+        0.5 (x_i - y_i)^2/beta, & \text{if } |x_i - y_i| < beta \\
+        |x_i - y_i| - 0.5 * beta, & \text{otherwise }
         \end{cases}$$
 
 然后我们对误差可以选择求和或者取平均，这样就得到了L1 Loss。
