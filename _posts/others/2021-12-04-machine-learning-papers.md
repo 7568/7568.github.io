@@ -3,7 +3,7 @@ layout: blog
 others: true
 istop: true
 title: "深度学习论文泛读"
-background-image: http://7568.github.io/images/2021-11-2-createblog/2021-11-02_2.jpeg
+background-image: http://7568.github.io/images/2021-12-04-loss-function/img.png
 date:  2021-12-04
 category: 其他
 tags:
