@@ -97,6 +97,7 @@ $$\text{loss}(x, class) = -\log\left(\frac{\exp(x[class])}{\sum_j \exp(x[j])}\ri
 而对于 Batch Size 为 N 的输入，假设得到的输出为$$x$$，实际的类别为$$y$$，CrossEntropy Loss 的计算方式如下：
 
 $$\ell(x, y) = L = \{l_1,\dots,l_N\}^\top, \quad l_n = -w_{yn}\log\frac{exp(x_n,y_n)}{\sum_{c=1}^{C}exp(x_n,c)}*1{\{y_n!=ignore\_index\}}$$
+
 其中
 
 
