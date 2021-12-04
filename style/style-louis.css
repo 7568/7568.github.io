@@ -1,4 +1,12 @@
 @charset 'UTF-8';
+.MathJax{
+    font-weight: bolder!important;
+    /*font-style: italic!important;*/
+    font: normal 1.21em KaTeX_Main,Times New Roman,serif;
+    font-size: 1.4em!important;
+    outline: 0;
+    padding: 0 7px 0 7px!important;
+}
 /* ==========================================================================
    #reset
    ========================================================================== */
@@ -369,21 +377,7 @@ input:-ms-input-placeholder, textarea:-ms-input-placeholder {
     overflow-y: hidden;
 }
 
-.MathJax {
-    outline: 0;
-    padding: 0 7px 0 7px!important;
-    font: normal 1.21em KaTeX_Main,Times New Roman,serif;
-}
 
-/*
-
-.MathJax span {
-    font-size: 20px;
-}
-*/
-.MathJax {
-    font-size: 1.4em!important;
-}
 #instantclick-bar {
     background: #eb5055;
 }
