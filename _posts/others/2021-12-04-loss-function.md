@@ -12,7 +12,7 @@ tags:
 - deep learning
 ---
 
-[l1-l2-smoothl1]:http://7568.github.io/images/2021-12-04-loss-function/l1-loss-1.png
+[l1-l2-smoothl1]:http://7568.github.io/images/2021-12-04-loss-function/l1-l2-smoothl1.png
 [l1-loss-2]:http://7568.github.io/images/2021-12-04-loss-function/l1-loss-2.png
 
 # 引言
