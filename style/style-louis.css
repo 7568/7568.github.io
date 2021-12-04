@@ -2,6 +2,7 @@
 .MathJax{
     font-weight: bolder!important;
     /*font-style: italic!important;*/
+    font: normal 1.21em KaTeX_Main,Times New Roman,serif;
 }
 /* ==========================================================================
    #reset
