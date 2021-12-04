@@ -25,7 +25,6 @@ tags:
 首先我们计算输入$$x$$和目标$$y$$中每个元素的绝对误差，方法如下：
 
 $$\ell(x, y) = L = \{l_1,\dots,l_N\}^\top, \quad l_n = \left| x_n - y_n \right|$$
-<br>
 
 然后我们对绝对误差可以选择求和或者取平均，这样就得到了L1 Loss。
 
@@ -34,7 +33,6 @@ $$\ell(x, y) =
             \operatorname{mean}(L), & \text{if reduction} = \text{'mean';}\\
             \operatorname{sum}(L),  & \text{if reduction} = \text{'sum'.}
         \end{cases}$$
-<br>
 
 L1 Loss 通常比较适用于回归任务。L1 Loss 的缺点是在0的位置不可导。L1 Loss 的函数图会与 SmoothL1 Loss 和 L2 Loss 放在 L2 Loss 部分一起做对比。
 
@@ -85,6 +83,14 @@ L2 Loss ，L1 Loss 和 SmoothL1 Loss 他们的对比图如下：
 
 ![l1-l2-smoothl1]
 
+## CrossEntropy Loss
+
+CrossEntropy Loss 也叫交叉熵损失函数。该损失函数通常用于深度学习中的分类任务。比如分类任务的类别为$$C$$，那么我们可以将类别用$$[0,1,...,C-1]$$来标志类别。
+CrossEntropy Loss 函数可表示成如下：
+
+$$\text{loss}(x, class) = -\log\left(\frac{\exp(x[class])}{\sum_j \exp(x[j])}\right)
+                       = -x[class] + \log\left(\sum_j \exp(x[j])\right)$$
+
 ## NLL Loss
 
 ## PoissonNLL Loss
@@ -100,8 +106,6 @@ L2 Loss ，L1 Loss 和 SmoothL1 Loss 他们的对比图如下：
 ## MultiLabelMargin Loss
 
 ## SoftMargin Loss
-
-## CrossEntropy Loss
 
 ## MultiLabelSoftMargin Loss
 
