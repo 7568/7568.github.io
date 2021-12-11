@@ -230,8 +230,7 @@ MultiLabelMargin Loss 通常适用于单个样本属于多个分类的多分类�
 
 $$ \text{loss}(x, y) = \sum_{ij}\frac{\max(0, 1 - (x[y[j]] - x[i]))}{\text{x.size}(0)} $$
 
-其中 $$
-x \in \left\{0, \; \cdots , \; \text{x.size}(0) - 1\right\} , 
+其中 $$ x \in \left\{0, \; \cdots , \; \text{x.size}(0) - 1\right\} , 
 y \in \left\{0, \; \cdots , \; \text{y.size}(0) - 1\right\} , 
 0 \leq y[j] \leq \text{x.size}(0)-1 , i \neq y[j]
 $$
