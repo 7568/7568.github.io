@@ -172,6 +172,24 @@ $$
 
 ## BCEWithLogits Loss
 
+对于二分类任务，通常我们在网络的最后一层接 sigmoid 激活函数，然后我们使用过 BCE Loss 损失函数来计算损失，从而进行反向跟新参数。BCEWithLogits Loss 的思想是我们的网络的最后一层
+不用 sigmoid 激活函数，而是直接输出，然后将  sigmoid 激活函数放到损失函数中。所以 BCEWithLogits Loss 是在损失函数中结合了 BCE Loss 和 sigmoid 激活函数。计算公式如下：
+
+$$
+ \ell(x, y) = L = \{l_1,\dots,l_N\}^\top, \quad
+        l_n = - w_n \left[ y_n \cdot \log \sigma(x_n)
+        + (1 - y_n) \cdot \log (1 - \sigma(x_n)) \right],
+$$
+
+对于一个 batch 的损失的计算为：
+
+$$
+\ell(x, y) = \begin{cases}
+            \operatorname{mean}(L), & \text{if reduction} = \text{'mean';}\\
+            \operatorname{sum}(L),  & \text{if reduction} = \text{'sum'.}
+        \end{cases}
+$$
+
 ## HingeEmbedding Loss
 
 ## MultiLabelMargin Loss
