@@ -96,7 +96,7 @@ $$\text{loss}(x, class) = -\log\left(\frac{\exp(x[class])}{\sum_j \exp(x[j])}\ri
 
 而对于 Batch Size 为 N 的输入，假设得到的输出为$$x$$，实际的类别为$$y$$，CrossEntropy Loss 的计算方式如下：
 
-$$\ell(x, y) = L = \{l_1,\dots,l_N\}^\top, \quad l_n = -w_{yn}\log\frac{exp(x_n,y_n)}{\sum_{c=1}^C exp(x_n,c)}*1{\{y_n \neq ignore\_index\}}$$
+$$\ell(x, y) = L = \{l_1,\dots,l_N\}^\top, \quad l_n = -w_{yn}\log\frac{exp(x_{n,y_n})}{\sum_{c=1}^C exp(x_{n,c})}*1{\{y_n \neq ignore\_index\}}$$
 
 其中$$ignore\_index$$指的是不计算损失的类别。$$w_{yn}$$指的是手动设置的每个类别的权重，我个人猜想应该是对于一些分布不均匀的数据，可能会用得到。
 
@@ -112,6 +112,18 @@ $$\ell(x, y) =
 
 
 ## NLL Loss
+
+NLL Loss 为 negative log likelihood loss 的缩写，基本上只用于分类任务。一般在使用 NLL Loss 时候，网络的最后一层通常为 LogSoftmax 。 NLL Loss 计算方式如下：
+
+$$\ell(x, y) = L = \{l_1,\dots,l_N\}^\top, \quad l_n = -w_{yn}x_{n,y_n}, w_c = weight[c]*1{\{c \neq ignore\_index\}}$$
+
+对于一个 batch ，计算该 batch 的 NLL Loss 为：
+
+$$\ell(x, y) =
+        \begin{cases}
+            \sum_{n=1}^N \frac{1}{\sum_{n=1}^{N}w_{yn}}*l_n , & \text{if reduction} = \text{'mean';}\\
+            \sum_{n=1}^N l_n,  & \text{if reduction} = \text{'sum'.}
+        \end{cases}$$
 
 ## PoissonNLL Loss
 
