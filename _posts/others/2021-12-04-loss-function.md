@@ -115,7 +115,9 @@ $$\ell(x, y) =
 
 NLL Loss 为 negative log likelihood loss 的缩写，基本上只用于分类任务。一般在使用 NLL Loss 时候，网络的最后一层通常为 LogSoftmax 。 NLL Loss 计算方式如下：
 
-$$\ell(x, y) = L = \{l_1,\dots,l_N\}^\top, \quad l_n = -w_{yn}x_{n,y_n}, w_c = weight[c]*1{\{c \neq ignore\_index\}}$$
+$$\ell(x, y) = L = \{l_1,\dots,l_N\}^\top, \quad l_n = -w_{yn}log(x_{n,y_n}), w_c = weight[c]*1{\{c \neq ignore\_index\}}$$
+
+通俗的解释就是对于一个分类任务，我们的网络经过了最后一层的 LogSoftmax 输出，得到预测为正确的那一类的概率为p，那么此时该预测的损失就为$$-log(p)$$。
 
 对于一个 batch ，计算该 batch 的 NLL Loss 为：
 
@@ -125,11 +127,48 @@ $$\ell(x, y) =
             \sum_{n=1}^N l_n,  & \text{if reduction} = \text{'sum'.}
         \end{cases}$$
 
+本内容还参考于[Lj Miranda](https://ljvmiranda921.github.io/notebook/2017/08/13/softmax-and-the-negative-log-likelihood/) 的 blog 内容 。
+
 ## PoissonNLL Loss
+
+PoissonNLL Loss 是一个专项的损失，只有当我们确定我们要预测的结果服从泊松分布的时候，才能使用该 loss，一般用于回归任务中。
 
 ## KLDiv Loss
 
+KLDiv Loss 指的是 The Kullback-Leibler divergence loss measure。在统计学中 [Kullback-Leibler divergence ](https://en.wikipedia.org/wiki/Kullback%E2%80%93Leibler_divergence) 用于测量两个
+概率分布的差异。通常用于回归任务中输出为空间连续分布的任务。KLDiv Loss 可表达为如下：
+
+$$
+l(x,y) = L = \{ l_1,\dots,l_N \}, \quad
+        l_n = y_n \cdot \left( \log y_n - x_n \right)
+$$
+
+对于一个 batch 的损失的计算为：
+
+$$
+\ell(x, y) = \begin{cases}
+            \operatorname{mean}(L), & \text{if reduction} = \text{'mean';} \\
+            \operatorname{sum}(L),  & \text{if reduction} = \text{'sum'.}
+        \end{cases}
+$$
+
 ## BCE Loss
+
+BCE Loss 指的是 Binary Cross Entropy Loss，即二元交叉熵损失。一般只用于二分类任务中。BCE Loss 可表达为如下：
+
+$$
+\ell(x, y) = L = \{l_1,\dots,l_N\}^\top, \quad
+        l_n = - w_n \left[ y_n \cdot \log x_n + (1 - y_n) \cdot \log (1 - x_n) \right],
+$$
+
+对于一个 batch 的损失的计算为：
+
+$$
+\ell(x, y) = \begin{cases}
+            \operatorname{mean}(L), & \text{if reduction} = \text{'mean';}\\
+            \operatorname{sum}(L),  & \text{if reduction} = \text{'sum'.}
+        \end{cases}
+$$
 
 ## BCEWithLogits Loss
 
