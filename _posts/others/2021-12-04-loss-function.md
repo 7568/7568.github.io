@@ -214,7 +214,27 @@ $$
         \end{cases}
 $$
 
+## MultiMargin Loss
+
+MultiMargin Loss 通常适用于单个样本只属于某一类的多分类任务。中文名叫多分类合页损失函数。该损失的计算公式如下：
+
+$$
+\text{loss}(x, y) = \frac{\sum_i \max(0, \text{margin} - x[y] + x[i]))^p}{\text{x.size}(0)}
+$$
+
+其中 $$x \in \left\{0, \; \cdots , \; \text{x.size}(0) - 1\right\} i \neq y $$
+
 ## MultiLabelMargin Loss
+
+MultiLabelMargin Loss 通常适用于单个样本属于多个分类的多分类任务。计算公式如下：
+
+$$ \text{loss}(x, y) = \sum_{ij}\frac{\max(0, 1 - (x[y[j]] - x[i]))}{\text{x.size}(0)} $$
+
+其中 $$
+x \in \left\{0, \; \cdots , \; \text{x.size}(0) - 1\right\} , 
+y \in \left\{0, \; \cdots , \; \text{y.size}(0) - 1\right\} , 
+0 \leq y[j] \leq \text{x.size}(0)-1 , i \neq y[j]
+$$
 
 ## SoftMargin Loss
 
@@ -223,8 +243,6 @@ $$
 ## CosineEmbedding Loss
 
 ## MarginRanking Loss
-
-## MultiMargin Loss
 
 ## TripletMargin Loss
 
