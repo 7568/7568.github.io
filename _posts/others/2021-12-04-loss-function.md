@@ -342,7 +342,9 @@ CTC Loss 表示 The Connectionist Temporal Classification loss。在对于连续
 更多详细内容请参考：
 
 [Sequence Modeling With CTC](https://distill.pub/2017/ctc/)
+
 [An Intuitive Explanation of Connectionist Temporal Classification](https://towardsdatascience.com/intuitively-understanding-connectionist-temporal-classification-3797e43a86c)
+
 [Connectionist Temporal Classification: Labelling Unsegmented Sequence Data with Recurrent Neural Networks](https://www.cs.toronto.edu/~graves/icml_2006.pdf)
 
 
