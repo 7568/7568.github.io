@@ -222,6 +222,8 @@ $$
 \text{loss}(x, y) = \frac{\sum_i \max(0, \text{margin} - x[y] + x[i]))^p}{\text{x.size}(0)}
 $$
 
+通常 $$p$$为1或者2。
+
 其中 $$x \in \left\{0, \; \cdots , \; \text{x.size}(0) - 1\right\} i \neq y $$
 
 ## MultiLabelMargin Loss
@@ -237,16 +239,68 @@ $$
 
 ## SoftMargin Loss
 
+软边界是相对于硬边界而言的，在硬边界中，预测错误有损失，预测正确没有损失，而在软边界中，预测正确和错误都有损失。
+
+SoftMarginLoss 的适用范围是二分类问题，且目标的分类标签为 1 和 -1 。计算公式如下：
+
+$$
+\text{loss}(x, y) = \sum_i \frac{\log(1 + \exp(-y[i]*x[i]))}{\text{x.nelement}()}
+$$
+
+其中$$\text{x.nelement}()$$为 batch 的 size。
+
+如果一个样本的预测分类为正确，那么损失$$loss = \frac{\log(1 + frac{1}{e})}{\text{x.nelement}()$$ ，如果为错误，那么损失$$loss = \frac{\log(1 + e)}{\text{x.nelement}()$$，
+显然 $$\log(1 + e) >  \log(1 + frac{1}{e})$$，也就是说不管预测是否是正确，都会有损失，但是预测错误的话，损失会更大。在有些情况下可以试试该方法，可能会有好的效果。
+
 ## MultiLabelSoftMargin Loss
+
+MultiLabelSoftMargin Loss 适用于多标签的分类任务。与 MultiLabelMargin Loss 相对应。对一个样本的计算公式如下：
+
+$$loss(x, y) = - \frac{1}{C} * \sum_i y[i] * \log((1 + \exp(-x[i]))^{-1})
+                         + (1-y[i]) * \log\left(\frac{\exp(-x[i])}{(1 + \exp(-x[i]))}\right)$$
+
+其中 $$i \in \left\{0, \; \cdots , \; \text{x.nElement}() - 1\right\}$$ ，$$y[i] \in \left\{0, \; 1\right\}$$
+
+对于一个样本，$$x$$是一个$$C$$维的向量，每个元素维0或者1，表示该样本是否属于该分类。$$y$$是与$$x$$维度一样的向量。
 
 ## CosineEmbedding Loss
 
+当我们要比较两个输入$$x_1 , x_2$$是否相似或者不相似的时候，我们就可以使用该 loss 函数，比如我们要比较两张图像是否是同一个人，我们在通过了卷积之后，得到两张图像的特征，通过该函数就可以比较两个特征是否是同一个人的特征。
+计算公式如下：
+
+$$
+ \text{loss}(x, y) =
+        \begin{cases}
+        1 - \cos(x_1, x_2), & \text{if } y = 1 \\
+        \max(0, \cos(x_1, x_2) - \text{margin}), & \text{if } y = -1
+        \end{cases}
+$$
+
+其中 $$\text{margin}$$ 是手动设置的值，一般可以通过 grid 搜索来得到最优值。
+
 ## MarginRanking Loss
+
+当我们要比较两个输入$$x_1 , x_2$$大小关系的时候，我们可以使用该 loss，计算公式如下：
+
+$$
+\text{loss}(x, y) = \max(0, -y * (x1 - x2) + \text{margin})
+$$
+
+如果$$y=1$$则应该$$x_1 > x_2$$，否则就应该$$x_1 < x_2$$。$$\text{margin}$$为手动设置的值。
 
 ## TripletMargin Loss
 
+TripletMargin Loss 适用于比较三个输入$$x_1 , x_2 , x_3$$，比如我们的预期目标是$$x_1>x_2 , and x_1 > x_3$$，那么我们就可以用以下的表达式来计算 loss
+
+$$
+L(x_1, x_2, x_3) = \max \{d(x_1, x_2) - d(x_1, x_3) + {\rm margin}, 0\}
+$$
+
+其中$$d(x_i, y_i) = \left\lVert {\bf x}_i - {\bf y}_i \right\rVert_p$$
+
 ## CTC Loss
 
+CTC Loss 表示 The Connectionist Temporal Classification loss
 
 
 
