@@ -334,7 +334,17 @@ $$
 
 ## CTC Loss
 
-CTC Loss 表示 The Connectionist Temporal Classification loss
+CTC Loss 表示 The Connectionist Temporal Classification loss。在对于连续性数据进行神经网络训练的时候，我们通常会将连续性的数据进行切片，然后将切片后的数据放入到神经网络中，比如一段音频数据，
+我们先按照固定长度的时间，将音频数据切分成一段一段的小片段，然后我们将小片段先放进到CNN中，获得每个小片段的特征，然后将特征放入到RNN或者别的带记忆功能的网络中，进行encoder，得到编码之后的
+数据，最后我们将编码之后的数据进行据测，得出该音频数据对于的文字内容。那么在对音频数据进行切片的时候，就会出现比如 hello 的发音，其中的 o 的音被切成了好多个小片段，以至于最终进行预测的时候，可能就预测成了hellooooo，该结果显然是
+错误的，于是我们就可以使用 CTC loss，CTC loss 中会使用一种叫做 beam search 的方法，来去除掉冗余的结果，从而使得结果正确。
+
+更多详细内容请参考：
+
+[Sequence Modeling With CTC](https://distill.pub/2017/ctc/)
+[An Intuitive Explanation of Connectionist Temporal Classification](https://towardsdatascience.com/intuitively-understanding-connectionist-temporal-classification-3797e43a86c)
+[Connectionist Temporal Classification: Labelling Unsegmented Sequence Data with Recurrent Neural Networks](https://www.cs.toronto.edu/~graves/icml_2006.pdf)
+
 
 
 
