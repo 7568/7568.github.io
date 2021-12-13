@@ -20,6 +20,8 @@ tags:
 在机器学习中，有各种个样的损失函数，不同的损失函数对于不同的任务通常会有不同的效果，而且在有些任务中，大家会使用多个损失函数联合起来，一起训练网络。
 本文将搜集一些以前人们设计出来的损失函数。
 
+
+
 ## L1 Loss
 
 对于一个 Batch Size 为 N 的样本，首先我们计算输入$$x$$和目标$$y$$中每个元素的绝对误差，方法如下：
@@ -35,6 +37,8 @@ $$\ell(x, y) =
         \end{cases}$$
 
 L1 Loss 通常比较适用于回归任务，也可以用于分类任务。L1 Loss 的缺点是在0的位置不可导。L1 Loss 的函数图会与 SmoothL1 Loss 和 L2 Loss 放在 L2 Loss 部分一起做对比。
+
+
 
 ## SmoothL1 Loss
 
@@ -63,6 +67,8 @@ $$\ell(x, y) =
 SmoothL1 Loss 是 L1 Loss 的改进版本，通常在使用 L1 Loss 的地方都能使用 SmoothL1 Loss ，对于不同的任务，他们俩应该是会有稍微的不同。
 SmoothL1 Loss 的函数图会与 L1 Loss 和 L2 Loss 放在 L2 Loss 部分一起做对比。
 
+
+
 ## L2 Loss（MSELoss）
 
 L2 Loss 与 L1 Loss 其实是很相近的，不同点是 L1 Loss 计算的是两个元素的绝对距离，而 L2 Loss 计算的是两个元素的均方误差。
@@ -83,6 +89,8 @@ $$\ell(x, y) =
 L2 Loss ，L1 Loss 和 SmoothL1 Loss 他们的对比图如下：
 
 ![l1-l2-smoothl1]
+
+
 
 ## CrossEntropy Loss
 
@@ -129,9 +137,13 @@ $$\ell(x, y) =
 
 本内容还参考于[Lj Miranda](https://ljvmiranda921.github.io/notebook/2017/08/13/softmax-and-the-negative-log-likelihood/) 的 blog 内容 。
 
+
+
 ## PoissonNLL Loss
 
 PoissonNLL Loss 是一个专项的损失，只有当我们确定我们要预测的结果服从泊松分布的时候，才能使用该 loss，一般用于回归任务中。
+
+
 
 ## KLDiv Loss
 
@@ -152,6 +164,8 @@ $$
         \end{cases}
 $$
 
+
+
 ## BCE Loss
 
 BCE Loss 指的是 Binary Cross Entropy Loss，即二元交叉熵损失。一般只用于二分类任务中。BCE Loss 可表达为如下：
@@ -171,6 +185,8 @@ $$
             \operatorname{sum}(L),  & \text{if reduction} = \text{'sum'.}
         \end{cases}
 $$
+
+
 
 ## BCEWithLogits Loss
 
@@ -194,6 +210,8 @@ $$
         \end{cases}
 $$
 
+
+
 ## HingeEmbedding Loss
 
 对于目标输出为 1 和 -1 的二分类问题，计算预测输出与目标输出之间的相似性或者是差异性，就可以用到 HingeEmbedding Loss，计算公式如下：
@@ -214,6 +232,8 @@ $$
         \end{cases}
 $$
 
+
+
 ## MultiMargin Loss
 
 MultiMargin Loss 通常适用于单个样本只属于某一类的多分类任务。中文名叫多分类合页损失函数。该损失的计算公式如下：
@@ -226,6 +246,8 @@ $$
 
 其中 $$x \in \left\{0, \; \cdots , \; \text{x.size}(0) - 1\right\} i \neq y $$
 
+
+
 ## MultiLabelMargin Loss
 
 MultiLabelMargin Loss 通常适用于单个样本属于多个分类的多分类任务。计算公式如下：
@@ -236,6 +258,8 @@ $$ \text{loss}(x, y) = \sum_{ij}\frac{\max(0, 1 - (x[y[j]] - x[i]))}{\text{x.siz
 y \in \left\{0, \; \cdots , \; \text{y.size}(0) - 1\right\} , 
 0 \leq y[j] \leq \text{x.size}(0)-1 , i \neq y[j]
 $$
+
+
 
 ## SoftMargin Loss
 
@@ -249,8 +273,10 @@ $$
 
 其中$$\text{x.nelement}()$$为 batch 的 size。
 
-如果一个样本的预测分类为正确，那么损失$$loss = \frac{\log(1 + frac{1}{e})}{\text{x.nelement}()$$ ，如果为错误，那么损失$$loss = \frac{\log(1 + e)}{\text{x.nelement}()$$，
-显然 $$\log(1 + e) >  \log(1 + frac{1}{e})$$，也就是说不管预测是否是正确，都会有损失，但是预测错误的话，损失会更大。在有些情况下可以试试该方法，可能会有好的效果。
+如果一个样本的预测分类为正确，那么损失$$loss = \frac{\log(1 + frac{1}{e})}{\text{x.nelement}()}$$ ，如果为错误，那么损失$$loss = \frac{\log(1 + e)}{\text{x.nelement}()}$$，
+显然 $$\log(1 + e) >  \log(1 + \frac{1}{e})$$，也就是说不管预测是否是正确，都会有损失，但是预测错误的话，损失会更大。在有些情况下可以试试该方法，可能会有好的效果。
+
+
 
 ## MultiLabelSoftMargin Loss
 
@@ -262,6 +288,8 @@ $$loss(x, y) = - \frac{1}{C} * \sum_i y[i] * \log((1 + \exp(-x[i]))^{-1})
 其中 $$i \in \left\{0, \; \cdots , \; \text{x.nElement}() - 1\right\}$$ ，$$y[i] \in \left\{0, \; 1\right\}$$
 
 对于一个样本，$$x$$是一个$$C$$维的向量，每个元素维0或者1，表示该样本是否属于该分类。$$y$$是与$$x$$维度一样的向量。
+
+
 
 ## CosineEmbedding Loss
 
@@ -278,6 +306,8 @@ $$
 
 其中 $$\text{margin}$$ 是手动设置的值，一般可以通过 grid 搜索来得到最优值。
 
+
+
 ## MarginRanking Loss
 
 当我们要比较两个输入$$x_1 , x_2$$大小关系的时候，我们可以使用该 loss，计算公式如下：
@@ -288,15 +318,19 @@ $$
 
 如果$$y=1$$则应该$$x_1 > x_2$$，否则就应该$$x_1 < x_2$$。$$\text{margin}$$为手动设置的值。
 
+
+
 ## TripletMargin Loss
 
-TripletMargin Loss 适用于比较三个输入$$x_1 , x_2 , x_3$$，比如我们的预期目标是$$x_1>x_2 , and x_1 > x_3$$，那么我们就可以用以下的表达式来计算 loss
+TripletMargin Loss 适用于比较三个输入$$x_1 , x_2 , x_3$$，比如我们的预期目标是$$x_1>x_2 $$,和 $$x_1 > x_3$$，那么我们就可以用以下的表达式来计算 loss
 
 $$
 L(x_1, x_2, x_3) = \max \{d(x_1, x_2) - d(x_1, x_3) + {\rm margin}, 0\}
 $$
 
 其中$$d(x_i, y_i) = \left\lVert {\bf x}_i - {\bf y}_i \right\rVert_p$$
+
+
 
 ## CTC Loss
 
