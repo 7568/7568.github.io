@@ -339,7 +339,7 @@ CTC Loss 表示 The Connectionist Temporal Classification loss。在对于连续
 数据，最后我们将编码之后的数据进行据测，得出该音频数据对于的文字内容。那么在对音频数据进行切片的时候，就会出现比如 hello 的发音，其中的 o 的音被切成了好多个小片段，以至于最终进行预测的时候，可能就预测成了hellooooo，该结果显然是
 错误的，于是我们就可以使用 CTC loss，CTC loss 中会使用一种叫做 beam search 的方法，来去除掉冗余的结果，从而使得结果正确。
 
-更多详细内容请参考：
+更多关于 CTC Loss 的内容请参考：
 
 [Sequence Modeling With CTC](https://distill.pub/2017/ctc/)
 
