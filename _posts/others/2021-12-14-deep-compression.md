@@ -15,7 +15,7 @@ tags:
 # 简介
 
 [DEEP COMPRESSION: COMPRESSING DEEP NEURAL NETWORKS WITH PRUNING, TRAINED QUANTIZATION AND HUFFMAN CODING](https://arxiv.org/abs/1510.00149) 是 Song Han 在 2016 年发表在 cs.cv 上的一篇论文。
-该论文主要讲述的是通过一种新方法是神经网络的参数大幅减少，同时网络的性能基本上不变，例如将 AlexNet 的参数从 240MB 减少到6.9M，这是十分惊人的效果。接下来我就通过论文和代码来分析一下论文。
+该论文主要讲述的是通过一种新方法使神经网络的参数大幅减少，同时网络的性能基本上不变，例如将 AlexNet 的参数从 240MB 减少到6.9M，这是十分惊人的效果。接下来我就通过论文和代码来分析一下论文。
 
 # 摘要
 
