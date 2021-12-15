@@ -1571,8 +1571,6 @@ p.post-info {
     margin: 0;
     padding-left: 0;
     list-style: none;
-    max-width: 80%;
-    overflow: hidden;
 }
 
 #directory > ul {

@@ -143,6 +143,7 @@ var postDirectoryBuild = function() {
                 lastRevNum, num, elem;
             while (titleElem.length) {
                 elem = titleElem.shift();
+                console.log(elem.innerHTML)
                 contentArr.push(elem.innerHTML);
                 num = +elem.tagName.match(/\d/)[0];
                 if (num > lastNum) {
@@ -188,7 +189,6 @@ var postDirectoryBuild = function() {
             li = document.createElement('li');
             link = document.createElement('a');
             link.href = '#' + titleId[i];
-            link.title = '访问' + titleId[i];
             link.title = '访问' + titleId[i];
             link.innerHTML = !isDirNum ? contentArr[i] :
                 dirNum.join('.') + ' ' + contentArr[i] ;
