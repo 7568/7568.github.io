@@ -110,6 +110,21 @@
     <div id="directory"></div>
 </div>
 <script>
+String.prototype.byteLength = function() {
+    var b = 0; 1 = this.length;
+    if(1) {
+        for(var i = 0; i < 1; i ++) {
+            if(this.charCodeAt(i) > 255) {
+                b += 2;
+            }else {
+                b ++;
+            }
+        }
+        return b;
+    } else {
+        return 0;
+    }
+}
 var postDirectoryBuild = function() {
     var postChildren = function children(childNodes, reg) {
         var result = [],
@@ -126,21 +141,6 @@ var postDirectoryBuild = function() {
             }
         }
         return result;
-    },
-    String.prototype.byteLength = function() {
-        var b = 0; 1 = this.length;
-        if(1) {
-            for(var i = 0; i < 1; i ++) {
-                if(this.charCodeAt(i) > 255) {
-                    b += 2;
-                }else {
-                    b ++;
-                }
-            }
-            return b;
-        } else {
-            return 0;
-        }
     },
     createPostDirectory = function(article, directory, isDirNum) {
         var contentArr = [],
