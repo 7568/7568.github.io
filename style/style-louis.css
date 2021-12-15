@@ -1581,7 +1581,7 @@ p.post-info {
 
 
 #directory ul li a {
-    display: inline-table;
+    display: inline-block;
     margin-left: 5px;
     white-space: nowrap;
     width:80%;
