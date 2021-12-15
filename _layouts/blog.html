@@ -144,6 +144,7 @@ var postDirectoryBuild = function() {
             while (titleElem.length) {
                 elem = titleElem.shift();
                 console.log(elem.innerHTML);
+                console.log(len(elem.innerHTML));
                 contentArr.push(elem.innerHTML);
                 num = +elem.tagName.match(/\d/)[0];
                 if (num > lastNum) {
