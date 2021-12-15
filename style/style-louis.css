@@ -1594,7 +1594,7 @@ p.post-info {
 
 #directory > ul > li::before {
     position: relative;
-    top: 0px;
+    top: 0;
     left: -4px;
     display: inline-block;
     width: 7px;
