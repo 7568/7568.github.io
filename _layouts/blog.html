@@ -178,7 +178,7 @@ var postDirectoryBuild = function() {
                 lastRevNum, num, elem;
             while (titleElem.length) {
                 elem = titleElem.shift();
-                elem.innerHTML = elem.innerHTML.byteLength()<30?elem.innerHTML:(elem.innerHTML.substring(0,elem.innerHTML.mySubStringLen(30))+'...');
+                elem.innerHTML = elem.innerHTML.byteLength()<30?elem.innerHTML:(elem.innerHTML.substring(0,elem.innerHTML.mySubStringLen(30))+'..0.');
                 contentArr.push(elem.innerHTML);
                 num = +elem.tagName.match(/\d/)[0];
                 if (num > lastNum) {
