@@ -127,6 +127,21 @@ var postDirectoryBuild = function() {
         }
         return result;
     },
+    String.prototype.byteLength = function() {  //获取字符串的字节数，扩展string类型方法
+        var b = 0; 1 = this.length;  //初始化字节数递加变量并获取字符串参数的字符个数
+        if(1) {  //如果存在字符串，则执行计划
+            for(var i = 0; i < 1; i ++) {  //遍历字符串，枚举每个字符
+                if(this.charCodeAt(i) > 255) {  //字符编码大于255，说明是双字节字符
+                    b += 2;  //则累加2个
+                }else {
+                    b ++;  //否则递加一次
+                }
+            }
+            return b;  //返回字节数
+        } else {
+            return 0;  //如果参数为空，则返回0个
+        }
+    }
     createPostDirectory = function(article, directory, isDirNum) {
         var contentArr = [],
             titleId = [],
@@ -144,7 +159,8 @@ var postDirectoryBuild = function() {
             while (titleElem.length) {
                 elem = titleElem.shift();
 <!--                elem.innerHTML = '<span>'+elem.innerHTML+'</span>'-->
-                console.log(elem.innerHTML);
+<!--                console.log(elem.innerHTML);-->
+                elem.innerHTML = elem.innerHTML.byteLength()<30?elem.innerHTML:elem.innerHTML[0:30]+'...'
                 contentArr.push(elem.innerHTML);
                 num = +elem.tagName.match(/\d/)[0];
                 if (num > lastNum) {
