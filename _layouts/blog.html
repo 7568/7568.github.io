@@ -110,19 +110,39 @@
     <div id="directory"></div>
 </div>
 <script>
-String.prototype.byteLength = function() {  //获取字符串的字节数，扩展string类型方法
-    var b = 0; c = this.length;  //初始化字节数递加变量并获取字符串参数的字符个数
-    if(c) {  //如果存在字符串，则执行计划
-        for(var i = 0; i < c; i ++) {  //遍历字符串，枚举每个字符
-            if(this.charCodeAt(i) > 255) {  //字符编码大于255，说明是双字节字符
-                b += 2;  //则累加2个
+String.prototype.byteLength = function() {
+    var b = 0; c = this.length;
+    if(c) {
+        for(var i = 0; i < c; i ++) {
+            if(this.charCodeAt(i) > 255) {
+                b += 2;
             }else {
-                b ++;  //否则递加一次
+                b ++;
             }
         }
-        return b;  //返回字节数
+        return b;
     } else {
-        return 0;  //如果参数为空，则返回0个
+        return 0;
+    }
+}
+String.prototype.mySubString = function(n) {
+    var b = n; c = this.length;d=0
+    if(c) {
+        for(var i = 0; i < c; i ++) {
+            if(b<1){
+                return d;
+            }
+            if(this.charCodeAt(i) > 255) {
+                b -= 2;
+                d ++;
+            }else {
+                b --;
+                d ++;
+            }
+        }
+        return d;
+    } else {
+        return 0;
     }
 }
 var postDirectoryBuild = function() {
@@ -158,7 +178,7 @@ var postDirectoryBuild = function() {
                 lastRevNum, num, elem;
             while (titleElem.length) {
                 elem = titleElem.shift();
-                elem.innerHTML = elem.innerHTML.byteLength()<30?elem.innerHTML:(elem.innerHTML.substring(0,30)+'...');
+                elem.innerHTML = elem.innerHTML.byteLength()<30?elem.innerHTML:(elem.innerHTML.mySubString(30)+'...');
                 contentArr.push(elem.innerHTML);
                 num = +elem.tagName.match(/\d/)[0];
                 if (num > lastNum) {
