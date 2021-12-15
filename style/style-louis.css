@@ -1584,6 +1584,12 @@ p.post-info {
     display: inline-table;
     margin-left: 5px;
     white-space: nowrap;
+    width:80%;
+    display:block;
+    overflow:hidden;
+    word-break:keep-all;
+    white-space:nowrap;
+    text-overflow:ellipsis;
 }
 
 #directory ul li ul li a {
