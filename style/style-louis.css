@@ -1600,7 +1600,7 @@ p.post-info {
 
 #directory > ul > li::before {
     position: relative;
-    top: 0;
+    top: -12px;
     left: -4px;
     display: inline-block;
     width: 7px;
