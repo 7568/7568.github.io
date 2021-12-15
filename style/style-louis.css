@@ -1584,11 +1584,6 @@ p.post-info {
     display: inline-block;
     margin-left: 5px;
     white-space: nowrap;
-    width:80%;
-    overflow:hidden;
-    word-break:keep-all;
-    white-space:nowrap;
-    text-overflow:ellipsis;
 }
 
 #directory ul li ul li a {
@@ -1599,7 +1594,7 @@ p.post-info {
 
 #directory > ul > li::before {
     position: relative;
-    top: -12px;
+    top: 0px;
     left: -4px;
     display: inline-block;
     width: 7px;
