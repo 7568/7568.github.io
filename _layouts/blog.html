@@ -158,8 +158,6 @@ var postDirectoryBuild = function() {
                 lastRevNum, num, elem;
             while (titleElem.length) {
                 elem = titleElem.shift();
-<!--                elem.innerHTML = '<span>'+elem.innerHTML+'</span>'-->
-<!--                console.log(elem.innerHTML);-->
                 elem.innerHTML = elem.innerHTML.byteLength()<30?elem.innerHTML:(elem.innerHTML[0:30]+'...');
                 contentArr.push(elem.innerHTML);
                 num = +elem.tagName.match(/\d/)[0];
