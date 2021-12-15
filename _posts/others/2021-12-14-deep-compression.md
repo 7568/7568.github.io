@@ -4,13 +4,16 @@ others: true
 istop: true
 mathjax: true
 title: "深度压缩论文学习"
-background-image: http://7568.github.io/images/2021-12-14-deep-compression/img.png
+background-image: https://7568.github.io/images/2021-12-14-deep-compression/img.png
 date:  2021-12-14
 category: 其他
 tags:
 - deep compression
 - deep learning
 ---
+
+[three-stage-compression-pipeline]:https://7568.github.io/images/2021-12-14-deep-compression/three-stage-compression-pipeline.png
+[matrix-sparsity-relative-index]:https://7568.github.io/images/2021-12-14-deep-compression/matrix-sparsity-relative-index.png
 
 # 简介
 
@@ -26,5 +29,20 @@ tags:
 能够适配到 SRAM 缓存的单片机上，而不仅仅是片外 DRAM 内存上。我们的方法同样能方便的使复杂的网络能够应用到那些大小和网络宽带受限的手机应用程序上。在一些标准的 CPU, GPU 和手机 GPU上，使用我们的方法压缩之后的网络，每一层都会有
 3到4倍的提速，在计算效能上有3到7倍的提升。
 
+压缩的整体结构如下图所示：
+
+![three-stage-compression-pipeline]
+
 # NETWORK PRUNING
 
+首先我们通过正常的网络训练来学习网络中的连接，然后我们裁剪掉参数权重小的连接层：网路中所有参数权重小于指定的阈值的连接全部被裁剪掉。最后我们重新训练网络来学习到最终的网络权重参数，从而只
+保留稀疏的连接层。接下来我们将剪枝后的稀疏结构的参数使用行压缩（CSR）或列压缩（CSC）的方法进行压缩并保存，该操作需要2a + n + 1个数据，其中a表示非零元素的个数，n表示行或者列。
+
+为了进一步进行压缩，我们在对稀疏矩阵进行存储的时候使用相对位置索引的方式进行存储，而不是绝对位置的存储。在编码该相对位置中，我们使用8bits和5bits来分别编码 conv 层和 fc 层。
+在我们编码的时候，当索引的相对位置大于我们指定的范围的时候，我们在中间插入0来解决该问题。例如在如下的图中：
+![matrix-sparsity-relative-index]
+该图表示我们需要存储的数据为一个一维的稀疏向量，向量长度为16，其中只有三个位置，分别在位置1、4、15，当我们需要存储该向量的时候，最简单的方式是定义一个长度为16的区域，在1、4、15，位置为3.4、0.9、1.7，其余
+位置全为0，但是这样虽然简单，所需要的存储空间就会比较大。这时我们就可以使用一种相对位置编码的压缩方法，来压缩这个向量，从而保存的时候只需使用较少的存储空间。
+具体的方法是我们找每个不为0的元素，再找到他们相对于前一个不为0的元素的相对位置，例如3.4这个数，相对于开始位置0而言他的相对位置为1，0.9这个数相对于3.4这个数而言他的位置为3，依次类推。
+在图中，由于我们位置编码使用的是8bits，那么在计算1.7这个数相对于0.9这个数的相对位置的时候，就应该为11，但是超过了8bits所能表达的范围，所以这里作者就通过在相对位置刚好等于8的位置填充0，从而让1.7的相对位置是从填充0的位置开始计算的，于是乎1.7元素的相对位置就是3。
+至于为什么用8bits，或者5bits，就是为了存储的时候能更节省存储空间。
