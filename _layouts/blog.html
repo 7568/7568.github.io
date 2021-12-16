@@ -226,7 +226,7 @@ var postDirectoryBuild = function() {
             link.title = '访问' + titleId[i];
             link.innerHTML = !isDirNum ? contentArr[i] :
                 dirNum.join('.') + ' ' + contentArr[i] ;
-            link.innerHTML = link.innerHTML.byteLength()<36?link.innerHTML:(link.innerHTML.substring(0,link.innerHTML.mySubStringLen(36))+'...');
+            link.innerHTML = link.innerHTML.byteLength()<34?link.innerHTML:(link.innerHTML.substring(0,link.innerHTML.mySubStringLen(34))+'...');
             li.appendChild(link);
             currentList.appendChild(li);
         }
