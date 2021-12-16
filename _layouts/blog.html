@@ -178,7 +178,6 @@ var postDirectoryBuild = function() {
                 lastRevNum, num, elem;
             while (titleElem.length) {
                 elem = titleElem.shift();
-                elem.innerHTML = elem.innerHTML.byteLength()<36?elem.innerHTML:(elem.innerHTML.substring(0,elem.innerHTML.mySubStringLen(36))+'...');
                 contentArr.push(elem.innerHTML);
                 num = +elem.tagName.match(/\d/)[0];
                 if (num > lastNum) {
@@ -227,6 +226,7 @@ var postDirectoryBuild = function() {
             link.title = '访问' + titleId[i];
             link.innerHTML = !isDirNum ? contentArr[i] :
                 dirNum.join('.') + ' ' + contentArr[i] ;
+            link.innerHTML = link.innerHTML.byteLength()<36?link.innerHTML:(link.innerHTML.substring(0,link.innerHTML.mySubStringLen(36))+'...');
             li.appendChild(link);
             currentList.appendChild(li);
         }
