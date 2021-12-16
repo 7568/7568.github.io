@@ -48,7 +48,7 @@ tags:
 在图中，由于我们位置编码使用的是8bits，8bits只能表示0到7，包括7，表示不了大于7的数，在计算1.7这个数相对于0.9这个数的相对位置的时候，本来应该为11，但是超过了8bits所能表达的范围，所以这里作者就通过在相对位置刚好等于8的位置填充0，从而让1.7的相对位置是从填充0的位置开始计算的，于是乎1.7元素的相对位置就是3。
 至于为什么用8bits，或者5bits，就是为了存储的时候能更节省存储空间。
 
-# TRAINED QUANTIZATION AND WEIGHT SHARING
+# TRAINED QUANTIZATION
 
 网络量化和权重共享通过减少用来表达每一层权重所需要的bits的数量来进一步对剪枝后的网络进行压缩。我们通过使用多个连接共享相同的权重，从而限制住需要保存的有效权重的数量，然后再微调这些共享权重。
 下图是一个权重共享的示意图：
@@ -68,12 +68,12 @@ $$
 
 # WEIGHT SHARING
 
-# 我f们使f用Kme们使f用K们使f用Kans的聚f类d方法来
+当我们的原始网络训练好之后，我们使用K-means的聚类方法来确定网络的每一层参数的共享权重，所以所有的聚类在同一类的网络都共享相同的权重参数。权重不会在网络层之间共享。例如我们将大小为n的原始权重$$W = {w_1, w_2, ..., w_n} $$聚类成k类$$C = {c_1, c_2, ..., c_k}$$，
+$$n \gg k$$，这个操作就像是最小化聚类内部的平方和（WCSS：within-cluster sum of squares），公式如下：
 
-# 例如在上面权重共享的图中，我们原始权重的大小 例如在上面权重共享的图中，我们原始权重的大小
+$$
+\mathop{\arg\min}\limits_{C} \displaystyle\sum_{i=1}^k\sum_{w\in c_i}|w-c_i|^2
+$$
 
-# trained quantization and weight sharing
 
-# trainedquantizationandweightsharing
 
-# TRAINEDQUANTIZATIONANDWEIGHTSHARING
