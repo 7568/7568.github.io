@@ -15,6 +15,9 @@ tags:
 [three-stage-compression-pipeline]:https://7568.github.io/images/2021-12-14-deep-compression/three-stage-compression-pipeline.png
 [matrix-sparsity-relative-index]:https://7568.github.io/images/2021-12-14-deep-compression/matrix-sparsity-relative-index.png
 [weight-sharing]:https://7568.github.io/images/2021-12-14-deep-compression/weight-sharing.png
+[table_1]:https://7568.github.io/images/2021-12-14-deep-compression/table_1.png
+[table_2]:https://7568.github.io/images/2021-12-14-deep-compression/table_2.png
+[table_3]:https://7568.github.io/images/2021-12-14-deep-compression/table_3.png
 
 # 简介
 
@@ -108,4 +111,46 @@ $$
 
 # HUFFMAN CODING
 
-Huffman 编码是一种被广泛使用的低失真的最优压缩编码。它使用一个可变长度的编码字来原始符号进行编码。
+Huffman 编码是一种被广泛使用的低失真的最优压缩编码。它使用一组可变长度的编码字来对原始符号进行编码。通过计算原始数据中每个符号出现的次数，来生成一个关于编码符号的对应表。出现次数越多的符号，会使用越小的编码字符来对它进行编码，从而使得原始数据存储的时候所需要的空间变小。
+
+# EXPERIMENTS
+
+我们分别对四个网络进行了剪枝，量化，和Huffman编码，分别是两个用于MNIST数据集和ImageNet数据集。在表1中我们展示了剪枝前后的网络参数和精确度。我们的管道式的压缩方法，使得不同的网络的存储容量
+减少有35到49倍，而且还不损失精度。AlexNet的整体大小从240MB 降低到了 6.9MB，从而使得它能够倍放入到单片机上运行，解除了之前需要存放到耗能很到的DRAM内存上的限制。
+
+我们使用的是Caffe框架来进行训练。通过在 blobs 上添加mask来对剪枝的网络进行遮住的方式更新，从而来实现剪枝操作。通过维持 codebook 的结构来保存共享网络，再进行聚类操作，然后再计算每一层的梯度，从而实现量化的权重共享。
+所有的梯度计算出来后，会被放到一起，用来更新每一个权重。Huffman编码不需要训练，在所有的微调完成之后再进行离线操作即可。
+
+<span style="color:red">这部分的 blobs 和 codebook，以及梯度如何放到一起来更新共享权重还不是很懂，以后弄懂之后再更新</span>
+
+# LENET-300-100 AND LENET-5 ON MNIST
+
+下面我们我们展示在 MNIST 数据集上的不同模型的的实验效果，LeNet-300-100 是一个全连接模型，LeNet-5 是卷积神经网络模型。
+
+下面的表1展示的是不同模型的压缩率和准确率：
+
+![table_1]
+
+下面的表2展示的是在模型 LeNet-300-100 上的消融实验 P: 表示剪枝, Q:表示量化, H:表示 Huffman 编码
+
+![table_2]
+
+下面的表3展示的是在模型 LeNet-5 上的消融实验 P: 表示剪枝, Q:表示量化, H:表示 Huffman 编码
+
+![table_3]
+
+# ALEXNET ON IMAGENET
+
+下面展示的是在 IMAGENET 数据集上 ALEXNET 的消融实验结果。
+
+![table_4]
+
+# VGG-16 ON IMAGENET
+
+下面展示的是在 IMAGENET 数据集上 VGG-16 的不同层的消融实验结果。
+
+![table_5]
+
+# DISCUSSIONS
+## PRUNING AND QUANTIZATION WORKING TOGETHER
+
