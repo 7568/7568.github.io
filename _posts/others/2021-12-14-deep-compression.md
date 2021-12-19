@@ -100,7 +100,7 @@ K-means中k个中心的初始化选择会影响聚类的质量进而影响网络
 该过程在图3中有展示。
 
 我们使用$$\ell$$来表示损失，第$$i$$列，第$$j$$行的权重记为$$W_{ij}$$，$$W_{ij}$$所属的聚类的中心点的元素记为$$I_{ij}$$，该层中第$$k$$个聚类中心点记为$$C_k$$，
-通过使用指示函数$$\mathbb{1(.)} ， \mathbb{1}(.)$$，那么在该层中，聚类中心点的梯度计算公式如下：
+通过使用指示函数$$\mathbb{1(.)}$$，那么在该层中，聚类中心点的梯度计算公式如下：
 
 $$
 \frac{\partial \ell}{\partial C_k} = \displaystyle\sum_{i,j}\frac{\partial \ell}{\partial W_{ij}}\frac{\partial W_{ij}}{\partial C_k} = \displaystyle\sum_{i,j}\frac{\partial \ell}{\partial W_{ij}}\mathbb{1}(I_{ij}=k)
