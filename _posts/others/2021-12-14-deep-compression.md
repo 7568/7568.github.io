@@ -18,6 +18,11 @@ tags:
 [table_1]:https://7568.github.io/images/2021-12-14-deep-compression/table_1.png
 [table_2]:https://7568.github.io/images/2021-12-14-deep-compression/table_2.png
 [table_3]:https://7568.github.io/images/2021-12-14-deep-compression/table_3.png
+[table_4]:https://7568.github.io/images/2021-12-14-deep-compression/table_4.png
+[table_5]:https://7568.github.io/images/2021-12-14-deep-compression/table_5.png
+[figure_6]:https://7568.github.io/images/2021-12-14-deep-compression/figure_6.png
+[figure_7]:https://7568.github.io/images/2021-12-14-deep-compression/figure_7.png
+[figure_8]:https://7568.github.io/images/2021-12-14-deep-compression/figure_8.png
 
 # 简介
 
@@ -141,16 +146,75 @@ Huffman 编码是一种被广泛使用的低失真的最优压缩编码。它使
 
 # ALEXNET ON IMAGENET
 
-下面展示的是在 IMAGENET 数据集上 ALEXNET 的消融实验结果。
+下面的表4展示的是在 IMAGENET 数据集上 ALEXNET 的消融实验结果。
 
 ![table_4]
 
 # VGG-16 ON IMAGENET
 
-下面展示的是在 IMAGENET 数据集上 VGG-16 的不同层的消融实验结果。
+下面的表5展示的是在 IMAGENET 数据集上 VGG-16 的不同层的消融实验结果。
 
 ![table_5]
 
 # DISCUSSIONS
 ## PRUNING AND QUANTIZATION WORKING TOGETHER
+
+下面的图6展示的是剪枝和量化单独或者一起作用在不同压缩率下的准确率。我们还比较了使用SVD的方法进行压缩。最终得出还是我们的组合方法最好。
+
+![figure_6]
+
+下面的图7展示的是剪枝和量化并不会对准确率有影响。
+
+![figure_7]
+
+# CENTROID INITIALIZATION
+
+下面的图8展示了当选择不同的方法来初始化聚类中心点对准确率的影响。
+
+![figure_8]
+
+# SPEEDUP AND ENERGY EFFICIENCY
+
+深度压缩的目标是对延迟记为敏感的手机应用程序，这些程序通常需要实时的得到结果，例如使用嵌入在自动驾驶汽车上的处理器来进行路上行人检测。对于这些任务，
+等待一个组装好的batch会大大增加延迟，所以当我们想在性能和能耗上有所突破的话，我们需要考虑 batch 为1的情况。
+
+在网络中，全连接层占了主要的大小（通常超过90%），也是Deep Compression中压缩得最多的地方。在一些主流的物品检测算法如fast R-CNN 中，没有压缩的全连接层占了整体运行
+时间的38%，所以很有意思的基准点在全连接层上，就可以看出 Deep Compression 在性能和能耗上的影响。于是我们将我们的基准点设置在AlexNet 和 VGG-16的第6，7，8个
+全连接层上。在没有batch的情况下，激活矩阵就是一个只有一列的向量，所以计算量归结起来分别就是原始数据和剪枝后的数据对应的密集和稀疏向量的乘法。
+由于当前 CPU 和 GPU 上的 BLAS 库不支持间接查找和相对索引，所以我们没有对量化模型进行基准测试。
+
+我们比较了三种不同的现成硬件：分别是NVIDIA GeForce GTX Titan X，Intel Core i7 5930K两个桌面电脑处理器和NVIDIA Tegra K1手机处理器。为了运行GPU
+上的基准点，我们使用 cuBLAS GEMV 作为原始的密集层。对于剪枝后的稀疏层，我们将稀疏矩阵储存成CSR（compressed sparse row）格式，和使用cuSPARSE CSRMV核，
+将优化后的核来进行GPU上的矩阵向量乘法。
+
+## CSR（compressed sparse row）
+
+CSR（compressed sparse row）格式是一种稀疏矩阵的存储另一种方法，它将一个稀疏矩阵存储成3个向量。假设矩阵的所有值，行索引，列索引分别记为：Value，COL_INDEX，ROW_INDEX。
+例如对于如下矩阵：
+
+$$
+\begin{pmatrix}
+  10 & 20 & 0 & 0 & 0 & 0  \\
+  0 & 30 & 0 & 40 & 0 & 0  \\
+  0 & 0 & 50 & 60 & 70 & 0  \\
+  0 & 0 & 0 & 0 & 0 & 80  
+ \end{pmatrix}
+$$
+
+那么它的 Value 就是所有的非 0 元素组成的向量，所以$$ Value = [ 10 20 30 40 50 60 70 80 ] $$
+
+ROW_INDEX 指的是每一行的非 0 元素所在的行的索引，所以$$ ROW_INDEX $$为$$ (10, 20) (30, 40) (50, 60, 70) (80)$$所在的行的索引。
+所以$$ ROW_INDEX = [ 0  0  1  1  2  2  2  3 ] $$
+
+COL_INDEX 指的是每一行的非 0 元素所在的列的索引，所以$$ COL_INDEX $$为$$ (10, 20，...) (0，30, 0，40，...) (...，50, 60, 70，...) (...，80)$$所在的列的索引。
+所以$$ COL_INDEX = [ 0  1  1  3  2  3  4  5 ] $$
+
+对于 CSR（compressed sparse row）这种压缩格式，它并不是直接存储行索引和列索引，而是列索引和 INDPTR ， INDPTR 指的是每一行的前面所有行的元素的个数。
+例如在上面的例子中，INDPTR的第0个值是第0行元素的前面所有行的元素的个数只和，由于第0行前面没有元素，所以个数为0。依次类推，所以 INDPTR 的值为$$[0 2 4 7 8]$$，
+这样存储的大小就比上面使用行索引和列索引所使用的空间要小一些。
+
+所以对于上面的矩阵，它的 CSR（compressed sparse row）格式为：
+$$ Value = [ 10 20 30 40 50 60 70 80 ] $$
+$$ COL_INDEX = [ 0  1  1  3  2  3  4  5 ] $$
+$$ INDPTR = [ 0 2 4 7 8] $$
 
