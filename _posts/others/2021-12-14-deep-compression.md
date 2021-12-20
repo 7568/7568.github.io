@@ -42,7 +42,7 @@ tags:
 
 ![three-stage-compression-pipeline]
 
-# 44
+# INTRODUCTION
 
 首先我们通过正常的网络训练来学习网络中的连接，然后我们裁剪掉参数权重小的连接层：网路中所有参数权重小于指定的阈值的连接全部被裁剪掉。最后我们重新训练网络来学习到最终的网络权重参数，从而只
 保留稀疏的连接层。接下来我们将剪枝后的稀疏结构的参数使用行压缩（CSR）或列压缩（CSC）的方法进行压缩并保存，该操作需要2a + n + 1个数据，其中a表示非零元素的个数，n表示行或者列。
@@ -184,7 +184,7 @@ Huffman 编码是一种被广泛使用的低失真的最优压缩编码。它使
 由于当前 CPU 和 GPU 上的 BLAS 库不支持间接查找和相对索引，所以我们没有对量化模型进行基准测试。
 
 我们比较了三种不同的现成硬件：分别是NVIDIA GeForce GTX Titan X，Intel Core i7 5930K两个桌面电脑处理器和NVIDIA Tegra K1手机处理器。为了运行GPU
-上的基准点，我们使用 cuBLAS GEMV 作为原始的密集层。对于剪枝后的稀疏层，我们将稀疏矩阵储存成CSR（compressed sparse row）格式，和使用cuSPARSE CSRMV核，
+上的基准点，我们使用 cuBLAS GEMV 作为原始的密集层。对于剪枝后的稀疏层，我们将稀疏矩阵储存成CSR（compressed sparse row）格式，下面有对该格式的介绍，和使用cuSPARSE CSRMV核，
 将优化后的核来进行GPU上的矩阵向量乘法。
 
 ## CSR（compressed sparse row）
