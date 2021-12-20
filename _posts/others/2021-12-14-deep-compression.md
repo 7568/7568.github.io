@@ -191,7 +191,7 @@ Huffman 编码是一种被广泛使用的低失真的最优压缩编码。它使
 
 CSR（compressed sparse row）格式是一种稀疏矩阵的存储另一种方法，它将一个稀疏矩阵存储成3个向量。假设矩阵的所有值，行索引，列索引分别记为：Value，COL_INDEX，ROW_INDEX。
 例如对于如下矩阵：
-
+<br/>
 $$
 \begin{pmatrix}
   10 & 20 & 0 & 0 & 0 & 0  \\
