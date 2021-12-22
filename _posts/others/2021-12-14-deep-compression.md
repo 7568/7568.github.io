@@ -23,6 +23,8 @@ tags:
 [figure_6]:https://7568.github.io/images/2021-12-14-deep-compression/figure_6.png
 [figure_7]:https://7568.github.io/images/2021-12-14-deep-compression/figure_7.png
 [figure_8]:https://7568.github.io/images/2021-12-14-deep-compression/figure_8.png
+[figure_11]:https://7568.github.io/images/2021-12-14-deep-compression/figure_11.png
+[table_7]:https://7568.github.io/images/2021-12-14-deep-compression/table_7.png
 
 # 简介
 
@@ -185,7 +187,7 @@ Huffman 编码是一种被广泛使用的低失真的最优压缩编码。它使
 
 我们比较了三种不同的现成硬件：分别是NVIDIA GeForce GTX Titan X，Intel Core i7 5930K两个桌面电脑处理器和NVIDIA Tegra K1手机处理器。为了运行GPU
 上的基准点，我们使用 cuBLAS GEMV 作为原始的密集层。对于剪枝后的稀疏层，我们将稀疏矩阵储存成CSR（compressed sparse row）格式，下面有对该格式的介绍，和使用cuSPARSE CSRMV核，
-将优化后的核来进行GPU上的矩阵向量乘法。
+将优化后的核来进行GPU上的矩阵向量乘法。为了在cpu上运行基准测试，我们使用 MKL CBLAS GEMV 来运行原始的密集矩阵模型，使用 MKL SPBLAS CSRMV 来运行剪枝后的稀疏矩阵模型。
 
 ## CSR（compressed sparse row）
 
@@ -227,3 +229,19 @@ COL_INDEX = [0 1 1 3 2 3 4 5]
 INDPTR = [0 2 4 7 8]
 ```
 
+在字符计算的时候，存储使用率会随着是否使用batch不同而不同，当数据是有batch形式的矩阵的时候，运算就变成了矩阵相乘，性能就会有提升。也会对缓存更加匹配，同时也可以提高重复使用的效率。
+在这种情况下，存储空间复杂度为$$O(n^2)$$，计算复杂度为$$O(n^3)$$，存储空间复杂度与计算复杂度的比为：$$1/n$$。
+
+在实际应用场景中，当不能使用batch的时候，输入是一个单个的向量，此时的计算就变成了矩阵与向量的乘法，在这种情况下，存储空间复杂度为$$O(n^2)$$，计算复杂度为$$O(n^2)$$，存储空间复杂度与计算复杂度相同。
+标明矩阵向量（MV）的操作比矩阵矩阵（MM）的操作需要绑定更多的存储。所以减少存储是不使用batch的时候的关键。
+
+在一些可以容忍低延迟的任务中，使用batch是更好的选择。此时网络剪枝不再在存储容量上具有优势。
+
+# RATIO OF WEIGHTS, INDEX AND CODEBOOK
+
+剪枝操作使得权重矩阵变得稀疏，对于那些非0的元素就需要额外的空间来存储他们的索引。量化操作增加了对codebook存储空间。在上面的实验部分已经包含了这两种存储的介绍。图11展示了四种网络在量化的时候不同
+成份的比例。因为平均来说权重和稀疏索引都是使用5bits来编码的，所以他们的存储比例是一半对一半。codebook的比例非常小，往往可以忽略。
+![figure_11]
+
+表7展示了使用不同的方法对AlexNet进行压缩，他们的准确率和压缩率的比较。
+![table_7]
