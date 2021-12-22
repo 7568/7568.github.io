@@ -12,9 +12,7 @@ tags:
 - deep learning
 ---
 
-[three-stage-compression-pipeline]:https://7568.github.io/images/2021-12-14-deep-compression/three-stage-compression-pipeline.png
-[matrix-sparsity-relative-index]:https://7568.github.io/images/2021-12-14-deep-compression/matrix-sparsity-relative-index.png
-[weight-sharing]:https://7568.github.io/images/2021-12-14-deep-compression/weight-sharing.png
+[figure_1]:https://7568.github.io/images/2021-12-22-pruning-for-neural-network/figure_1.png
 
 # 简介
 
@@ -29,3 +27,11 @@ tags:
 
 # Introduction
 
+在计算机视觉，语音识别，自然语言处理中，神经网络已经无处不在。将卷积神经网络应用到计算机视觉中，已经发展了很长时间了。在1998年Lecun等人设计了一个用来识别手写字的网络模型LeNet-5，该模型的参数少于1M，
+2012年的时候 Krizhevsky 设计了一个网络模型，赢得了当年的 ImageNet 数据集分类任务的比赛，该模型的参数只有60M，等。
+
+虽然这些大规模的神经网络很强大，但是他们需要相当大的保存，缓存，和计算资源。对于嵌入式的手机而言，这些必须的资源是无法满足的。图1显示了在 45nm CMOS 处理器上的这些基本的算法在
+耗能和存储上的消耗。从这些数据中我们可以看到，每一层上的能量的消耗主要在内存的访问上，范围从32 bits的 on-chip SRAM中耗能5pJ到64 bits的off-chip DRAM中耗能640pJ。
+大型的网络并不适合在 on-chip 上存储，因此需要更昂贵的 DRAM 来存储。运行连接数有1 billion的一个网络，例如，在20Hz的频率下，只是对于 DRAM 就需要 (20Hz)(1G)(640pJ) = 12.8W 
+的能耗，已经超出了普通手机的能量范围。我们对网络进行剪枝的目的就是为了减少运行大规模网络所需要的能量消耗，可以使他们能实时的运行在手机上。通过剪枝后的模型，使得整合了DNN的手机程序依然能够方便的存储和转换到手机上。
+![figure_1]
