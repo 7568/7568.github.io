@@ -245,3 +245,6 @@ INDPTR = [0 2 4 7 8]
 
 表7展示了使用不同的方法对AlexNet进行压缩，他们的准确率和压缩率的比较。
 ![table_7]
+
+
+更多关于深度压缩的论文可以看这里 https://github.com/memoiry/Awesome-model-compression-and-acceleration
