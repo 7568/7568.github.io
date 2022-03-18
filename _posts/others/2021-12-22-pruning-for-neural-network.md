@@ -17,7 +17,7 @@ tags:
 
 # 简介
 
-[Learning both Weights and Connections for Efficient Neural Networks](https://arxiv.org/abs/1506.02626) 是 [Song Han](https://songhan.mit.edu/) 在Stanford大学的时候发表的一篇关于网络如何减少参数的论文。
+[Learning both Weights and Connections for Efficient Neural Networks](https://arxiv.org/abs/1506.02626) 是 [Song Han](https://songhan.mit.edu/) 在Stanford大学2016年的时候发表的一篇关于网络如何减少参数的论文。
 
 # Abstract
 
