@@ -244,7 +244,8 @@ for( i in all_a_label){
 }
 </script>
 {% if page.mathjax %}
-<script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+<!--<script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>-->
+<script type="text/javascript" src="{{ site.url }}/style/MathJax.js"></script>
 <script type="text/x-mathjax-config"> MathJax.Hub.Config({ TeX: { equationNumbers: {autoNumber: "all"} } });       </script>
 {% endif %}
 <!--  <script src="//cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js"></script>-->
