@@ -16,6 +16,8 @@ tags:
 [figure_2]:https://7568.github.io/images/2021-12-22-pruning-for-neural-network/figure_2.png
 [figure_3]:https://7568.github.io/images/2021-12-22-pruning-for-neural-network/figure_3.png
 [figure_4]:https://7568.github.io/images/2021-12-22-pruning-for-neural-network/figure_4.png
+[figure_5]:https://7568.github.io/images/2021-12-22-pruning-for-neural-network/figure_5.png
+[figure_6]:https://7568.github.io/images/2021-12-22-pruning-for-neural-network/figure_6.png
 
 # 简介
 
@@ -108,7 +110,9 @@ $$D_r = D_o \sqrt{\frac{C_{ir}}{C_{io}}}$$
 
 上面的方法是设置一个阈值，然后将网络的参数中，大于阈值的参数裁剪掉，从而实现压缩网络。下面这篇文章的主要想法是通过计算参数的重要性来判断是否需要将该参数裁剪掉。
 
-[PRUNING CONVOLUTIONAL NEURAL NETWORKS FOR RESOURCE EFFICIENT INFERENCE](https://arxiv.org/pdf/1611.06440.pdf) 首先介绍了它剪枝的流程，流程如下，其实与其他的剪枝流程一样，
+[PRUNING CONVOLUTIONAL NEURAL NETWORKS FOR RESOURCE EFFICIENT INFERENCE](https://arxiv.org/pdf/1611.06440.pdf) 首先介绍了它剪枝的流程，流程如下，
+![figure_6]
+其实与其他的剪枝流程一样，
 只是判断是否需要将某个参数剪掉的依据不一样，本文使用的是计算参数的重要性，然后就介绍了几种不同的方法来计算参数的重要性，分别是：
 
 1 ORACLE PRUNIN
@@ -129,8 +133,8 @@ $$D_r = D_o \sqrt{\frac{C_{ir}}{C_{io}}}$$
 
 5 Taylor expansion
 
-    -- 这个方法首先假定我们已经有一个剪枝过后的权重参数$$W^{\prime}$$，这个时候我们计算他与原来的参数W对损失的变化，也就是$$\nablaC(h_i)|C(D|w^{\prime}) - C(D|w)|$$，
-    其中$$h_i$$指的是每一层输出。对于每一层的输出，有$$\nablaC(h_i)|C(D , h_i=0) - C(D , h_i)|$$，即计算每一层剪枝之前和之后损失的变化。我们利用泰勒公式：
+    -- 这个方法首先假定我们已经有一个剪枝过后的权重参数$$W^{\prime}$$，这个时候我们计算他与原来的参数W对损失的变化，也就是$$\nabla C(h_i)|C(D|w^{\prime}) - C(D|w)|$$，
+    其中$$h_i$$指的是每一层输出。对于每一层的输出，有$$\nabla C(h_i)|C(D , h_i=0) - C(D , h_i)|$$，即计算每一层剪枝之前和之后损失的变化。我们利用泰勒公式：
     ![figure_3]
     就可以得到：
     ![figure_4]
