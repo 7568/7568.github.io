@@ -111,15 +111,19 @@ $$D_r = D_o \sqrt{\frac{C_{ir}}{C_{io}}}$$
 [PRUNING CONVOLUTIONAL NEURAL NETWORKS FOR RESOURCE EFFICIENT INFERENCE](https://arxiv.org/pdf/1611.06440.pdf) 首先介绍了它剪枝的流程，流程如下，其实与其他的剪枝流程一样，
 只是判断是否需要将某个参数剪掉的依据不一样，本文使用的是计算参数的重要性，然后就介绍了几种不同的方法来计算参数的重要性，分别是：
 1 ORACLE PRUNIN
+
     --这个方法是直接比较选择不同的参数，计算它们最终对损失的影响，从而来判断哪些参数更加重要。其中有两个不同的方法，1)是：oracle-los ， 直接计算$$C(D|W^\prime) - C(D|W)$$ ， 2）是： oracle-abs ，直接计算$$｜C(D|W^\prime) - C(D|W)｜$$
 
 2 Minimum weight
+
     -- 这个方法是直接计算卷积核的范数，如二范数，$$\Theta(w) = \frac{1}{|w|}\sum_i\omega_i^2$$，其中$$|w|$$指的是权重矢量化之后的维度。
 
 3 Activatio
+
     -- 这个方法指的是在权重经过了激活函数之后，再来计算它的重要性，计算重要性的方法和方法1相同。
 
 4 Mutual information
+
     -- 这个方法指的是计算权重对相同的输入和输出他们信息熵的增益，计算方法为：$$IG(y|x) = H(x) + H(y) - H(x,y)$$，其中$$H(x)$$指的是x的熵。
 
 5 Taylor expansion
