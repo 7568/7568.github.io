@@ -14,6 +14,8 @@ tags:
 
 [figure_1]:https://7568.github.io/images/2021-12-22-pruning-for-neural-network/figure_1.png
 [figure_2]:https://7568.github.io/images/2021-12-22-pruning-for-neural-network/figure_2.png
+[figure_3]:https://7568.github.io/images/2021-12-22-pruning-for-neural-network/figure_3.png
+[figure_4]:https://7568.github.io/images/2021-12-22-pruning-for-neural-network/figure_4.png
 
 # 简介
 
@@ -101,6 +103,39 @@ $$D_r = D_o \sqrt{\frac{C_{ir}}{C_{io}}}$$
 在对连接进行剪枝之后，输入为0的连接或者输出为0的连接的神经元，可能就会被安全的剪掉。这个剪切或者会通过一个剪掉的神经元从而进一步移除掉整个连接。在重新训练环节，会自动的使那些被剪掉的神经元拥有为0的输入连接和为0的输出
 连接。这时由于梯度下降和和正则化导致的。一个拥有为0的输入（或者为0的输出）的神经元，是不会对最终的损失值有贡献的，从而使得梯度在输入连接或者输出连接的地方为0。只有正则项会导致
 权重为0，所以被剪掉的神经元在重新训练的时候会被自动的移除掉。
+
+# 后续 2022-03-22
+
+上面的方法是设置一个阈值，然后将网络的参数中，大于阈值的参数裁剪掉，从而实现压缩网络。下面这篇文章的主要想法是通过计算参数的重要性来判断是否需要将该参数裁剪掉。
+
+[PRUNING CONVOLUTIONAL NEURAL NETWORKS FOR RESOURCE EFFICIENT INFERENCE](https://arxiv.org/pdf/1611.06440.pdf) 首先介绍了它剪枝的流程，流程如下，其实与其他的剪枝流程一样，
+只是判断是否需要将某个参数剪掉的依据不一样，本文使用的是计算参数的重要性，然后就介绍了几种不同的方法来计算参数的重要性，分别是：
+1 ORACLE PRUNIN
+    --这个方法是直接比较选择不同的参数，计算它们最终对损失的影响，从而来判断哪些参数更加重要。其中有两个不同的方法，1)是：oracle-los ， 直接计算$$C(D|W^\prime) - C(D|W)$$ ， 2）是： oracle-abs ，直接计算$$｜C(D|W^\prime) - C(D|W)｜$$
+
+2 Minimum weight
+    -- 这个方法是直接计算卷积核的范数，如二范数，$$\Theta(w) = \frac{1}{|w|}\sum_i\omega_i^2$$，其中$$|w|$$指的是权重矢量化之后的维度。
+
+3 Activatio
+    -- 这个方法指的是在权重经过了激活函数之后，再来计算它的重要性，计算重要性的方法和方法1相同。
+
+4 Mutual information
+    -- 这个方法指的是计算权重对相同的输入和输出他们信息熵的增益，计算方法为：$$IG(y|x) = H(x) + H(y) - H(x,y)$$，其中$$H(x)$$指的是x的熵。
+
+5 Taylor expansion
+    -- 这个方法首先假定我们已经有一个剪枝过后的权重参数$$W^{\prime}$$，这个时候我们计算他与原来的参数W对损失的变化，也就是$$\nablaC(h_i)|C(D|w^{\prime}) - C(D|w)|$$，
+其中$$h_i$$指的是每一层输出。对于每一层的输出，有$$\nablaC(h_i)|C(D , h_i=0) - C(D , h_i)|$$，即计算每一层剪枝之前和之后损失的变化。我们利用泰勒公式：
+![figure_3]
+就可以得到：
+![figure_4]
+通常$$R_1(h_i = 0)$$可以省略
+
+最终我们就可以得到在剪枝前后在$$h_i$$处的变化。
+![figure_5]
+
+这样我们就可以简单的从反向传播中来就算每一层参数的重要性。
+
+    
 
 
 
