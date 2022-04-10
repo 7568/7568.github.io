@@ -88,3 +88,9 @@ SCALAR QUANTIZATION USING kMEANS 指的是使用 kmeans 方法，将矩阵分成
 PRODUCT QUANTIZATION 指的是对于一个矩阵，首先我们选择某一种方式，按照列分成s个小的矩阵，然后分别对每个小的矩阵按照行进行Kmeans聚类，分成k类，这样我们就可以使用一个向量来表示一个小矩阵，从而就使用s个向量来表示一个矩阵。<br/>
 RESIDUAL QUANTIZATION 指的是首先使用kmeans将矩阵进行分类，分成k个向量组，得到k个中心点的向量，然后我们计算每个剩余向量与中心向量的残差，从新得到k个分组。也就是说我们使用kmean来确定k个中心，然后利用计算残差来得到每一组的元素。
 
+[Efficient Deep Learning: A Survey on Making Deep Learning Models Smaller, Faster, and Better](https://arxiv.org/pdf/2106.08962.pdf) 
+
+
+[Dynamic Network Surgery for Efficient DNNs](https://arxiv.org/pdf/1608.04493.pdf) 这篇论文介绍了一种给网络剪枝的方法，相较于之前别人的通过计算网络参数的重要性来判断是否需要将改参数剪掉，如果剪掉就将其设置成0，而本文是另外新建一个全为1的矩阵T，
+长宽和网络的参数一样，再将原来的参数矩阵乘以T（不是矩阵相乘，而是对应位置相乘），然后通过计算每个网络参数的重要性，来判断是否将T对应的位置变成0，如果变成0，就表示该位置的参数被剪掉了。
+这个方法与[Song]()方法的不同是这个方法在参数被变成0之后，以后还有机会再恢复回来，因为作者认为一开始的剪枝是有可能错误的将重要的参数剪掉，而本方法就算之前被剪掉，后面还是有可能恢复的。本文也是通过判断重要性是否大于某个阈值的方法来判断是否剪枝，比不过本文使用了两个阈值。
