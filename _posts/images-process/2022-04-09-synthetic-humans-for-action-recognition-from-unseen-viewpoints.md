@@ -12,7 +12,8 @@ tags:
 - Synthetic data
 ---
 
-[figure_1]:https://7568.github.io/images/2022-03-23-my-deep-compression-note/figure_1.png
+[figure_1]:https://7568.github.io/images/2022-04-09-synthetic-humans-for-action-recognition/figure_2.png
+[figure_2]:https://7568.github.io/images/2022-04-09-synthetic-humans-for-action-recognition/figure_1.png
 
 
 
@@ -126,27 +127,35 @@ Mini-Kinetics-200，Kinetics-400的一个子集。我们将 Mini-Kinetics-200 �
 --------------
 
 **SURREACT dataset**：通过 NTU RGB+D 和 UESTC 这两个标准的人类行为视频数据集来合成大量的多视角，多背景，多服饰，多身体形态的数据集。
-**SURREAL dataset**：从多个人体动作视频数据集中合成的一个新的，多视角的人体动作视频数据集。
+**SURREAL dataset(from 83)**：从多个人体动作视频数据集中合成的一个新的，多视角的人体动作视频数据集。
 
 --------------
 
 # related papers
 
-[Learning from Synthetic Humans](https://arxiv.org/pdf/1701.01370.pdf) 对于图像分割，其中有一个任务是通过输入一张图像，能够分割出人
-的同时也要能分割出这个人在该图像中的景深信息。 对于这样一个任务，我们可用的数据集很少，于是本文就提出一个方法来人工合成一个数据集。这篇文章说我们使
-用 Blender 从 CMU MoCap 中获得 SMPL 人体 参数信息，包括姿势和外形，然后通过改变人的衣服，环境，周围灯光，相机位置，最终合成大量的图像。
+(83) [Learning from Synthetic Humans](https://arxiv.org/pdf/1701.01370.pdf) 对于图像分割，其中有一个任务是通过输入一张图像，能够分割出人
+的同时也要能分割出这个人在该图像中的景深信息。 对于这样一个任务，我们可用的数据集很少，于是本文就提出一个方法来人工合成一个数据集(SURREAL)。这篇文章说我们使
+用 Blender 从 CMU MoCap 中获得 SMPL 人体参数信息，包括姿势和外形，然后通过改变人的衣服，环境，周围灯光，相机位置，最终合成大量的图像。
 
 --------------
 
-[Learning a Non-linear Knowledge Transfer Model for Cross-View Action Recognition](https://openaccess.thecvf.com/content_cvpr_2015/papers/Rahmani_Learning_a_Non-Linear_2015_CVPR_paper.pdf) 
+(65) [Learning a Non-linear Knowledge Transfer Model for Cross-View Action Recognition](https://openaccess.thecvf.com/content_cvpr_2015/papers/Rahmani_Learning_a_Non-Linear_2015_CVPR_paper.pdf) 
 本文提出一种方法来将视频中不同角度运动转换到一个最常用的经典角度，从而提升视频中动作识别的准确率。而且这个方法是一种无监督学习的方式。本文的出发
 点是希望这样做了之后，当我们在一个有限的数据集上训练一个网络，在测试的时候，如果我们碰到了一个动作，它的拍摄角度 是之前训练数据集里面没有的话，
 那么该网络就对这种视频的动作识别准确率很差，但是如果我们有个方法，能够使得所有的测试集在进入到网络之前都全部转换成我们最常见的经典角度，这个时候我
 们的网络 就可以很容易的识别该动作了。
 
+![figure_1]
+
 --------------
 
 (43) [Learning human pose models from synthesized data for robust RGB-D action recognition](https://arxiv.org/pdf/1707.00823.pdf) ：
+本文提出一个视频动作识别的方法。1 我们从 CMU MoCap 数据集中使用 MakeHuman 方法获得3D的动作结构框架，然后用一个模拟的人的来填充该 skeleton ，得到一个3D的人的姿势，
+接下来我们改变模特的衣服和灯光，背景等，使用 Blender 合成一个新的动作图像。2 我们使用一个GAN结构的网络来使得合成的图像看上去更像是真实的图像。2 我们设计了一个
+CNN的神经网络（HPM），该网络和GAN一起，使得不管我们改变相机视角，衣服，模特形态，背景环境，灯光，他都能够识别输入的human poses。3 我们将2中的
+网络得到的特征再用来训练一个时间模型Fourier Temporal Pyramid和分类模型SVM，最终来进行人类行为的识别。
+
+![figure_2]
 
 --------------
 
