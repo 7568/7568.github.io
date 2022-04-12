@@ -134,8 +134,11 @@ Mini-Kinetics-200，Kinetics-400的一个子集。我们将 Mini-Kinetics-200 �
 # related papers
 
 (83) [Learning from Synthetic Humans](https://arxiv.org/pdf/1701.01370.pdf) 对于图像分割，其中有一个任务是通过输入一张图像，能够分割出人
-的同时也要能分割出这个人在该图像中的景深信息。 对于这样一个任务，我们可用的数据集很少，于是本文就提出一个方法来人工合成一个数据集(SURREAL)。这篇文章说我们使
-用 Blender 从 CMU MoCap 中获得 SMPL 人体参数信息，包括姿势和外形，然后通过改变人的衣服，环境，周围灯光，相机位置，最终合成大量的图像。
+的同时也要能分割出这个人在该图像中的景深信息。 对于这样一个任务，我们可用的数据集很少，于是本文就提出一个方法来人工合成一个数据集(SURREAL)。这
+篇文章说我们使用 CMU MoCap数据集，然后将 SMPL 人体参数信息拟合到MoCap数据中，然后改变人的衣服，环境，周围灯光，相机位置，最终用 Blender 合成大
+量的图像。
+
+![figure_3]
 
 --------------
 
@@ -150,17 +153,19 @@ Mini-Kinetics-200，Kinetics-400的一个子集。我们将 Mini-Kinetics-200 �
 --------------
 
 (43) [Learning human pose models from synthesized data for robust RGB-D action recognition](https://arxiv.org/pdf/1707.00823.pdf) ：
-本文提出一个视频动作识别的方法。1 我们从 CMU MoCap 数据集中使用 MakeHuman 方法获得3D的动作结构框架，然后用一个模拟的人的来填充该 skeleton ，得到一个3D的人的姿势，
-接下来我们改变模特的衣服和灯光，背景等，使用 Blender 合成一个新的动作图像。2 我们使用一个GAN结构的网络来使得合成的图像看上去更像是真实的图像。2 我们设计了一个
-CNN的神经网络（HPM），该网络和GAN一起，使得不管我们改变相机视角，衣服，模特形态，背景环境，灯光，他都能够识别输入的human poses。3 我们将2中的
-网络得到的特征再用来训练一个时间模型Fourier Temporal Pyramid和分类模型SVM，最终来进行人类行为的识别。
+本文提出一个视频动作识别的方法。1 我们从 CMU MoCap 数据集中使用 HDBSCAN 方法获得3D的动作结构框架，然后用MakeHuman方法来用一个模拟的人的来
+填充该 skeleton ，得到一个3D的人的姿势， 接下来我们改变模特的衣服和灯光，背景等，使用 Blender 合成一个新的动作图像。同时我们使用一个GAN结构
+的网络来使得合成的图像看上去更像是真实的图像。2 我们设计了一个 CNN的神经网络（HPM），该网络和GAN一起，使得不管我们改变相机视角，衣服，模特形态，
+背景环境，灯光，他都能够识别输入的human poses。3 我们将2中的 网络得到的特征再用来训练一个时间模型 Fourier Temporal Pyramid 和分类模型 SVM，
+最终来进行人类行为的识别。
 
 ![figure_2]
 
 --------------
 
-(HMMR) [Learning 3D Human Dynamics from Video](https://arxiv.org/pdf/1812.01601.pdf): 
+(HMMR) [Learning 3D Human Dynamics from Video](https://arxiv.org/pdf/1812.01601.pdf): 利用神经网络来得到单张图像上人的SMPL信息。
 
 --------------
 
-(VIBE)[VIBE: Video Inference for Human Body Pose and Shape Estimation](https://arxiv.org/pdf/1912.05656.pdf)
+(VIBE)[VIBE: Video Inference for Human Body Pose and Shape Estimation](https://arxiv.org/pdf/1912.05656.pdf)：与HMMR类似，
+只是使用的网络架构不一样。
