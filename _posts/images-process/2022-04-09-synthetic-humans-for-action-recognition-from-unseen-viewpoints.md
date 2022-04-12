@@ -130,6 +130,8 @@ Mini-Kinetics-200，Kinetics-400的一个子集。我们将 Mini-Kinetics-200 �
 
 --------------
 
+# related papes
+
 [Learning from Synthetic Humans](https://arxiv.org/pdf/1701.01370.pdf) 对于图像分割，其中有一个任务是通过输入一张图像，能够分割出人
 的同时也要能分割出这个人在该图像中的景深信息。 对于这样一个任务，我们可用的数据集很少，于是本文就提出一个方法来人工合成一个数据集。这篇文章说我们使
 用 Blender 从 CMU MoCap 中获得 SMPL 人体 参数信息，包括姿势和外形，然后通过改变人的衣服，环境，周围灯光，相机位置，最终合成大量的图像。
