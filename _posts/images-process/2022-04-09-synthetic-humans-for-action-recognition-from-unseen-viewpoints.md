@@ -18,7 +18,7 @@ tags:
 
 [Synthetic Humans for Action Recognition from Unseen Viewpoints](https://arxiv.org/abs/1912.04070)
 
-#摘要：
+# 摘要
 本文想通过利用合成的数据来提升视频人类动作的识别率。基于此想法，作者设计了一套合成数据的生成方法，生成了一个新的数据集 SURREACT，然后通过在
 该数据集上进行训练，再分别在NTU RGB+D 和 UESTC 数据集上做微调，最后取得了目前动作识别最好准确率。NTU RGB+D 和 UESTC 数据集都是室内视频数据
 集， 为了检验作者的方法，他们又在野外的视频数据集 Kinetics 上做了one-shot测试，即每一类只选择一个样本进行训练，然后取得了很好的效果。
@@ -40,7 +40,7 @@ Introduction：首先作者介绍通常大家都使用卷积神经网络CNN来�
 
 ----------------
 
-#相关工作：
+# 相关工作
 人类行为识别是一个成熟的研究领域，在 Kong et al 的一篇对其研究的综述论文中有详细的介绍。本文中我们只聚焦于相关工作中的合成数据，
 交叉尺度动作识别，和简要的3D人类形态估计。
 
@@ -127,22 +127,17 @@ Mini-Kinetics-200，Kinetics-400的一个子集。我们将 Mini-Kinetics-200 �
 **SURREAL dataset**：从多个人体动作视频数据集中合成的一个新的，多视角的人体动作视频数据集。
 
 
-
-
-
-
- 
 [Learning from Synthetic Humans](https://arxiv.org/pdf/1701.01370.pdf) 对于图像分割，其中有一个任务是通过输入一张图像，能够分割出人
 的同时也要能分割出这个人在该图像中的景深信息。 对于这样一个任务，我们可用的数据集很少，于是本文就提出一个方法来人工合成一个数据集。这篇文章说我们使
 用 Blender 从 CMU MoCap 中获得 SMPL 人体 参数信息，包括姿势和外形，然后通过改变人的衣服，环境，周围灯光，相机位置，最终合成大量的图像。
 
 [Learning a Non-linear Knowledge Transfer Model for Cross-View Action Recognition](https://openaccess.thecvf.com/content_cvpr_2015/papers/Rahmani_Learning_a_Non-Linear_2015_CVPR_paper.pdf) 
-本文提出一种方法来将视频中不同角度运动转换到一个最常用的经典角度， 从而提升视频中动作识别的准确率。而且这个方法是一种无监督学习的方式。本文的出发
+本文提出一种方法来将视频中不同角度运动转换到一个最常用的经典角度，从而提升视频中动作识别的准确率。而且这个方法是一种无监督学习的方式。本文的出发
 点是希望这样做了之后，当我们在一个有限的数据集上训练一个网络，在测试的时候，如果我们碰到了一个动作，它的拍摄角度 是之前训练数据集里面没有的话，
 那么该网络就对这种视频的动作识别准确率很差，但是如果我们有个方法，能够使得所有的测试集在进入到网络之前都全部转换成我们最常见的经典角度，这个时候我
 们的网络 就可以很容易的识别该动作了。
 
-(43) [Learning hu-man pose models from synthesized data for robust RGB-D action recognition]()：
+(43) [Learning human pose models from synthesized data for robust RGB-D action recognition](https://arxiv.org/pdf/1707.00823.pdf) ：
 
 (HMMR) [Learning 3D Human Dynamics from Video](https://arxiv.org/pdf/1812.01601.pdf): 
 
