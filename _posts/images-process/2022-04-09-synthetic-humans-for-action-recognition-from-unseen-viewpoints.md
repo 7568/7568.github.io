@@ -123,13 +123,18 @@ Mini-Kinetics-200，Kinetics-400的一个子集。我们将 Mini-Kinetics-200 �
 
 未来可能的研究方向包括将动作串进行受限行为的生成，和对行为识别进行上下文线索的模拟。
 
+--------------
+
 **SURREACT dataset**：通过 NTU RGB+D 和 UESTC 这两个标准的人类行为视频数据集来合成大量的多视角，多背景，多服饰，多身体形态的数据集。
 **SURREAL dataset**：从多个人体动作视频数据集中合成的一个新的，多视角的人体动作视频数据集。
 
+--------------
 
 [Learning from Synthetic Humans](https://arxiv.org/pdf/1701.01370.pdf) 对于图像分割，其中有一个任务是通过输入一张图像，能够分割出人
 的同时也要能分割出这个人在该图像中的景深信息。 对于这样一个任务，我们可用的数据集很少，于是本文就提出一个方法来人工合成一个数据集。这篇文章说我们使
 用 Blender 从 CMU MoCap 中获得 SMPL 人体 参数信息，包括姿势和外形，然后通过改变人的衣服，环境，周围灯光，相机位置，最终合成大量的图像。
+
+--------------
 
 [Learning a Non-linear Knowledge Transfer Model for Cross-View Action Recognition](https://openaccess.thecvf.com/content_cvpr_2015/papers/Rahmani_Learning_a_Non-Linear_2015_CVPR_paper.pdf) 
 本文提出一种方法来将视频中不同角度运动转换到一个最常用的经典角度，从而提升视频中动作识别的准确率。而且这个方法是一种无监督学习的方式。本文的出发
@@ -137,8 +142,14 @@ Mini-Kinetics-200，Kinetics-400的一个子集。我们将 Mini-Kinetics-200 �
 那么该网络就对这种视频的动作识别准确率很差，但是如果我们有个方法，能够使得所有的测试集在进入到网络之前都全部转换成我们最常见的经典角度，这个时候我
 们的网络 就可以很容易的识别该动作了。
 
+--------------
+
 (43) [Learning human pose models from synthesized data for robust RGB-D action recognition](https://arxiv.org/pdf/1707.00823.pdf) ：
 
+--------------
+
 (HMMR) [Learning 3D Human Dynamics from Video](https://arxiv.org/pdf/1812.01601.pdf): 
+
+--------------
 
 (VIBE)[VIBE: Video Inference for Human Body Pose and Shape Estimation](https://arxiv.org/pdf/1912.05656.pdf)
