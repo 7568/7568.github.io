@@ -3,7 +3,7 @@ layout: blog
 others: true
 istop: true
 title: "action recognition"
-background-image: http://7568.github.io/images/2022-04-09-synthetic-humans-for-action-recognition-from-unseen-viewpoints.md/img.png
+background-image: http://7568.github.io/images/2022-04-09-synthetic-humans-for-action-recognition-from-unseen-viewpoints/img.png
 date:  2022-04-09
 category: 视频动作识别
 tags:
