@@ -1,6 +1,6 @@
 ---
 layout: blog
-others: true
+images-process: true
 istop: true
 title: "action recognition"
 background-image: http://7568.github.io/images/2022-04-09-synthetic-humans-for-action-recognition-from-unseen-viewpoints/img.png

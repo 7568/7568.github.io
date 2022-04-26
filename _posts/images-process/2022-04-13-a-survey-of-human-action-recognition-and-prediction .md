@@ -1,6 +1,6 @@
 ---
 layout: blog
-others: true
+images-process: true
 istop: true
 title: "action recognition and prediction"
 background-image: http://7568.github.io/images/2022-04-13-a-survey-of-human-action-recognition-and-prediction/img.png
@@ -15,7 +15,7 @@ tags:
 
 [figure_1]:https://7568.github.io/images/2022-04-09-synthetic-humans-for-action-recognition/figure_2.png
 [figure_2]:https://7568.github.io/images/2022-04-09-synthetic-humans-for-action-recognition/figure_1.png
-
+[31. ](#abcd)
 
 
 [Human Action Recognition and Prediction: A Survey](https://arxiv.org/pdf/1806.11230.pdf)
@@ -68,7 +68,6 @@ tags:
 # Human Perception of Actions
 人类的行为，特别是那些涉及到整个肢体和身体的动作，还有那些与环境的交互，都包含了表演者的意图，目标，精神状态等丰富的信息。理解别人的行为和意图是一项很重要的
 社交技能，而人来的视觉系统为这个技能提供了丰富的资源信息。相较于静态的图像，视频中的人类行为能够提供更可靠和更深刻的信息。而且里面的人说的话也能比图像更能让人理解别人的动作。
-<a name="abcd">[123]</a>
 
 
 
@@ -92,5 +91,8 @@ tags:
 
 
 
-[31. Clarke, T., Bradshaw, M., Field, D., Hampson, S., Rose, D.: The perception of emotion from body movement in 
-point-light displays of interpersonal dialogue. Percep- tion 24, 1171–80 (2005)     ](#abcd).
+
+
+
+<a name="abcd"> Clarke, T., Bradshaw, M., Field, D., Hampson, S., Rose, D.: The perception of emotion from body 
+movement in point-light displays of interpersonal dialogue. Percep- tion 24, 1171–80 (2005)</a>
