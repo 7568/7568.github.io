@@ -76,7 +76,7 @@
 
 ### 2.2 交易策略
 
-为了在时间 T 时刻对冲一个亏空的 Z ，我们可能会在 S 使用一个带有 $\delta_k = (\delta_k^1 , ... , \delta_k^d)$ 的$\mathbb{R}^d - valued ,\mathbb{F} - adapted$ 的随机过程$\delta = {(\delta_k)}_{k=0,...,n-1}$ ，其中 $\delta^i_k$ 表示代理人在时间$t_k$处持有的第 i 个资产。为了表示方便我们还定义$\delta_{-1} = \delta_n := 0$ 。
+为了在时间 T 时刻对冲一个亏空的 Z ，我们可能会在 S 使用一个带有 $\delta_k = (\delta_k^1 , ... , \delta_k^d)$ 的$\mathbb{R}^d - valued ,\mathbb{F} - adapted$ 的随机过程 $\delta = ({\delta_k})_{k=0,...,n-1}$ ，其中 $\delta^i_k$ 表示代理人在时间$t_k$处持有的第 i 个资产。为了表示方便我们还定义$\delta_{-1} = \delta_n := 0$ 。
 
 我们用$\mathcal{H}^u$表示交易策略中非限制的集合。然而，每个$\delta_k$都是可添加的交易限制的子集。这些限制是由于流动性，资产可用性，或者交易限制而出现的。他们也被用来在特定的期权可用之前限制其交易。在上面的只有3个月数据的期权中，不同的交易限制将会是{0}，知道第三个月这个时间点。为了整合这些效果，我们假设$\delta_k$是被限制到集合$\mathcal{H}_k$的，其中$\mathcal{H}_k$假设是连续的，$\mathcal{F}_k$ 可测的集合$H_k : \mathbb{R}^{d(k+1)} \to \mathbb{R}^d$，等,$\mathcal{H}_k := H_k(\mathbb{R}^{d(k+1)})$。我们规定$H_k(0) = 0$ 。
 
