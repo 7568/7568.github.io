@@ -80,7 +80,7 @@
 
 我们用$\mathcal{H}^u$表示交易策略中非限制的集合。然而，每个$\delta_k$都是可添加的交易限制的子集。这些限制是由于流动性，资产可用性，或者交易限制而出现的。他们也被用来在特定的期权可用之前限制其交易。在上面的只有3个月数据的期权中，不同的交易限制将会是{0}，知道第三个月这个时间点。为了整合这些效果，我们假设$\delta_k$是被限制到集合$\mathcal{H}_k$的，其中$\mathcal{H}_k$假设是连续的，$\mathcal{F}_k$ 可测的集合$H_k : \mathbb{R}^{d(k+1)} \to \mathbb{R}^d$，等,$\mathcal{H}_k := H_k(\mathbb{R}^{d(k+1)})$。我们规定$H_k(0) = 0$ 。
 
-而且，对于非限制性的策略$\delta^u \in \mathcal(H)^u$，我们（依次）定义$ {(H o {\delta}^u)}_k := K_k((H o {\delta}^u)_0 , ... , {(H o {\delta}^u)}_{k-1} , {\delta}_k^u) $ 它的受约束"投影"到 $ {\mathcal{h}}_k $中。我们使用${\mathcal{H}} := (H o {\mathcal{H}}^u) \subset {\mathcal{H}}^u $来表示受限制的交易策略中的对应的非空集合。
+而且，对于非限制性的策略$\delta^u \in \mathcal(H)^u$，我们（依次）定义$ {(H \circ {\delta}^u)}_k := K_k((H \circ {\delta}^u)_0 , ... , {(H \circ {\delta}^u)}_{k-1} , {\delta}_k^u) $ 它的受约束"投影"到 $ {\mathcal{h}}_k $中。我们使用${\mathcal{H}} := (H \circ {\mathcal{H}}^u) \subset {\mathcal{H}}^u $来表示受限制的交易策略中的对应的非空集合。
 
 例如 1 中假设 S 为一系列期权，而且使用${\mathcal{V}}^i_k(S^i_k)$来表示对每个期权在时间$t_k$时刻使用可用的不同市场参数而计算B-S中Vega的值。
 
