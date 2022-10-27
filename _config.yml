@@ -28,8 +28,8 @@ links:
   - name:         文本处理
     url:          /text-process
     external:     false
-  - name:         time series 处理
-    url:          /time-series-process
+  - name:         tabular data 处理
+    url:          /tabular-data-process
     external:     false
   - name:         其他杂记
     url:          /others
